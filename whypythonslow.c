@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 // Preprocess # prefix - check hierarchy -> current workspace -> system 
 // header file
 
@@ -25,8 +26,69 @@ int searchDeepest(Node *cur){
     return cur->data;
   } else {
     return searchDeepest(cur->next);
-  }
 }
+
+typedef struct ArrayList {
+  int *array;
+  size_t length;
+  size_t capacity;
+} ArrayList;
+// For generic type array => void *array+size_t elementSize / using (char *)array+elementSize for 1byte increment hack -> it's nice!
+
+ArrayList createArrayList(size_t capacity){
+  ArrayList list;
+  list.array = (int *)malloc(capacity * sizeof(int));
+  list.length = 0;
+  list.capacity = capacity;
+  return list;
+}
+
+void append(ArrayList *list, int value){
+  if(list -> length == list -> capacity){
+    list->capacity *= 2;
+    //list->array = (int *)realloc(list->array, list->capacity * sizeof(int));
+    int *new_array = (int *)malloc(list->capacity * sizeof(int));
+ //   for(int i=0; i<list->length; i++){
+ //     new_array[i] = list->array[i];
+ //   }
+    memcpy(new_array, list->array, list->length*sizeof(int));
+    free(list->array);
+    list->array = new_array;
+    printf("Capacity increased to %zu\n", list->capacity);
+  }
+
+  list->array[list->length] = value;
+  list->length++;
+  return;
+}
+
+void* pop(ArrayList *list){
+  if(list->length == 0){
+    printf("Error; list is empty\n");
+    return NULL;
+  }
+
+  //list->length--; // occasionally, it seems shirinking the capacity is also one way to optimize.
+  // ++i->no copy, i++->copy(acts like js event listener)
+  return &(list->array[--list->length]);
+}
+
+void removeItem(ArrayList *list, int index){
+  if (index >= list->length){
+    printf("Error: index out of range\n");
+    return;
+  }
+
+// for(int i=index; i<list->length-1; i++){
+ //   list->array[i] = list->array[i+1];
+ // } // more effecient way? -> memmove? or memcpy?
+  
+  memmove(&list->array[index], &list->array[index+1], (list->length-index-1)*sizeof(int)); // safe-overlap vs overlapping(copy from the end of the blocks to the beginning, worrying about losing!)
+
+  --list->length;
+  return;
+}
+
 int main() {
   // What is variable type?
     // Size of variable metters - https://www.youtube.com/watch?v=hwyRnHA54lI
@@ -127,14 +189,31 @@ int main() {
   free(head_);
   free(current_);
 
-  // Arraylist
-  
+  // Array List(Dynamic sizing with data structures) - https://www.youtube.com/watch?v=xFMXIgvlgcY&t=169s
+  // Linked list -> finding elements is fucking idiot! -> O(n) what a freaking slow!(cache hit)
+  ArrayList list = createArrayList(2);
+  append(&list, 1); // Dynamic sizing is making it has infinite size!
+  append(&list, 2);
+  append(&list, 3);
+  int popped_val = *(int *)pop(&list);
+  printf("poped %d!!\n", popped_val);
+  removeItem(&list, 1); // Linked list is more efficient! -> just change the pointer directing to.
+  printf("poped %d!!\n", *(int *)pop(&list));
+  // Generic Type -> Why cache nightmare?(java, python->multiple type with array pointer, js->hash map!!!!)
+
+  // Concurrecy - https://www.youtube.com/watch?v=3X93PnKRNUo 
+    // Time-Sharing Operating System
+      // Process(data structure) / Scheduler
+      // CPU(fetch-jump/decode/execute) -> I/O(waiting on Queue) -> Dispatcher...
+        // Infinite Loop without I/O waiting? -> Halting problem! ==> Preemptive Scheduling(Set Timer on it!)
+    // Multi-core CPU (true parallelism)
+    
 
   // Compiler = Memory Stack/Heap Manipulation Utilizer
     // AOT Optimization -> deep optim(inlining, vectorization...)
   // Interpreter = Read(Lexer), Parse(Parser), Execute
-    // Lexer=Tokenizer / Parser=RTN(Shuting Yard Algorithm)->AST(Break&Conquer technique)
-      // Parsing is a process of sorting human readable to machine readable format (1+2*3 -> 1 2 3 * +)
+    // Lexer=Tokenizer / Parser=RPN(Shuting Yard Algorithm)->AST(Break&Conquer technique)
+      // Parsing is a process of sorting human readable format to machine readable format (1+2*3 -> 1 2 3 * +)
       // Function state space, variable scope, args function calling.. -> more complex things! (but it's not big deal)
     // JIT(Just in time) execution = parse+execute all in onece!
     // Execution = Where the overhead comes from!
@@ -148,7 +227,7 @@ int main() {
       // **solution** I think might effective -> Compress AST Block-by-Block! to reduce call?(cache-hit) = JIT Apro? slightly different in some manner.
   // Run time <<<<< Developer time (in most case)
 
-  // CSs(Cascading Syle Sheets X)
+  // CSs(Cascading Style Sheets X)
   // hash table
     // Maximize the hashing function ability to make O(1)!
       // hash(key) mod N -> index
