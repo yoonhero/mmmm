@@ -1,11 +1,10 @@
-Friday's Fucking Fun Froject (FFFF)
+My note about studying Open-Set of greatest mind of all-time with struggles.
 
-- Study&Build Really cool stuff, out-of-comfort zone.
-- Make everything works badly but entertainingly.
-- No worry about further optimization or refactoring.
+Mainly consists of
 
-## Week00. Singularity
+-   Discrete math: language(turing completeness!), 4 color prob, Best sofa shape, ...
+-   Quantum Computing: Grover, Shor, Bell, ...
+-   Behind Abstract layer: bit(chips), html(protocol), ML(TPU), Smart Contract(ethereum)
+-   Philosophy
 
-- **Goal**: Is singularity near?
-- **Stack**: Math, Brain, Pencils, Erasers
-
+The ultimate goal of these session would be solving the "unsolved" Millennium Prize Problem from previous wisdom. Cheers.
