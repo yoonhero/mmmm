@@ -1,0 +1,14 @@
+name = "foo"
+version = "0.1.0"
+defaultTargets = ["foo"]
+
+[[lean_lib]]
+name = "Foo"
+
+[[lean_exe]]
+name = "foo"
+root = "Main"
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
