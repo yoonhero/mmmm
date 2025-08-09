@@ -1,7 +1,6 @@
--- import
-import Mathlib.Data.Rat.Init
-import Mathlib.Data.Int.GCD
-
+-- -- import
+-- import Mathlib.Data.Rat.Init
+-- import Mathlib.Data.Int.GCD
 def hello := "world"
 def m : Nat := 1
 def n : Nat := 0
@@ -67,9 +66,9 @@ theorem example1 (p q : Prop) : p → p := by
   intro h
   exact h
 
-theorem my_favorite_theorem {a b : ℝ} (h₀ : a^3 - 3*a*b^2=39) (h₁ : b^3 - 3*b*a^2=26):
-  a^2+b^2=13 := by sorry
+-- theorem my_favorite_theorem {a b : ℝ} (h₀ : a^3 - 3*a*b^2=39) (h₁ : b^3 - 3*b*a^2=26):
+--   a^2+b^2=13 := by sorry
 
-def qq : ℚ := 1/2
-#eval (3 : ℚ) + (4 : ℚ)
+-- def qq : ℚ := 1/2
+-- #eval (3 : ℚ) + (4 : ℚ)
 -- theorem sqrt2_irrational : ¬ ∃ (a, b : ℤ)
