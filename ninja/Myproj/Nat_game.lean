@@ -184,3 +184,67 @@ theorem _mul_assoc (a b c : Nat) : (a * b) * c = a * (b * c) := by
     rw [← _succ_eq_add_one]
     rw [_mul_succ, _add_mul, ih]
     rw [_succ_mul, _mul_add]
+
+theorem _pow_zero (n : ℕ) : n ^ 0 = 1 := by rfl
+theorem _pow_succ (a b : ℕ) : a ^ (Nat.succ b)  = a ^ b * a := by rfl
+
+theorem _zero_pow_zero : (0 : ℕ) ^ 0 = 1 := by
+  rw [_pow_zero]
+
+theorem _zero_pow_succ (n : ℕ) : 0 ^ (Nat.succ n) = 0 := by
+  rw [_pow_succ, _mul_zero]
+
+theorem _pow_one (n : ℕ) : n ^ 1 = n := by
+  match n with
+  | Nat.zero => rw [one_eq_succ_zero, _zero_pow_succ]
+  | _ => rw [one_eq_succ_zero, _pow_succ, _pow_zero, _one_mul]
+
+theorem _one_pow (n: ℕ) : 1 ^ n = 1 := by
+  induction n with
+  | zero =>
+    rw [_pow_zero]
+  | succ d ih =>
+    rw [_pow_succ, _mul_one, ih]
+
+theorem _pow_two (a : ℕ) : a ^ 2 = a * a := by
+  rw [two_eq_succ_one, _pow_succ, _pow_one]
+
+theorem _pow_add (a m n : ℕ) : a ^ (m + n) = a ^ m * a ^ n := by
+  induction n with
+  | zero =>
+    rw [_add_zero, _pow_zero, _mul_one]
+  | succ d ih =>
+    rw [_add_succ, _pow_succ]
+    rw [← _succ_eq_add_one, _pow_succ]
+    rw [ih, _mul_assoc]
+
+theorem _mul_pow (a b n : ℕ) : (a * b) ^ n = a ^ n * b ^ n := by
+  induction n with
+  | zero =>
+    repeat rw [_pow_zero]
+  | succ d ih =>
+    repeat rw [_pow_succ]
+    rw [ih]
+    rw [_mul_assoc]
+    rw [← _mul_assoc (b ^ d) a b]
+    rw [_mul_comm (b ^ d) a]
+    rw [_mul_assoc]
+    rw [← _mul_assoc]
+
+theorem _pow_pow (a m n : ℕ) : (a ^ m) ^ n = a ^ (m * n) := by
+  induction n with
+  | zero =>
+    rw [_pow_zero, _mul_zero, _pow_zero]
+  | succ d ih =>
+    rw [_pow_succ, ih]
+    rw [_mul_add, _mul_one, _pow_add]
+
+theorem _add_sq (a b : ℕ) : (a + b) ^ 2 = a ^ 2 + b ^ 2 + 2 * a * b := by
+  rw [_pow_two, _mul_add]
+  repeat rw [_add_mul, ← _pow_two]
+  rw [_mul_comm, _add_assoc, ← _add_assoc (a * b), ← _two_mul, ← _mul_assoc]
+  rw [_add_comm (2 * a * b), ← _add_assoc]
+
+-- Beyond my level sir
+theorem FermetLastTheorme (a b c n : ℕ) : (a + 1) ^ (n + 3) + (b + 1) ^ (n + 3) ≠ (c + 1) ^ (n + 3) := by
+  sorry
