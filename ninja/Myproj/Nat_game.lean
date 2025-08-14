@@ -6,6 +6,7 @@ theorem isMeWoHypothesis (x y: Nat) (h1: y = x + 7) : 2*y=2*(x+7) := by
 
 theorem one_eq_succ_zero : 1 = Nat.succ 0 := by rfl
 theorem two_eq_succ_one : 2 = Nat.succ 1 := by rfl
+theorem four_eq_succ_three : 4 = Nat.succ 3 := by rfl
 
 theorem addOneisSucc (n : Nat) : Nat.succ n = n + 1 := by
   rw [one_eq_succ_zero]
@@ -248,3 +249,126 @@ theorem _add_sq (a b : ℕ) : (a + b) ^ 2 = a ^ 2 + b ^ 2 + 2 * a * b := by
 -- Beyond my level sir
 theorem FermetLastTheorme (a b c n : ℕ) : (a + 1) ^ (n + 3) + (b + 1) ^ (n + 3) ≠ (c + 1) ^ (n + 3) := by
   sorry
+
+-- Beautiful!
+theorem succ_inj (a b : ℕ) (h: a.succ = b.succ) : a = b := by
+  rw [← Nat.pred_succ a]
+  rw [← Nat.pred_succ b]
+  rw [h]
+
+-- Implication = new tactic!
+theorem apply_example (a b : ℕ) (h: Nat.succ (a + 37) = Nat.succ (b + 42)) : a + 37 = b + 42 := by
+  apply (Nat.succ_inj.mp) at h -- P -> Q : transform proposition
+  exact h
+  -- rw [Nat.succ_inj] at h
+  -- exact h
+  -- Or just
+  -- rw [← Nat.succ_inj]
+  -- exact h
+
+theorem threePlusOneIsFour (a : ℕ) (h: a + 1 = 4) : a = 3 := by
+  rw [four_eq_succ_three] at h
+  rw [← _succ_eq_add_one] at h
+  apply succ_inj at h
+  exact h
+
+  -- apply succ_inj -----> why this is working? not sure you are bijective..
+                          -- But actually <-> sir
+  -- rw [succ_eq_add_one, ← four_eq_succ_three]
+  -- exact h
+
+theorem intro_example (x : ℕ) : x = 3 → x = 3 := by
+  intro h -- assuming it's true!
+  exact h
+
+theorem logic_example (x y : ℕ) : x + 1 = y + 1 → x = y := by
+  intro h
+  -- repeat rw [← succ_eq_add_one] at h
+  apply succ_inj at h
+  exact h
+
+theorem logic_opposite_example (x y : ℕ) (h1: x = y) (h2: x ≠ y) : False := by
+  apply h2 at h1
+  exact h1
+
+theorem _one_ne_zero : (1 : ℕ) ≠ 0 := by
+  intro h
+  rw [one_eq_succ_zero] at h
+  apply Nat.succ_ne_zero at h
+  exact h
+
+theorem _zero_ne_one : (0: ℕ) ≠ 1 := by
+  intro h
+  symm at h
+  apply _one_ne_zero at h
+  exact h
+
+  -- symm ---> beautiful...
+  -- exact zero_ne_one
+
+theorem two_two_ne_five : Nat.succ (Nat.succ 0) + Nat.succ (Nat.succ 0) ≠ Nat.succ (Nat.succ (Nat.succ (Nat.succ (Nat.succ 0)))) := by
+  intro h
+  repeat rw [_add_succ, _succ_add] at h
+  repeat apply succ_inj at h
+  apply _zero_ne_one
+  exact h
+
+-- I need more progress to write this...
+theorem implication_example (x y : ℕ) (h1: y = 11 - x) (h2: x = y + 5) : y = 3 := by sorry
+
+theorem _add_left_comm (a b c : ℕ) : a + (b + c) = b + (a + c) := by
+  rw [← _add_assoc, _add_comm a b, _add_assoc]
+
+theorem _abcd_comm (a b c d : ℕ) : a + b + (c + d) = a + c + d + b := by
+  repeat rw [_add_assoc]
+  rw [_add_left_comm b, _add_comm b d]
+
+-- beyond level where we have to write down.
+theorem _abcdefgh (a b c d e f g h : ℕ) : (d + f) + (h + (a + c)) + (g + e + b) = a + b + c + d + e + f + g + h := by
+  -- simp only [_add_assoc, _add_comm] -> it won't find out,
+  simp only [_add_comm, _add_left_comm]
+
+macro "simp_add" : tactic => `(tactic|(
+  simp only [add_assoc, _add_left_comm, add_comm]
+))
+
+theorem _abcdefgh2 (a b c d e f g h : ℕ) : (d + f) + (h + (a + c)) + (g + e + b) = a + b + c + d + e + f + g + h := by
+  simp_add
+
+-- Philosophy moment: It is an axiom of Lean that recursion is a valid way to define functions from types such as the naturals.
+def succ (n: Nat) := n + 1
+def pred : Nat → Nat
+  | 0 => 0
+  | Nat.succ n => n
+
+theorem pred_succ (a : ℕ) : pred (succ a) = a := by
+  rfl
+
+def is_zero : Nat → Bool
+  | 0 => True
+  | Nat.succ n => False
+
+def is_zero_succ (n : ℕ) : (is_zero (Nat.succ n) = true) = False := by
+  induction n with
+  | zero =>
+    rw [← one_eq_succ_zero]
+    trivial
+  | succ d hd =>
+    trivial
+
+theorem succ_ne_zero (n : ℕ) : Nat.succ n ≠ 0 := by
+  intro h
+  rw [← is_zero_succ]
+  rw [h]
+  trivial
+
+theorem succ_ne_succ (m n : ℕ) (h: m ≠ n) : Nat.succ m ≠ Nat.succ n := by
+  contrapose! h
+  apply succ_inj at h
+  exact h
+
+theorem twentyPlusTwentyFourty : (20 : Nat) + 20 = 40 := by
+  decide -- its recursive call makes everything fine! (reduce)
+
+theorem two_two_ne_five_2 : (2 : Nat) + 2 ≠ 5 := by
+  decide
