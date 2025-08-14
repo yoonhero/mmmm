@@ -372,3 +372,44 @@ theorem twentyPlusTwentyFourty : (20 : Nat) + 20 = 40 := by
 
 theorem two_two_ne_five_2 : (2 : Nat) + 2 ≠ 5 := by
   decide
+
+theorem _add_right_cancel (a b n : Nat) : a + n = b + n → a = b := by
+  induction n with
+  | zero =>
+    intro h
+    repeat rw [_add_zero] at h
+    exact h
+  | succ d ih =>
+    intro h
+    rw [← _succ_eq_add_one] at h
+    repeat rw [_add_succ] at h
+    apply succ_inj at h
+    apply ih at h
+    exact h
+
+theorem _add_left_cancel (a b n : Nat) : n + a = n + b → a = b := by
+  rw [_add_comm n a]
+  rw [_add_comm n b]
+  exact _add_right_cancel a b n
+
+theorem _add_left_eq_self (x y : Nat) : x + y = y → x = 0 := by
+  nth_rewrite 2 [← _zero_add y]
+  apply _add_right_cancel x 0 y
+
+theorem _add_right_eq_self (x y : Nat) : x + y = x → y = 0 := by
+  rw [_add_comm x y]
+  exact _add_left_eq_self y x
+
+theorem _add_right_eq_zero (a b : Nat) : a + b = 0 → a = 0 := by
+  cases b with
+  | zero =>
+    exact _add_left_eq_self a 0
+  | succ d =>
+    intro h
+    rw [← _succ_eq_add_one, _add_succ] at h
+    apply succ_ne_zero at h
+    trivial
+
+theorem _add_left_eq_zero (a b : Nat) : a + b = 0 → b = 0 := by
+  rw [_add_comm a b]
+  exact _add_right_eq_zero b a
