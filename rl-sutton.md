@@ -18,7 +18,7 @@ $q(s, a)=\pi(a|s) \sum_{s'} p(s'|s)V(s')$
 
 4. Exercise 3.14 - Grid World Numeric
 
-$0.25 * {0 + 0.9 * (2.3 + 0.4 + -0.4 + 0.7)} = ~0.74$
+$0.25 * (0 + 0.9 * (2.3 + 0.4 + -0.4 + 0.7)) = ~0.74$
 
 5. Exercise 3.15 - relative values depending on "interval" or "sign"?
 

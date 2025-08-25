@@ -313,8 +313,13 @@ theorem two_two_ne_five : Nat.succ (Nat.succ 0) + Nat.succ (Nat.succ 0) ≠ Nat.
   apply _zero_ne_one
   exact h
 
+
+-- theorem move_char (x n : Nat) (h: x = n - x) : 2 * x = n := by
 -- I need more progress to write this...
-theorem implication_example (x y : ℕ) (h1: y = 11 - x) (h2: x = y + 5) : y = 3 := by sorry
+theorem implication_example (x y : ℕ) (h1: y = 11 - x) (h2: x = y + 5) : y = 3 := by
+  -- rw [h2] at h1
+  -- simp at h1
+  sorry
 
 theorem _add_left_comm (a b c : ℕ) : a + (b + c) = b + (a + c) := by
   rw [← _add_assoc, _add_comm a b, _add_assoc]
@@ -413,3 +418,148 @@ theorem _add_right_eq_zero (a b : Nat) : a + b = 0 → a = 0 := by
 theorem _add_left_eq_zero (a b : Nat) : a + b = 0 → b = 0 := by
   rw [_add_comm a b]
   exact _add_right_eq_zero b a
+
+theorem use_example : ∃x : Nat, x > 0 := by
+  use 1
+  trivial
+
+-- 부등호는 ∃p 가 있다는 명제의 추상적 표기...!
+theorem _le_refl (x : Nat) : x ≤ x :=  -- why not working?
+  Nat.le_refl x
+  -- why it gonna changed?
+    -- they had a problem after leaving Natural Number.
+    -- To ensure the generosity of ordering, they need to shift definition... LOL
+
+theorem _zero_le (x : Nat) : 0 ≤ x := by
+  -- use x --> there's exist ∃k
+  sorry
+
+theorem _le_succ_self (x: Nat) : x ≤ succ x := by
+  -- use 1
+  -- exact succ_eq_add_one x
+  sorry
+
+theorem _le_trans (x y z : Nat) (hxy: x ≤ y) (hyz: y ≤ z) : x ≤ z := by
+  -- cases hxy with α hα
+  -- cases hyz with b hb
+
+  -- use α + b
+  -- rw [← add_assoc]
+  -- rw [← hα, ← hb]
+  -- rfl
+  sorry
+
+theorem _le_zero (x : Nat) (hx : x ≤ 0) : x = 0 := by
+  -- cases hx with a ha
+
+  -- symm at ha
+  -- apply add_right_eq_zero at ha
+  -- exact ha
+  sorry
+
+theorem _le_antisymm (x y : ℕ) (hxy : x ≤ y) (hyx : y ≤ x) : x = y := by
+  -- cases hxy with a ha
+  -- cases hyx with b hb
+
+  -- rw [ha] at hb
+  -- rw [add_assoc] at hb
+  -- symm at hb
+  -- apply add_right_eq_self at hb
+  -- apply add_right_eq_zero at hb
+  -- rw [hb, add_zero] at ha
+  -- symm at ha
+  -- exact ha
+  sorry
+
+-- Partial Order
+  -- Reflexive: a ≤ a
+  -- Antisymmetric: a ≤ b, a ≥ b → a = b
+  -- Transitive: a ≤ b , b ≤ c → a ≤ c
+
+-- total order --> one extra property here!
+  -- Comparability(aka trichotomy law?): either a ≤ b or a ≥ b
+
+-- Ex) relation divisibility on Nat -> not total order...
+
+theorem _or_comm (x y : ℕ) (h : x = 37 ∨ y = 42) : y = 42 ∨ x = 37 := by
+  -- cases h with hx hy
+  -- right
+  -- exact hx
+  -- left
+  -- exact hy
+  sorry
+
+theorem _le_total (x y : ℕ) : x ≤ y ∨ x ≥ y := by
+  -- induction y with d hd
+  -- right
+  -- apply zero_le
+
+  -- induction hd with h1 h2
+
+  -- cases h1 with e he
+  -- left
+  -- use e+1
+  -- rw [succ_eq_add_one, ← add_assoc, he]
+  -- rfl
+
+  -- cases h2 with e he
+  -- cases e with b
+
+  -- left
+  -- rw [add_zero] at he
+  -- use 1
+  -- rw [succ_eq_add_one, he]
+  -- rfl
+
+  -- right
+  -- use b
+  -- rw [he]
+  -- repeat rw [succ_eq_add_one]
+  -- simp_add
+  sorry
+
+theorem succ_le_succ (x y : Nat) (hx : succ x ≤ succ y) : x ≤ y := by
+  -- cases hx with d hd
+  -- use d
+  -- rw [succ_add] at hd
+  -- apply succ_inj at hd
+  -- exact hd
+  sorry
+
+theorem _le_one (x : Nat) (hx : x ≤ 1) : x = 0 ∨ x = 1 := by
+  -- cases hx with d hd
+
+  -- cases d with e
+
+  -- rw [add_zero] at hd
+  -- symm at hd
+  -- right
+  -- exact hd
+
+  -- rw [add_succ, one_eq_succ_zero] at hd
+  -- apply succ_inj at hd
+  -- symm at hd
+  -- apply add_right_eq_zero x e at hd
+  -- left
+  -- exact hd
+  sorry
+
+-- ∨ is right associative!
+theorem _le_two (x : Nat) (hx : x ≤ 2) : x = 0 ∨ x = 1 ∨ x = 2 := by
+  -- cases x with y
+  -- left
+  -- rfl
+
+  -- right
+  -- rw [two_eq_succ_one] at hx
+  -- apply succ_le_succ at hx
+  -- apply le_one at hx
+
+  -- cases hx with h1 h2
+  -- left
+  -- rw [h1, one_eq_succ_zero]
+  -- rfl
+  -- right
+  -- rw [h2, two_eq_succ_one]
+  -- rfl
+  sorry
