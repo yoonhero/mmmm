@@ -563,3 +563,108 @@ theorem _le_two (x : Nat) (hx : x ≤ 2) : x = 0 ∨ x = 1 ∨ x = 2 := by
   -- rw [h2, two_eq_succ_one]
   -- rfl
   sorry
+
+theorem _mul_le_mul_right (a b t : Nat) (h : a ≤ b) : a * t ≤ b * t := by
+  -- cases h with d hd
+  -- use d * t
+  -- rw [hd, add_mul]
+  -- rfl
+  sorry
+
+theorem _mul_left_ne_zero (a b : Nat) (h : a * b ≠ 0) : b ≠ 0 := by
+  contrapose! h
+  rw [h, _mul_zero]
+
+theorem _eq_succ_of_ne_zero (a : ℕ) (ha : a ≠ 0) : ∃ n, a = succ n := by
+  cases a with
+  | zero =>
+    tauto
+  | succ d =>
+    tauto
+
+theorem _one_le_of_ne_zero (a : Nat) (ha : a ≠ 0) : 1 ≤ a := by
+  -- apply eq_succ_of_ne_zero at ha
+  -- cases ha with n hn
+  -- use n
+  -- rw [hn, succ_eq_add_one]
+  -- simp_add
+  sorry
+
+theorem _le_mul_right (a b : Nat) (h : a * b ≠ 0) : a ≤ a * b := by
+  -- apply mul_left_ne_zero at h
+  -- apply eq_succ_of_ne_zero at h
+  -- cases h with n hn
+  -- use a*n
+  -- rw [hn, mul_succ]
+  -- simp_add
+
+  -- Ver.2
+  -- apply mul_left_ne_zero at h
+  -- apply one_le_of_ne_zero at h
+  -- apply mul_le_mul_right 1 b a at h
+  -- rw [one_mul a, mul_comm] at h
+  -- exact h
+  sorry
+
+theorem _mul_right_eq_one (x y : Nat) (h : x * y = 1) : x = 1 := by
+  -- have h2 : x * y ≠ 0
+  -- rw [h]
+  -- trivial
+
+  -- apply le_mul_right at h2
+  -- rw [h] at h2
+  -- apply le_one at h2
+  -- cases h2 with hl hr
+  -- rw [hl, zero_mul] at h
+  -- trivial
+  -- exact hr
+  sorry
+
+theorem _mul_ne_zero (a b : Nat) (ha : a ≠ 0) (hb : b ≠ 0) : a * b ≠ 0 := by
+  -- apply _eq_succ_of_ne_zero at ha
+  -- apply _eq_succ_of_ne_zero at hb
+
+  -- cases ha with α hα
+  -- cases hb with β hβ
+
+  -- have h1 : a * b = succ (α * β + α + β)
+  -- rw [hα, hβ]
+  -- repeat rw [_succ_eq_add_one]
+  -- simp [_mul_add, _add_mul, _mul_one, _one_mul]
+  -- simp_add
+
+  -- rw [h1]
+  -- apply succ_ne_zero
+  sorry
+
+theorem _mul_eq_zero (a b : Nat) (h : a * b = 0) : a = 0 ∨ b = 0 := by
+  -- contrapose! h
+  -- cases h with hl hr
+  -- apply mul_ne_zero a b hl hr
+
+  have h2 := _mul_ne_zero a b
+  tauto
+
+theorem _mul_left_cancel (a b c : Nat) (ha : a ≠ 0) (h : a * b = a * c) : b = c := by
+  -- induction b with d hd generalizing c
+
+  -- rw [mul_zero] at h
+  -- symm at h
+  -- apply mul_eq_zero a c at h
+  -- tauto
+
+  -- cases c with e
+  -- rw [mul_zero] at h
+  -- apply mul_eq_zero at h
+  -- tauto
+
+  -- repeat rw [succ_eq_add_one, mul_add] at h
+  -- apply add_right_cancel at h
+  -- apply hd e at h
+  -- rw [h]
+  -- rfl
+  sorry
+
+theorem _mul_right_eq_self (a b : Nat) (ha : a ≠ 0) (h : a * b = a) : b = 1 := by
+  nth_rewrite 2 [← _mul_one a] at h
+  exact _mul_left_cancel a b 1 ha h
