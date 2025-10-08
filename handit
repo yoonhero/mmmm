@@ -1,0 +1,60 @@
+Level1
+`file` -> show property (-i MIME -L symlink)
+: fingerprints located in /usr/share/misc/magic.mgc
+
+`du` -> -h -s -d
+: sums all the st_blocks values
+
+`find` -> -name -type -size -mtime -user -perm -empty -exec
+
+Level 2
+I can access dashed filename with ./-
+-: refers to STDIN/STDOUT
+(cd -: previous dir / cat -: keyboard)
+
+Level 3
+space = "\ "
+
+Level 4
+ls -la
+
+Level 5
+find -type f -exec file {} \; | grep -i text -B1
+
+Level 6
+find -type f -size 1033c ! -executable
+
+Level 7
+find . -user bandit7 -group bandit6 -size 33c 2>&1 | grep -v "Permission denied" | grep -v "No such"
+
+Level 8
+cat < data.txt | grep "millionth"
+
+Level 9
+sort data.txt | uniq -u -> after sort call!
+sort data.txt | uniq -c | grep "1 "
+
+Level 10, 11
+strings data.txt | grep -E "=+\s+"
+base64 -d data.txt
+
+strings: binary into printable
+base64: binary into ASCII(transferring attachments through text-base protocol)
+xxd, hexdump: hex,ascii,octa etc
+
+Level 12
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' -> Caesar Crypto
+
+Level 13
+tar: make dump, not compress(-xf)
+gzip: real compress(-d)
+bzip2: slow but good(-d)
+
+Level 14
+ssh with private key -> ssh -i (0644 is too high for this action)
+
+Level 15
+telnet localhost 30000
+
+Level 16
+openssl s_client localhost:30001
