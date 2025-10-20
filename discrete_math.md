@@ -5,9 +5,30 @@
 -   Stanley-Style: enumeratic / algebric / geometry
 -   Erdos-Style: extermal / probablistic
 
+**Thm 1.1** (Pigeon-Hole Principle)
+
+Let n and k be postiive integers, and let $n \geq k$. Suppose we have to place n identical balls into k identical boxes. Then there will be at least one box in which we place at least two balls.
+
+(**pf**) by contradiction
+
+**Example 1.2**: There is an element in the sequence 7, 77, 777, 7777, ... that is divisible by 2003.
+
+solution: there are more than 2003 elements and 2002 possible remainders(mod 2003). for some i, jth remainders are same. $a_i - a_j$ be the $a_k * 10^k$.
+
+-   [related problem](https://www.acmicpc.net/problem/8112)
+-   prove that among eight integers, there are always two whose difference is divisible by seven.
+
+**Example 1.5**: Ten points are given within a square of unit size. Then there are two of them that are close to each other than 0.48, and there are three of them that can be covered by a disk of radius 0.5
+
+solution:
+
+1. divide nine equal areas. some area contain more than 1. $\frac{\sqrt{2}}{3}<0.48$.
+2. divide four equal areas in which connects the diagonal. some area contains more than 2.
+
+---
+
 **This is Elementary Counting Broh**
 
--   비둘기집 원리 - (pf) by contradiction
 -   Double counting: help you.
 -   Finding Bijection: you need to smart.
 
@@ -70,6 +91,16 @@ $RHS = \sum_{size of im(f)}$ (# of possible Image I) $= \sum_{k}^{n} \binom{x}{k
 Thus, $x^n=\sum S(n, k)(x)_k$.
 
 **Def**: The nubmer of all set partition of $[n]$ into non-empty parts is denoted by $B(n):=\sum S(n, k)$(Bell number)
+
+**HW 01 #3**: Let $B_k(n)$ be # of partitions of $[n]$ so that if i and j are in the same block, then $|i-j| \gt k$. Prove that $B_k(n)=B(n-k)$, for all $n \geq k$.
+
+(**pf**)
+
+B_k를 작은 구성요소로 나누어서 관찰해보면 $S(n, k)$와 동치인 것을 발견할 수 있고 $n-\alpha$일 때 조건을 만족하게 되어 이를 다시 재구성하면 증명 완.
+
+**HW 01 #6**: Let $F(n)$ denote # of partitions of $[n]$ which contain no singleton blocks. Find a formula for the numbers of $F(n)$ in terms of the $B(n)$.
+
+(**pf**) 포함-배제 원리
 
 ---
 
