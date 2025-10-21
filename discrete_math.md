@@ -211,4 +211,121 @@ Let $g(n)$ be the number of partitions of n in which each part is at least two. 
 
 **Cor**: least three. $q(n)=p(n)-p(n-1)-p(n-2)+p(n-3)$
 
-### Ch6. Permutation
+### Ch6. Not So Vicious Cycles. Cycles in Permutations.
+
+> permutation은 bijective function $[n] \to [n]$과 동형이다.
+
+_Note_: you need to know the basics of Symmetric Group($S_n$).
+
+**Cor**: All permutations can be decomposed into disjoint union of the cycles.
+
+(**pf**)
+
+1. By **lemma 6.4** each entry is a member of a cycle.
+2. distinct cycles are disjoint.
+
+---
+
+_Note_: there are many ways to write same cycle decomposition.
+
+**Def**: Canonical cycle form iff
+
+1. each cycle is written with its largest first.
+2. the cycles is written increasing order.
+
+---
+
+**Thm 6.9**
+
+Let $a_1, ..., a_n$ be non-negative integer s.t. $\sum ia_i = n$.
+Then # of n-permutatinos with $a_i$ cycles of length i is $\frac{n!}{\prod a_i! \prod i^{a_i}}$
+
+(**pf**) easy to show
+
+**Def**: $(a_1, ..., a_n)$ is called the type of cycle.
+
+$f, g \in S_n$, $type(f) = type(g)$ iff $\exists h \in S_n$ s.t. $hfh^-1=g$
+
+_Me_: conjugancy class! (결국 동형)
+
+---
+
+**Def**: # of n-perm with k cycles is called signless Stirling number of first kind and is denoted by $c(n, k)$.
+
+The number $s(n, k)=(-1)^{n-k}c(n, k)$ is called a Stirling number of first kind.
+
+**Thm 6.12**
+
+let $n \geq k \gt 0$, then $c(n, k)=c(n-1, k-1)+(n-1)c(n-1, k)$
+
+(**pf**)
+
+1. 2~n까지 canonical form으로 적은 경우에 1을 추가한다고 생각(개인적으로 이게 깔금하다고 생각)
+2. cycle 길이를 연장한다고 생각($b\to a$를 $b\to n \to a$로)
+
+---
+
+**Lemma 6.13**
+
+$\sum c(n, k)x^k=x(x+1)...(x+n-1)$
+
+(**pf**)
+
+$x(x+1)...(x+n-1)(x+n)=\sum c(n+1, k)x^k \times x + \sum c(n+1, k)x^k \times n=\sum (c(n, k-1)+n \times c(n, k))x^k$
+
+By **Thm 6.12**, $\sum (c(n, k-1)+n \times c(n, k))x^k=\sum c(n+1, k)x^k$
+
+_Note_: $c(0, 0)=1$, $c(n, 0)=1$
+
+By replacing $x$ by $-x$ and multiply $(-1)^n$ we have $\sum s(n, k)x^k = (x)_k$.
+
+=> S(n, k) c(n, k) are entries of transition matrix between $\{1, x, x^2, ...\}$ and $\{1, (x)_1, (x)_2, ...\}$
+
+**Thm 6.14**: Two matrices $[S(n, k)]_{n, k}$, $[s(n, k)]_{n, k}$ are inverse of each other.
+
+---
+
+**Lemma 6.15** Transition Lemma
+
+g: permutation written in canonical cycle form. Then $g: S_n \to S_n$ is a bijection.
+
+(**pf**)
+
+1. g is well-defined (in group-theory it refers to output without ambiguity)
+2. It is enough to construct an inverse
+
+1) 사이클을 시작한다.
+2) left-to-right maximum 원소가 나오기 전까지 오른쪽으로 이동한다.
+3) permutation의 끝이 아니라면 1)로 돌아간다.
+
+e.g. p=215436 -> (21)5436 -> (21)(543)(6)
+
+---
+
+**Prop 6.18**
+
+let i and j be two elements of $[n]$. Then i and j are in the same cycle in exactly half of all permutation.
+
+(**pf**) WLOG, assume $i=n, j=n-1$
+
+Canonical cycle form으로 주어진 permutation을 작성했을 때 $n$과 $n-1$이 같은 사이클에 위치하는 경우는 $n-1$이 $n$ 뒤에 등장하는 것으로 이를 통해서 절반의 경우라는 것을 알 수 있음.
+
+**Lemma 6.19**
+
+$i \in [n]$ then probability of $i\in (k-cycle)=\frac{1}{n}$
+
+(**pf**) WLOG, assume $i=n$
+
+k-cycle 내부에 존재하는 경우는 n가 끝에서 k번째 위치할 때, 따라서 증명을 마침.
+
+**Note**: i, j 대신 n-1, n으로 생각해도 괜찮은 이유는 택갈이.
+
+---
+
+**Def**: let ODD(m) (resp.) be the set of m-permutations with all cycles length is odd.
+
+**Lemma 6.20**: $|ODD(2m)| = |EVEN(2m)|$
+
+(**pf**)
+
+ODD(2m)은 2k개의 사이클을 가진다.
