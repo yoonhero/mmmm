@@ -1028,8 +1028,14 @@ division = [
 (0.35372122535711625, 0.11203180784139732, 0.16341490754863663, -1.0),
 ]
 
+re = ""
+for i, (a, b, c, sign) in enumerate(division):
+    re += f"{'+' if sign > 0 else '-'}relu({a:.4f}x{'+' if b >= 0 else ''}{b:.4f}y{'+' if c >= 0 else ''}{c:.4f})"
+with open("act_ft.txt", "w") as f:
+    f.write(re)
+
 # plot_relu_partition(division)
 # plt.savefig("relu_partition.png", dpi=300)
 # plt.show()
 
-render_relu(division)
+# render_relu(division)
