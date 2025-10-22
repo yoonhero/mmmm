@@ -30,8 +30,8 @@ def is_bounded(pt):
     return np.all((np.abs(pt) < hi))
 
 def get_intersection(line1, line2):
-    a1, b1, c1 = line1
-    a2, b2, c2 = line2
+    a1, b1, c1, *a = line1
+    a2, b2, c2, *a = line2
     det = (a1*b2-a2*b1)
     if det == 0:
         return None
@@ -69,10 +69,6 @@ def coloring(division):
     act_count = ((linear(v, division))>0).sum(axis=2).astype(float)
     act_count /= len(division)
     return act_count
-
-def render_relu(division):
-    v = get_vector()
-    return relu(linear(v, division)).sum(axis=2)
 
 if __name__ == "__main__":
     division = [

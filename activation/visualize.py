@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import plotly.graph_objects as go
+import random
 
 from my_beautiful_actvation import *
 
@@ -17,7 +18,7 @@ def plot_relu_partition(division):
         alpha=0.9,
     )
 
-    for a, b, c in division:
+    for a, b, c, _ in division:
         z = levelset(a, b, c)
         ax.plot(z[:, 0], z[:, 1], color='black', lw=0.8)
 
@@ -29,16 +30,23 @@ def plot_relu_partition(division):
     return fig, ax
 
 def render_relu(division):
-    x = np.linspace(lo, hi, 400)
-    y = np.linspace(lo, hi, 400)
+    x = np.linspace(lo, hi, 500)
+    y = np.linspace(lo, hi, 500)
     xx, yy = np.meshgrid(x, y)
     v = np.stack([xx, yy], axis=2)
-    zz = relu(linear(v, division)).sum(axis=2)
+    sign = np.array([line[-1] for line in division])
+    zz = (relu(linear(v, division))*sign).sum(axis=2)
+    # zz[zz<-1]=-1
+    zz = np.clip(zz, -1, 1)/2
 
     region_key = ((linear(v, division) > 0) * np.cumprod([1]+[2]*(len(division)-1))).sum(axis=2)
     unique_regions = np.unique(region_key)
-    palette = sns.color_palette("husl", len(unique_regions))
-    color_dict = {rid: palette[i] for i, rid in enumerate(unique_regions)}
+
+    palette = sns.color_palette("Spectral", len(unique_regions))
+    mu = list(range(len(unique_regions)))
+    random.shuffle(mu)
+    color_dict = {rid: palette[mu[i]] for i, rid in enumerate(unique_regions)}
+    # print(len(color_dict))
 
     nx, ny = xx.shape
     vertices = np.column_stack((xx.ravel(), yy.ravel(), zz.ravel()))
@@ -71,10 +79,17 @@ def render_relu(division):
             j=faces_j,
             k=faces_k,
             facecolor=face_color,
-            flatshading=True,
             showscale=False,
-            opacity=0.9,
-            lighting=dict(ambient=0.8, diffuse=0.4),
+            opacity=1.0,
+            flatshading=False,        # 부드러운 셰이딩 → 더 밝아 보임
+            lighting=dict(
+                ambient=0.85,         # 전체 밝기 바탕
+                diffuse=0.8,         # 난반사 ↑
+                specular=0.1,        # 하이라이트(번쩍) 추가
+                roughness=0.25,       # 하이라이트가 너무 퍼지지 않게
+                fresnel=0.0           # 가장자리 어두워짐 줄이기
+            ),
+            lightposition=dict(x=1.5, y=2.0, z=3.0)  # 위 사선에서 비추는 느낌
         )
     ])
 
@@ -98,6 +113,7 @@ def render_relu(division):
                 title="y",
             ),
             zaxis=dict(
+                range=[-1, 1], autorange=False,
                 showbackground=False,
                 showticklabels=False,
                 showgrid=False,
