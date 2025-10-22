@@ -2,7 +2,7 @@ Level1
 `file` -> show property (-i MIME -L symlink)
 : fingerprints located in /usr/share/misc/magic.mgc
 
-`du` -> -h -s -d
+`du` -> -h -s -d 
 : sums all the st_blocks values
 
 `find` -> -name -type -size -mtime -user -perm -empty -exec
@@ -43,7 +43,7 @@ base64: binary into ASCII(transferring attachments through text-base protocol)
 xxd, hexdump: hex,ascii,octa etc
 
 Level 12
-cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' -> Caesar Crypto
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 
 Level 13
 tar: make dump, not compress(-xf)
@@ -58,3 +58,51 @@ telnet localhost 30000
 
 Level 16
 openssl s_client localhost:30001
+
+Level 17
+nmap -sT -p 31000-32000 localhost -> checking TCP conn(sS: half / sU: UDP)
+nmap --script ssl-cert -p <port> localhost -> check TLS/SSL availability
+openssl s_client -connect localhost:<port> -quiet -> why -quiet? DONE/RENEGOTIATING/KEYUPDATE msg
+
+Level 18
+diff old new (< old / > new)
+diff -u old new (git style)
+  
+Level 19
+ssh user@host <commmand> -> more priority than .bashrc?(it is non-interactive shell mode!)
+
+Level 20
+./bandit20-do it
+: uid=11020(bandit20) / gid=110190(bandit19)
+
+Level 21
+echo -n '0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO' | nc -l -p 1234 &
+./suconnect 1234
+
+You can test raw ping-pong with this command, `nc` and `curl`. When you open some port with nc, you can answer to GET request like following msg.
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Content-Length: 13
+
+Hello, world!
+```
+
+Level 22, 23, 24
+cron, crontab / bash script
+
+Level 25
+
+```bash
+#!/bin/bash
+
+for ((i=0; i<10000; i++)); do
+  printf "gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 %04d\n" "$i" >> poss.txt
+done
+
+cat poss.txt | nc localhost 30002 > result.txt
+```
+
+
+

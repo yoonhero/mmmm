@@ -1,12 +1,12 @@
 _Me_: 삼각수(triangular number)는 relu function의 (2d plane max division) - 1이다.
 
-This is relu partition visualization!
+Idea from [here](https://blog.janestreet.com/visualizing-piecewise-linear-neural-networks/#fnref:1).
+
+> This is relu partition visualization!
 
 ![relu partition](./relu_partition.png)
 
----
-
-And here we get this activation function in hands.
+> And here we get this activation function in hands.
 
 ![me activation](./me_act.png)
 
