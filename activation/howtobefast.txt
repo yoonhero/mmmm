@@ -1,0 +1,6 @@
+
+- Allocate tensor to device directly.
+- Do not initialize tensor at loop runtime. (register!)
+- Dynamic indexing is bad. Use vectorization (list[condition] X / list * mask)
+- pin_memory=True(inevitable cpu tensor dataloading) / copy to gpu first.
+- find_unused_parameters=False
