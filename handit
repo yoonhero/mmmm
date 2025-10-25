@@ -81,6 +81,7 @@ echo -n '0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO' | nc -l -p 1234 &
 
 You can test raw ping-pong with this command, `nc` and `curl`. When you open some port with nc, you can answer to GET request like following msg.
 
+
 ```
 HTTP/1.1 200 OK
 Content-Type: text/plain
@@ -104,5 +105,18 @@ done
 cat poss.txt | nc localhost 30002 > result.txt
 ```
 
+Level 26, 27
 
+I need more... (they re genius)
 
+Level 28, 29, 30, 31, 32
+
+do you know a Git?
+
+- git branch -a : bare, detached from origin, or cloned with minimal refs.
+- git show-ref / git show <ref> : ref works just like pointer of commit history.
+- remote rejection! / git add -f <file>
+
+Level 33
+
+I WANT TO BE LOWER.

@@ -1030,7 +1030,7 @@ division = [
 
 re = ""
 for i, (a, b, c, sign) in enumerate(division):
-    re += f"{'+' if sign > 0 else '-'}relu({a:.4f}x{'+' if b >= 0 else ''}{b:.4f}y{'+' if c >= 0 else ''}{c:.4f})"
+    re += f"{'+' if sign > 0 else '-'}max(0, {a:.4f}x{'+' if b >= 0 else ''}{b:.4f}y{'+' if c >= 0 else ''}{c:.4f})"
 with open("act_ft.txt", "w") as f:
     f.write(re)
 
