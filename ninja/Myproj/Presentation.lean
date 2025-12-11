@@ -31,4 +31,15 @@ theorem pigeon_hole_principle (counts: List ℕ) (h_holes: counts.length = 9) (h
     sum_le_length counts h_all_le_1
 
   rw [h_pigeons, h_holes] at h_sum_le_9
-  norm_num at h_sum_le_9
+  tauto
+
+def counts := [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+#eval counts.length
+#eval counts.sum
+#eval decide (counts.length == 9)
+#eval decide (∃ m ∈ counts, m ≤ 2)
+
+#check pigeon_hole_principle
+
+#find Nat → Nat
