@@ -155,6 +155,25 @@ theorem infinite_primes : ∀ n : Nat, ∃ p : Nat, Nat.Prime p ∧ p > n := by
   exact ⟨p_prime, pgtn⟩
 
 
+#check Classical.choose
+
+open Classical
+#check choose
+#check choose_spec
+
+theorem surj_imp_right_inv {A B : Type } : ∀ f : A → B, 
+  Function.Surjective f → ∃ g : B → A,
+    ∀ y : B, f (g y) = y := by
+      intro f surjf
+      unfold Function.Surjective at surjf
+
+      let g := fun y : B =>
+        choose (surjf y)
+      use g
+      intro b
+      unfold g
+      have h := choose_spec (surjf b)
+      exact h
 
 
 
