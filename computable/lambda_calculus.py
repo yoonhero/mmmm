@@ -83,7 +83,31 @@ factorial = lambda n: fst(n(
 print("5! is", reduce_num(factorial(five)))
 print("0! is", reduce_num(factorial(zero)))
 
-# TODO: List (nil, append, indexing, ...)
+# pair-list: easy to come up with
+# church-list: more likely to numeral def
+li = pair(zero)(zero) # length / nil
+push = lambda li: lambda el: pair(succ(fst(li)))(pair(el)(scd(li)))
+index = lambda li: lambda n: fst(sub(fst(li))(n)(
+    lambda p: scd(p)
+)(li))
+length = lambda li: fst(li)
+
+lambda_list_ex = push(push(push(li)(one))(two))(three)
+print("length of [1, 2, 3] is", reduce_num(length(lambda_list_ex)))
+print("[1, 2, 3][1] is", reduce_num(index(lambda_list_ex)(one)))
+
+nil = lambda c: lambda n: n
+cons = lambda h: lambda t: lambda c: lambda n: c(h)(t(c)(n))
+## (cons 1 nil) c n = c 1 (nil c n) = c 1 n
+## (cons 2 (cons 1 nil)) = c 2 (c 1 n)
+length = lambda xs: xs(lambda x: lambda k: succ(k))(zero)
+append = lambda xs: lambda ys: lambda c: lambda n: xs(c)(ys(c)(n)) ## xs ++ ys
+sum = lambda xs: xs(lambda x: lambda k: add(x)(k))(zero)
+
+church_list_ex = cons(three)(cons(two)(cons(one)(nil)))
+print("length of [1, 2, 3] is", reduce_num(length(church_list_ex)))
+print("sum([1, 2, 3]) is", reduce_num(sum(church_list_ex)))
+
 
 # partial function = A \to B(probably)
 # Church Numeral: finite call -> total functions
