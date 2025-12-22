@@ -99,7 +99,48 @@ prime_factor n = [ x | x <- [1..n], n `mod` x == 0]
 isPerfect n = sum (init (prime_factor n)) == n
 perfects = [ x | x <- [1..], isPerfect x ]
 
+-- Thinking recursive.
+--   :how we can work out very concise and elegant solutions to problems by thinking recursively.
+--   ㄴ declare what something is instead of declaring how you get it.
+replicate' :: (Num i, Ord i) => i -> a -> [a]
+replicate' n x
+  | n <= 0 = []
+  | otherwise = x:replicate' (n-1) x
+take' :: (Num i, Ord i) => i -> [a] -> [a]
+take' n _
+  | n <= 0 = []
+take' _ [] = []
+take' n (x:xs) = x:take' (n-1) xs
+reverse' :: [a] -> [a]
+reverse' [] = []
+reverse' (x:xs) = reverse' xs ++ [x] -- this is why randomly order in N isn't well-ordered set! (0>1>2>...)
+
+quick :: (Ord a) => [a] -> [a]
+quick [] = []
+quick (x:xs) =
+  let smaller = quick [a | a <- sorted, a <= x]
+      bigger = quick [a | a <- sorted, a > x]
+  in smaller ++ [x] ++ bigger
+  where sorted = quick(xs)
+
+-- fixed-point combinator in Haskell!
+step :: (Int -> Int) -> (Int -> Int)
+step f = \n -> if n == 0 then 1 else n * f (n-1)
+factorial' n
+  | n == 0 = 1
+  | otherwise = n * factorial' (n-1)
+-- step factorial = factorial -> fixed-point!
+-- but is it unique?
+--   -> Haskell give a shit on `least fixed point`
+-- in math, Banach thm or domain theory(?)
+fix :: (a -> a) -> a -- it gives a function satisfying step f = f
+fix f = f (fix f) 
+-- fix f = let x = f x in x
+factorial'' n = fix step n
+
+-- corecursive
 fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
+
 
 main = do
     print xs
@@ -110,3 +151,5 @@ main = do
     print rightTriangles
     print (isEven 2)
     print (take 3 perfects)
+    print (quick [4, 2, 3, 1])
+    print (factorial'' 4)
