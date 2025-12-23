@@ -1,11 +1,13 @@
-## Discrete math
+# Discrete math
 
 > I am newbie on counting number.
 
 -   Stanley-Style: enumeratic / algebric / geometry
 -   Erdos-Style: extermal / probablistic
 
-**Thm 1.1** (Pigeon-Hole Principle)
+## Ch1. Pigeon-Hole Principle
+
+#### Thm 1.1 (Pigeon-Hole Principle)
 
 Let n and k be postiive integers, and let $n \geq k$. Suppose we have to place n identical balls into k identical boxes. Then there will be at least one box in which we place at least two balls.
 
@@ -32,18 +34,18 @@ solution:
 -   Double counting: help you.
 -   Finding Bijection: you need to smart.
 
-### Ch4
+## Ch4. The Binomial Theorem and Related Identities
 
 -   Catalan Number
 -   [Young Diagram & Grassmannian](https://ocw.mit.edu/courses/18-212-algebraic-combinatorics-spring-2019/0ed77654f610e0432a288bb27abc202d_MIT18_212S19_lec8.pdf)
 
-### Ch5. Partition
+## Ch5. Partitions
 
-**Composition**
+### 5.1 Compositions
 
 > distribute same n-object into different k-box.
 
-**Thm 5.2**
+#### Thm 5.2
 
 For $n\geq k$, the number of weak composition of n into k parts is $\binom{n+k-1}{k-1}$.
 
@@ -55,7 +57,7 @@ weak composition -> infinite / composition $2^{n-1}$
 
 ---
 
-**Set Partition**
+### 5.2 Set Partitions
 
 > distribute different n-object into same k-box
 
@@ -65,7 +67,7 @@ _Note_: # of perm $[n]$ into k non-empty block is $S(n, k)$("Stirling number")
 
 ---
 
-**Thm 5.8**
+#### Thm 5.8
 
 $n \geq k$, $S(n, k)=S(n-1, k-1)+kS(n-1, k)$
 
@@ -74,11 +76,11 @@ $n \geq k$, $S(n, k)=S(n-1, k-1)+kS(n-1, k)$
 1. n forms a singleton -> $S(n-1, k-1)$
 2. not -> $kS(n-1, k)$
 
----
-
 **Cor**: # of all surjective functions $f:[n]\to[k]$ is $k! S(n, k)$
 
-**Cor 5.10**:
+---
+
+#### Cor 5.10
 
 For any real number $x$, and $n\in \mathbb{N}$. we have $x^n=\sum S(n, k)(x)_k$ ($(x)_k=x(x-1)...(x-k+1)$)
 
@@ -92,6 +94,8 @@ Thus, $x^n=\sum S(n, k)(x)_k$.
 
 **Def**: The nubmer of all set partition of $[n]$ into non-empty parts is denoted by $B(n):=\sum S(n, k)$(Bell number)
 
+---
+
 **HW 01 #3**: Let $B_k(n)$ be # of partitions of $[n]$ so that if i and j are in the same block, then $|i-j| \gt k$. Prove that $B_k(n)=B(n-k)$, for all $n \geq k$.
 
 (**pf**)
@@ -104,7 +108,7 @@ B_k를 작은 구성요소로 나누어서 관찰해보면 $S(n, k)$와 동치�
 
 ---
 
-**Thm 5.12**:
+#### Thm 5.12
 
 $B(n+1)=\sum \binom{n}{i} B(i)$
 
@@ -112,7 +116,7 @@ $B(n+1)=\sum \binom{n}{i} B(i)$
 
 ---
 
-**Integer Paritition**
+### 5.3 Integer Paritition
 
 > distribute same n-object into same k-box.
 
@@ -125,7 +129,7 @@ $B(n+1)=\sum \binom{n}{i} B(i)$
 
 ---
 
-**Thm 5.17**:
+#### Thm 5.17
 
 the # of partitions of n into at most k parts is equal to that of paritions of n into parts not larger than k.
 
@@ -133,11 +137,11 @@ the # of partitions of n into at most k parts is equal to that of paritions of n
 
 ---
 
-**Thm 5.18**:
+#### Thm 5.18
 
 the # of partitions of n into distinct odd parts is equal to that of all self conjugate parts of n.
 
-(**pf**) construct the following bijection($f: {self-conjugate partition} \to {partition into distinctive odd parts}$)
+(**pf**) construct the following bijection($f$: {self-conjugate partition} $\to$ {partition into distinctive odd parts})
 
 i행 j열에 있는 원소를 min(i, j)번째 수에 더해준다. self-conjugate이기에 항상 distinct odd 개수만큼 counting 된다.
 
@@ -145,9 +149,9 @@ i행 j열에 있는 원소를 min(i, j)번째 수에 더해준다. self-conjugat
 
 ---
 
-**Thm 5.22**:
+#### Thm 5.22
 
-Let $\bold{a}=(a_1, ..., a_k)$ partition of n and let $m_i$ be the multiplicity of i as a part of a. Then # of set partition $[n]$ that are of $type(\bold{a})$ is equal to $P_a=\frac{\binom{n}{a_1 ... a_k}}{\prod m!}$
+Let $a=(a_1, ..., a_k)$ partition of n and let $m_i$ be the multiplicity of i as a part of a. Then # of set partition $[n]$ that are of $type({a})$ is equal to $P_a={\binom{n}{a_1 ... a_k}}/{\prod m!}$
 
 (**pf**) trivial
 
@@ -160,15 +164,13 @@ _Me_: 삼각수(triangular number)는 relu function의 (2d plane max division) -
 
 ---
 
-**Lemma 2**[Bona Ch8]:
+**Lemma 2** [Bona Ch8]:
 
 $\sum p(n)x^n=\prod \frac{1}{1-x^k}$
 
 (**pf**) coeff of $x^n$ = # of $\{ (a_1, a_2, ..., a_n) | a_1 + 2 \times a_2 + ... + n \times a_n \}$
 
----
-
-**Thm 3** [Stanley ECI Prep 1.8.7]:
+#### Thm 3: [Stanley ECI Prep 1.8.7]
 
 $\prod (1-x^k) = \sum (-1)^k x^{\frac{n(3n-1)}{2}}$
 
@@ -176,7 +178,7 @@ $\prod (1-x^k) = \sum (-1)^k x^{\frac{n(3n-1)}{2}}$
 
 Hence, (WTS). $f(n)=(-1)^k$ if k is pentagonal number.
 
-by defining involution $\pi(\lambda) \neq \pi(f(\lambda))$ ($\pi(\lambda) := $ # of parts)
+by defining involution $\pi(\lambda) \neq \pi(f(\lambda))$ ($\pi(\lambda) :=$ # of parts)
 
 right most NE diagonal과 가장 아래 줄 원소 개수를 비교해서 더 적은 쪽을 많은 쪽으로 옮긴다. (involution이 된다!)
 
@@ -185,9 +187,7 @@ right most NE diagonal과 가장 아래 줄 원소 개수를 비교해서 더 �
 -   [well-known theorem](https://en.wikipedia.org/wiki/Pentagonal_number_theorem)
 -   [ps](https://codeforces.com/blog/entry/104312)
 
----
-
-**Thm 1**:
+#### Thm 1
 
 $p(n)=p(n-1)+p(n-2)-p(n-5)-p(n-7)...$
 
@@ -203,7 +203,7 @@ $p(m)=p(m-1)+p(m-2)-p(m-5)-p(m-7)...$
 
 ---
 
-**Thm 5.20**:
+#### Thm 5.20
 
 Let $g(n)$ be the number of partitions of n in which each part is at least two. Then $q(n) = p(n)-p(n-1), \forall n\geq 2$
 
@@ -211,7 +211,11 @@ Let $g(n)$ be the number of partitions of n in which each part is at least two. 
 
 **Cor**: least three. $q(n)=p(n)-p(n-1)-p(n-2)+p(n-3)$
 
-### Ch6. Not So Vicious Cycles. Cycles in Permutations.
+---
+
+## Ch6. Not So Vicious Cycles. Cycles in Permutations.
+
+### 6.1 Cycles in Permutations
 
 > permutation은 bijective function $[n] \to [n]$과 동형이다.
 
@@ -235,7 +239,7 @@ _Note_: there are many ways to write same cycle decomposition.
 
 ---
 
-**Thm 6.9**
+#### Thm 6.9
 
 Let $a_1, ..., a_n$ be non-negative integer s.t. $\sum ia_i = n$.
 Then # of n-permutatinos with $a_i$ cycles of length i is $\frac{n!}{\prod a_i! \prod i^{a_i}}$
@@ -254,7 +258,7 @@ _Me_: conjugancy class! (결국 동형)
 
 The number $s(n, k)=(-1)^{n-k}c(n, k)$ is called a Stirling number of first kind.
 
-**Thm 6.12**
+#### Thm 6.12
 
 let $n \geq k \gt 0$, then $c(n, k)=c(n-1, k-1)+(n-1)c(n-1, k)$
 
@@ -265,7 +269,7 @@ let $n \geq k \gt 0$, then $c(n, k)=c(n-1, k-1)+(n-1)c(n-1, k)$
 
 ---
 
-**Lemma 6.13**
+#### Lemma 6.13
 
 $\sum c(n, k)x^k=x(x+1)...(x+n-1)$
 
@@ -281,11 +285,13 @@ By replacing $x$ by $-x$ and multiply $(-1)^n$ we have $\sum s(n, k)x^k = (x)_k$
 
 => S(n, k) c(n, k) are entries of transition matrix between $\{1, x, x^2, ...\}$ and $\{1, (x)_1, (x)_2, ...\}$
 
-**Thm 6.14**: Two matrices $[S(n, k)]_{n, k}$, $[s(n, k)]_{n, k}$ are inverse of each other.
+#### Thm 6.14: Two matrices $[S(n, k)]_{n, k}$, $[s(n, k)]_{n, k}$ are inverse of each other.
 
 ---
 
-**Lemma 6.15** Transition Lemma
+### 6.2 Permutations with Restricted Cycle Structure
+
+#### Lemma 6.15: Transition Lemma
 
 g: permutation written in canonical cycle form. Then $g: S_n \to S_n$ is a bijection.
 
@@ -294,9 +300,9 @@ g: permutation written in canonical cycle form. Then $g: S_n \to S_n$ is a bijec
 1. g is well-defined (in group-theory it refers to output without ambiguity)
 2. It is enough to construct an inverse
 
-1) 사이클을 시작한다.
-2) left-to-right maximum 원소가 나오기 전까지 오른쪽으로 이동한다.
-3) permutation의 끝이 아니라면 1)로 돌아간다.
+3) 사이클을 시작한다.
+4) left-to-right maximum 원소가 나오기 전까지 오른쪽으로 이동한다.
+5) permutation의 끝이 아니라면 1)로 돌아간다.
 
 e.g. p=215436 -> (21)5436 -> (21)(543)(6)
 
@@ -329,3 +335,189 @@ k-cycle 내부에 존재하는 경우는 n가 끝에서 k번째 위치할 때, �
 (**pf**)
 
 ODD(2m)은 2k개의 사이클을 가진다.
+
+to be continued
+
+---
+
+## Ch7. Sieve Method
+
+-   someday...
+
+---
+
+## Ch8. Generating Ft.
+
+-   someday I work
+
+---
+
+## Ch9. The origin of graph theory
+
+### 9.1 Eulerian Trails
+
+그래프 이론은 **쾨니히스베르크로(Königsberg)의 다리**의 이야기에서 시작된다. 칸트의 고향으로도 유명한 이 지역은 현재는 러시아의 영토로, 러시아 본토와 떨어져 있는 월경지로 위치한 특이한 지리적 특징을 가진다.
+
+![image](https://i.namu.wiki/i/DsiNckePBTODfYISCRIHd9SLocxw0Umjureqj4mDaQv0JqziMaT2dknIRDntg0l7wFi6gyOkdiIEh_nGgZHh2RYpY2pWKtDSBhlzwIkcWtGQja26Cm8tpjSfcLU2ThIrCXXWCxzJ5cwcrXMNrRdewQ.webp)
+
+뒤에 서술되는 오일러 경로에 관한 thm으로 이 다리들을 건너지 못함을 알 수 있다. 현재는 5개의 다리가 남아 있으며 반증(물리)된 추론이다(?)
+
+그래프 이론은 관계를 추상화 한다. 땅과 땅을 연결하는 다리를 그래프로 도식화한 것처럼, 세상의 많은 관계들은 그래프로 표현될 수 있다. All you need is graph!
+
+**Def**
+
+-   vertex/edge
+-   $G = (V, E)$, $E={(v_1, v_2) \in V}$
+-   `deg(A)` is # of edges connected to A (multiple edges&loop is allowed)
+
+**Def**: If G has no loops, mutiple edges, G is `simple` graph.
+**Def**: A sequence of (distinct) edge is called `walk`(resp. `trail`)
+
+-   If trail uses all edge of G, we call it `Eulerian trail`.
+-   If a trail does not touch any vertex twice, we call it `path`.
+-   G is `connected` if $\forall x, y \in V$ $\exists path$ from x to y
+
+**Def**: A `subgraph` H of G is graph (V, E가 G의 부분집합) / vertex의 연결이 유지되면 `induced subgrpah`
+
+---
+
+_RMK_: deg(loop) = 2 / connected component is defined by equivalence class
+
+#### Thm 9.2
+
+A connected graph G has a closed Eulerian trail iff all vertices of G has even degree.
+
+(**pf**) intuitive: in/out
+
+If A is a vertex that is not starting vertex of a closed Eulerian trail
+
+deg(A)=2 -> trail distinct edges
+deg(A)=2+2(# of visits of A in the middle)
+
+(if part)
+
+1. Take any vetex S and pick unused edge consecutively. Continue until a closed trail $C_1$ is formed.
+2. If $C_1=G$, we are done. Otherwise, choose a vertex V in $C_1$ so that $C_1$ does not contain all edges adjacent to V. If $\nexists{V}$, then $\exists{a}$ not in $C_1$ but G is connected (contradiction).
+3. remove all edges of $C_1$ from G and construct $C_2$ starting from V => $C_1 \cup C_2$ is closed trail!
+
+**Cor 9.3**
+
+A connected graph G has Eulerian trail which starts at S and ends at T iff S, T have odd degree, and other vertexes of G has even.
+
+(**pf**) add ST edge and apply Thm 9.2
+
+---
+
+### 9.2 Hamiltonian Cycles
+
+**Def**
+
+-   cycle = a closed trail that does not touch any vertices twice except the initial vertex.
+-   Hamiltonian cycle = a cycle that touch all vertices of graph
+
+e.g. n명의 사람들이 있을 때 양옆에 친구가 앉도록 원탁에 배치하는 방법? (=Hamiltonian)
+
+_RMK_: If G is not connected, $\nexists$Hamiltonian Cycle
+
+Q: Given simple graph, how can we "quickly decide whether it has Hamiltonian Cycle or not?" (_quickly_ = $\exists$algorithm with `polynomial` f(n) steps)
+A. we cannot.
+-> the quesetion is equivalent to many other problems, called NP-complete problems. "complexity theory"
+
+#### Thm (Ore, 1960)
+
+$deg(x)+deg(y) \ge n$, $\exists 2 \leq i \leq n-1$ s.t. $(xz_i)(z_{i-1}y)$
+
+where $x, y$ is not adjacent vertex
+
+(**pf**)
+
+otherwise {nbd of y} $\sqcup$ {vertices immediate precede neighbor of x} > $n-2$ $\square$
+
+#### Thm 9.5
+
+let $n \ge 3$, G: simple graph on n vertices. Assume that all vertices are of degree at least $\frac{n}{2}$.
+
+Then G has a Hamiltonian Cycle.
+
+(**pf**)
+
+1. G has to be _connected_.
+    - otherwise, $G=G_1 \cup G_2$ ($G_1$의 vertex 개수가 더 적다고 할 때 $deg(V) \ge \frac{n}{2}-1$ -> contradiction)
+2. Assume that G does not have a Hamiltonian Cycle.
+    - add new edges _as long as we can without Hamiltonian cycle_. call near graph by $G^1$
+3. p := a path of maximal length in G
+    - **Claim**: P contains all vertices of $G^1$
+    - pick $x, y$ s.t. $(x, y)$ is not an edge since adding $(x, y)$ makes H cycle.(by _2_)
+4. $x=z_1 ... z_n=y$ : vertices of this path. By **Thm (Ore, 1960)**, we can construct H cycle.(contradiction)
+
+---
+
+### 9.3 Directed Graph
+
+**Def**: A directed graph G is strongly connected if for all vertices of a and b has $\exists$directed path
+
+**Def**: G is balanced if $\forall$v, $in(v)=out(v)$ holds.
+
+#### Thm 9.6
+
+G has a closed Eulerian trail iff it is balanced and strongly connected.
+
+(**pf**) omitted
+
+---
+
+**Def**: A simple undirected graph is complete if $\forall x, y \in G$ (x, y) is edge
+
+**Def**: If we direct each edge of a complete graph, resulting directed graph called tournament.
+
+```mermaid
+flowchart LR
+  A-->B
+  A-->C
+  B-->C
+```
+
+#### Thm 9.7
+
+All tournaments have a Hamiltonian path.
+
+(**pf**) Induction on n
+
+1. n=2: trivial
+2. Assume statements for all tournaments belong $n-1$ vertices
+    - Hamil path $h=h_1 h_2 ... h_{n-1}$
+        - if $\exists i, h_i \to V \wedge V \to h_{i+1}$ -> we're done
+        - otherwise, $in(V)=0 \vee out(V)=0$$ 이기에 그냥 양끝에 연결할 수 있음.
+
+#### Thm 9.8
+
+A tournament T has Hamiltonian cycle iff it is strongly connected
+
+(**pf**)
+(=>) obvious
+(<=)
+
+1. Claim T contains a cycle
+    - otherwise, 삼각부등식처럼 $xy, yz \in E(G) \Rightarrow xz \in E(G)$을 만족하게 되고 z에서 x로 가는 path가 불가능.
+2. let $c=y_1...y_k$ be a cycle of maximal and assume that c is not Hamiltonian.
+    - $\forall i$와 $v \notin c$가 $y_i \to v$이거나 $v \to y_i$일 것이다. (otherwise, 길이 확장 가능)
+    - $y_i$로 모두 나가거나, 들어가는 것들의 집합을 각각 $Z, Z^C$라고 할 때, 둘 다 공집합이 아니다. (otherwise, strongly connected 망가짐)
+    - 더 긴 cycle을 만들 수 있으므로 모순이다.
+
+```mermaid
+flowchart LR
+	subgraph cycle
+		y1((1))-->y2((2))-->y3((3))-->y1((1))
+	end
+
+	y1-->v
+	y2-->v
+	y3-->v
+```
+
+### 9.4 The Notion of Isomorphisms
+
+**Def**: We say that G and H is isomorphic if $\exists$bijection $f: V(G)\to V(H)$ s.t. # of edges between X and Y of G = f(X) and f(Y) of H.
+
+-   connected, multiset of degrees are preserved
+-   there is no efficient way to test two graphs are isomorphic.
