@@ -3,6 +3,7 @@
 --   :you don't tell the computer what to do as such but rather you tell it what stuff is. - Learnyouahaskell
 -- lazy, statically typed, elegant and concise!
 --
+import qualified Data.Map as Map
 
 main :: IO ()
 -- Purity: same input, always same output
@@ -200,6 +201,132 @@ trick0 = map ($ 3) [(4+), (10*), (^2), sqrt]
 fn0 x = (1/) ((1+) ((^2) x)) -- arctan x = 1/(1+x^2)
 fn0' = (1/) . (1+) . (^2)
 
+-- import Data.List (nub, sort)
+-- import Data.List hiding (nub)
+-- import qualified Data.Map as M
+
+
+-- ***ADT(Algebraic Data Type)***
+--   construct new data type just as algebra does
+--
+-- data Bool' = False | True -- how to define type
+data Point = Point Float Float deriving (Show)
+data Shape = Circle Point Float | Rectangle Point Point deriving (Show)
+surface :: Shape -> Float
+surface (Circle _ r) = 3.14 * r ^ 2 -- come up with (x:xs), we use pattern matching against constructors!
+surface (Rectangle (Point x1 y1) (Point x2 y2)) = (abs $ x2 - x1) * (abs $ y2 - y1)
+nudge :: Shape -> Float -> Float -> Shape
+nudge (Circle (Point x y) r) a b = Circle (Point (x+a) (y+b)) r
+nudge (Rectangle (Point x1 y1) (Point x2 y2)) a b = Rectangle (Point (x1+a) (y1+b)) (Point (x2+a) (y2+b))
+originPt = Point 0 0
+unitCircle = Circle originPt 1
+
+data Car = Car {company :: String, shape:: Shape} deriving (Show)
+cybertruck = Car {company="Tesla", shape=Rectangle originPt (Point 1 1)}
+
+-- Type constructor!!
+data Maybe' a = Nothing' | Just' a
+-- data (Ord k) => Map k v = ... (cool)
+
+-- Derived instances
+--   typecalss=interface defining some behaviour
+--   type=instance of typeclass
+-- 
+-- ex) Real = 완비 순서체 deriving (Ord,  Num)
+data Day' = MON | TUE | WED | TUR | FRI | SAT | SUN
+  deriving (Eq, Ord, Show, Read, Bounded, Enum) -- 0 | 1 | ...
+type Days = [Day'] -- type synonyms
+
+data Status = UP | DOWN deriving (Show, Eq)
+type Content = String
+type Sockets = Map.Map Int (Status, Content)
+ping :: Int -> Sockets -> Either String Content
+ping address map =
+  case Map.lookup address map of
+    Nothing -> Left "Stop DDOS!"
+    Just (status, content) -> if status /= DOWN
+      then Right content
+      else Left "Wait a bit"
+
+-- Recursive type declaration
+-- data List' a = Empty | Cons a (List a) deriving (Show, Read, Eq, Ord)
+--                        Cons { listHead :: a, listTail :: List a}
+infixr 5 :-: -- Fixity declaratioions: when we define functions as operators
+--               ㄴ ... < infixl 6(+) < infixl 7(*)
+data List' a = Empty | a :-: (List' a) deriving (Show, Read, Eq, Ord)
+infixr 5 .++
+(.++) :: List' a -> List' a -> List' a
+Empty .++ ys = ys
+(x :-: xs) .++ ys = x :-: (xs .++ ys)
+merrych_list = 12 :-: 25 :-: Empty
+
+data Tree a = EmptyTree | Node a (Tree a) (Tree a) deriving (Show, Read, Eq)
+singleton :: a -> Tree a
+singleton x = Node x EmptyTree EmptyTree
+
+treeInsert :: (Ord a) => a -> Tree a -> Tree a
+treeInsert x EmptyTree = singleton x
+treeInsert x (Node a left right)
+  | x == a = Node x left right
+  | x < a = Node a (treeInsert x left) right
+  | x > a = Node a left (treeInsert x right)
+
+treeElem :: (Ord a) => a -> Tree a -> Bool
+treeElem x EmptyTree = False
+treeElem x (Node a left right)
+  | x == a = True
+  | x < a = treeElem x left
+  | x > a = treeElem x right
+
+nums = [4,3,2,6,1,2,9,7]
+numsTree = foldr treeInsert EmptyTree nums
+
+-- Typeclassessssssss
+--   check class interface with :info
+--
+-- class Eq a where 
+--   (==) :: a -> a -> Bool
+--   (/=) :: a -> a -> Bool
+--   x == y = not (x /= y)
+--   x /= y = not (x == y)
+-- 
+-- we don't need to implement function body, just specify it
+data Animal = Tiger | Bear
+instance Eq Animal where
+  Tiger == Tiger = True
+  Bear == Bear = True
+  _ == _ = False
+instance Show Animal where
+  show Tiger = "Tiger"
+  show Bear = "Bear"
+
+instance (Eq m) => Eq (Maybe m) where -- Eq Maybe nono, it's type constructor
+  Just x == Just y = x == y
+  Nothing == Nothing = True
+  _ == _ = False
+
+-- Functor Typeclass
+--   for things that can be mapped over.
+-- 
+-- class Functor f where
+--   fmap :: (a->b) -> f a -> f b
+-- 
+-- instance Functor [] where
+--  fmap = map
+instance Functor Tree where -- be careful if it destroys bintree.
+  fmap f EmptyTree = EmptyTree
+  fmap f (Node x leftsub rightsub) = Node (f x) (fmap f leftsub) (fmap f rightsub)
+
+-- what's the type of type constructor? (it feels like function!)
+--   :k Maybe ====> Maybe :: * -> *
+--
+data Frank a b = Frank {frankField :: b a} deriving (Show) -- * -> (* -> *) -> *
+-- Frank {frankField = "abc"} : Frank Char []
+class Tofu t where
+  tofu :: j a -> t a j -- t :: * -> (* -> *) -> *
+instance Tofu Frank where
+  tofu x = Frank x
+
 main = do
     print xs
     print xxs_
@@ -217,3 +344,10 @@ main = do
     print (let ildan = gugu !! 0 in ildan)
     print (take 10 (map (*2) [1..]))
     print (fn0 1 == fn0' 1)
+    print $ surface $ unitCircle
+    print $ unitCircle
+    print $ company cybertruck
+    print $ (read (show MON) :: Day')
+    print $ [MON ..]
+    print merrych_list
+    print numsTree
