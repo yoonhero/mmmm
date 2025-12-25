@@ -19,6 +19,8 @@
 -- hierarchy is required for let set.
 --   def allTypes : List Type := ?
 -- you can come up with Turing's approach
+--   Halting Problem은 결국 한 단계 높은 집합이 필요함.
+--   countable: ℵ / non-countable: 2^ℵ
 structure Magma where
   carrier : Type
   mul : carrier → carrier → carrier

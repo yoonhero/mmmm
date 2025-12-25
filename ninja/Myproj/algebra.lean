@@ -30,3 +30,11 @@ theorem list_assoc (a b c : List Nat) : a++(b++c) = a++b++c := by
 --   in Lean, you can write "prop about type" in logic system
 --     mul: α → α → α
 
+variable {G : Type} [Group G]
+
+example (a b : G) : (a * b)⁻¹ = b⁻¹ * a⁻¹ := by
+  group
+
+example (a : G) : a⁻¹ * a = 1 := by
+  group
+

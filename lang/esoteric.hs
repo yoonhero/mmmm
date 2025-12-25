@@ -141,6 +141,64 @@ factorial'' n = fix step n
 -- corecursive
 fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
+-- Curried-form: how function takes more than one parameters?
+max' :: (Ord a) => a -> a -> a -- a -> (a -> a)
+max' x y = if x > y then x else y
+isPerfect' = (`elem` (take 3 perfects))
+
+applyTwice :: (a -> a) -> a -> a
+applyTwice f x = f (f x)
+
+zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith' _ [] _ = []
+zipWith' _ _ [] = []
+zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
+squares = zipWith' (*) [1..9] [1..9]
+flip' :: (a -> b -> c) -> (b -> a -> c)
+flip' f = g
+  where g x y = f y x -- f y x = f x y
+divide_two = zipWith' (flip' div) [2, 2..] [2, 4, 6, 8, 10]
+
+take_first_word = takeWhile (/= ' ')
+-- Collatz sequence!
+chain :: (Integral a) => a -> [a]
+chain 1 = [1]
+chain n
+  | even n = n:chain (n `div` 2)
+  | odd n = n:chain (n*3 + 1)
+longChains = map head (filter isLong (map chain [1..100]))
+  where isLong xs = length xs > 15
+gugu = [map op [1..9] | op <- map (*) [1..9]]
+flip'' f = \x y -> f y x -- \x y = \x -> \y
+
+-- foldl f z (x:xs) = foldl f (f z x) xs
+--   -> accum first! g (g (g (g ...))) first
+-- foldr f z (x:xs) = f x (foldr f z xs)
+--   -> f 1 (f 2 (f 3 (f ...)))
+--
+-- dealing with infinite list
+--   ㄴfoldl: fail (return anything)
+--   ㄴfoldr: maybe (map, filter, takeWhile..)
+sum'' :: (Num a) => [a] -> a
+sum'' = foldl (+) 0
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' y = foldl (\acc x -> if x == y then True else acc) False
+map' :: (a -> b) -> [a] -> [b]
+map' f xs = foldr (\x acc -> f x : acc) [] xs
+
+-- scan = report fold result in a form of list
+sqrtSums :: Int
+sqrtSums = length (takeWhile (<1000) (scanl1 (+) (map sqrt [1..]))) + 1 -- filter doesn't work on infinite lists.
+
+-- function applications
+--
+-- $ -> work as parameter register
+--   in python, we have simlilar one, `functools.partial`
+-- (.) :: (b->c) -> (a->b) -> a -> c
+--   f . g = \x -> f (g x)
+trick0 = map ($ 3) [(4+), (10*), (^2), sqrt]
+fn0 x = (1/) ((1+) ((^2) x)) -- arctan x = 1/(1+x^2)
+fn0' = (1/) . (1+) . (^2)
 
 main = do
     print xs
@@ -153,3 +211,9 @@ main = do
     print (take 3 perfects)
     print (quick [4, 2, 3, 1])
     print (factorial'' 4)
+    print (take_first_word "hello, world")
+    print longChains
+    print ((map (*) [0..] !! 4) 5)
+    print (let ildan = gugu !! 0 in ildan)
+    print (take 10 (map (*2) [1..]))
+    print (fn0 1 == fn0' 1)
