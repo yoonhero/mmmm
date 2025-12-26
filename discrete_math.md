@@ -456,7 +456,7 @@ Then G has a Hamiltonian Cycle.
 
 **Def**: A directed graph G is strongly connected if for all vertices of a and b has $\exists$directed path
 
-**Def**: G is balanced if $\forall$v, $in(v)=out(v)$ holds.
+**Def**: G is balanced if $\forall v$, $in(v)=out(v)$ holds.
 
 #### Thm 9.6
 
@@ -487,14 +487,16 @@ All tournaments have a Hamiltonian path.
 2. Assume statements for all tournaments belong $n-1$ vertices
     - Hamil path $h=h_1 h_2 ... h_{n-1}$
         - if $\exists i, h_i \to V \wedge V \to h_{i+1}$ -> we're done
-        - otherwise, $in(V)=0 \vee out(V)=0$$ 이기에 그냥 양끝에 연결할 수 있음.
+        - otherwise, $in(V)=0 \vee out(V)=0$ 이기에 그냥 양끝에 연결할 수 있음.
 
 #### Thm 9.8
 
 A tournament T has Hamiltonian cycle iff it is strongly connected
 
 (**pf**)
+
 (=>) obvious
+
 (<=)
 
 1. Claim T contains a cycle
@@ -509,10 +511,12 @@ flowchart LR
 	subgraph cycle
 		y1((1))-->y2((2))-->y3((3))-->y1((1))
 	end
+	z(Z)
+	c(Zc)
 
-	y1-->v
-	y2-->v
-	y3-->v
+	y1-->c
+	z-->y2
+	c-->z
 ```
 
 ### 9.4 The Notion of Isomorphisms
@@ -521,3 +525,150 @@ flowchart LR
 
 -   connected, multiset of degrees are preserved
 -   there is no efficient way to test two graphs are isomorphic.
+
+---
+
+## Ch10. Trees
+
+### 10.1 Minimally Connected Graphs
+
+**Def**: A graph has no cycle is acyclic.
+
+-   forest = acyclic graph
+-   tree = connected acyclic graph
+-   leaf: vertex of deg = 1
+
+#### Thm 10.1
+
+G: connected simple then TFAE
+
+(1) G is minimally connected
+(2) G does not contain a cycle
+
+(**pf**):
+
+-   (1)=>(2): 사이클이 있다고 가정.
+    -   **Claim**: If $(a, b) \in cycle$, then $G \setminus (a, b)$ is still connected. -> trivial (a, b)를 지날거 cycle 경로를 따라 이동하세요!
+    -   by Claim, we are done.
+-   (2)=>(1): minimally connected 되지 않았다고 가정.
+    -   $\exists a, b$ 에서 $a \to b$ 경로가 2개 있음.
+    -   cycle이 만들어짐.
+
+#### Cor 10.3
+
+A connected graph H is a tree iff for each pair of vertices (x, y), $\exists!$path x and y
+
+(**pf**)
+
+(=> only if) H has to be minimally connected
+
+(<= if) 사이클이 있다고 가정하면 path 여러개가 됨.
+
+---
+
+#### Lemma 10.5
+
+A tree T has at least 2 leaves in T.
+
+(**pf**) consider any path of maximal length in T.
+
+#### Thm 10.4
+
+All trees on n vertices have n-1 edges. Conversely, all connected graphs on n vertices with exactly n-1 edges are trees.
+
+(**pf**) delete one leaf(**Lemma 10.5**) and use induction hypothesis
+
+---
+
+#### Thm 10.7: Cayley's formula
+
+The number of all trees with a vertex set $[n]$ is $A_n = n^{n-2}$
+
+(**pf**) (Andre Juyal)
+
+choose two vertices and call them start & end
+
+=> # of doubly rooted traces = $n^2 A_n$=$n^n$
+
+(Goal) bijection with the set of $f:[n] \to [n]$
+
+1. 사이클에 속한 정점을 정렬해 모은 집합 C
+2. 함수를 적용한 이미지 $f(C)$를 일렬로 나열하고 양 끝을 시작, 끝이라고 생각.
+3. C에 속하지 않은 j에 대해서 $j \to f(j)$ 간선 연결.
+    - Claim: always tree (사이클을 분리했기 때문에 자명)
+
+ex) 123456->231541 = (123)(45), f(C)={_2_,3,1,5,_4_} (doubly rooted!)
+
+```mermaid
+flowchart LR
+	f((6))
+	subgraph cycle_component
+		a((1))
+		b((2))
+		c((3))
+		d((4))
+		e((5))
+		b --- c
+		c --- a
+		a --- e
+		e --- d
+	end
+	f --- a
+```
+
+#### Cor 10.9
+
+The # of rooted forests on $[n]$ is $(n+1)^{n-1}$
+
+(**pf**) make a one global root and apply **Thm 10.7**
+
+---
+
+### 10.2 Min Spanning Trees
+
+**Def**: G: connected / T is spanning tree of G if G and T have the same vertex set and each edge of T is also edge of G.
+
+#### Lemma 10.11
+
+F, F' two forests on same vertex set V. Assume that # of E(F) < # of E(F')
+
+Then $\exists e \in E(F')$ s.t. $F \cup e$ is still forest.
+
+(**pf**) Assume that there is no such edge
+
+-   모든 엣지가 추가 되었을 때 사이클을 만든다.
+-   모든 F'의 엣지가 F의 connected component 안에 있다.(=F의 connected component가 같거나 더 적다)
+-   모순이다. 다음을 얻는다. #(connected component F) > #(connected component F')
+
+#### Thm 10.12 (Kruskal Algorithm)
+
+(**pf**) Assume otherwise
+
+-   greedy way: $T=t_1, ..., t_{n-1}$
+-   minimum way: $H=h1,...,h_{n-1}$
+
+& $\exists i\geq 2$ s.t. $\sum^{i} w(h_j) < \sum^{i} w(t_j)$ and $\sum^{i-1} w(h_j) \geq \sum^{i-1} w(t_j)$
+
+$w(h_i) < w(t_i)$이기에, **Lemma 10.11**을 사용해서 $T_{<i-1}$와 $H_{<i}$에서 greedy way에 사이클을 만들지 않으면서 추가할 수 있는 엣지가 있다. 따라서 이걸 추가할 수 있는 것은 모순이다.
+
+---
+
+### 10.3 Graphs and Matrices
+
+**Def**: G: undirected graph on labeled vertices. nxn matrix A by stting $A_{ij}$=# of edges between i and j. We called A adjacency matrix of G.
+
+**Def**: G: directed, then $A_{ij}$=# of edges from i to j
+
+#### Thm 10.16
+
+G: graph w/ labeled vertices. Then $(A^k)_{ij}$=# of walk from i to j of length k.
+
+#### Thm 10.17
+
+Let G be a simple graph on n vertices, and let A be the adjacency matrix of G. Then G is connected iff $(I + A)^{n−1}$ consists of strictly positive(> 0) entries.
+
+(**pf**) 이항전개
+
+---
+
+### 10.4 The Number of Spanning Trees of a Graph
