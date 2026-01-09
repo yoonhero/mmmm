@@ -58,7 +58,7 @@ module counter (
     .Q   (q_clk2)
   );
 
-  assign q = {q_clk2, q_clk1};
+  assign q = {q_clk2, q_clk1}; // {}: concat & {{}}: multiply -> {3{2'b01}}=6'b010101
 endmodule
 
 module tb;
