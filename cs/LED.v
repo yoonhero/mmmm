@@ -1,3 +1,6 @@
+// Verilog allows us to design a Digital design at Behavior Level, Register
+// Transfer Level, Gate Level and switch level.
+
 // run with iverilog + gtkwave(not essential)
 //   iverilog -o led.vvp -s tb LED.v
 //   vvp led.vvp
@@ -26,9 +29,9 @@ module t_ff (
   input wire T,
   output reg Q
 );
-  always @(posedge clk or negedge rst_n) begin
+  always @(posedge clk or negedge rst_n) begin // level sensitive(combinational circuits) vs. edge sensitive(FF)
     if (!rst_n) Q <= 1'b0;
-    else if (T) Q <= ~Q;
+    else if (T) Q <= ~Q; // not cover all cases + trying to combinational statement -> Latch!
     //else   Q <= Q; // in short, Q^T
     // procedural logic (<=) vs. combination logic (=)
   end
