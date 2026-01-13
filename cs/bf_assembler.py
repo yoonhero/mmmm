@@ -78,11 +78,11 @@ def compile(program):
             addr = emit(rom, addr, asm)
     return rom
 
-test = "@++[>+<-]" # copy
+# test = "@++[>+<-]" # copy
 # test = "@+><"
 # test = "@+[>+]" # fill 1
 # test = "@++++[>+>+<<--]>>[-<<+>>]" # duplicate
-# test = "@+>+[[-<+<+>>][<[->+<]]>>]" # fibonacii
+test = "@+>+[[-<+<+>>]<[[->+<]<]>>>]" # fibonacii
 rom = compile(test)
 lines = []
 for addr in range(256):
