@@ -116,6 +116,10 @@ theorem irrat_pow_irrat_rat : ∃ (x y : ℝ), Irrational x ∧ Irrational y ∧
     have irrat : Irrational √2 := irrational_sqrt_two
     exact ⟨irrat, irrat, hr⟩
 
+-- this is proved several ways
+--   Euclid: clever way! minimal
+--   Euler: put 1 into Euler product function(Dirichlet sequence)
+--   Erdos: 1/p sequence
 #check Nat.exists_prime_and_dvd
 #check Nat.factorial_pos
 #check Classical.byContradiction

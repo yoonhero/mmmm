@@ -122,7 +122,8 @@ module tb();
     sig = 1;
     cnt = 0;
     reset = 1;
-    #tick reset = 0;
+    repeat (5) @(posedge clk); // never control rst pin with mere delay..2
+    reset = 0;
   end
 
   always @(posedge clk) begin

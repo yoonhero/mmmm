@@ -139,6 +139,15 @@ fix f = f (fix f)
 -- fix f = let x = f x in x
 factorial'' n = fix step n
 
+-- Ackermann function is threshold of primitive recursion
+--   
+ackermann m n 0 = m + n
+ackermann m 0 p
+  | p == 1 = 0
+  | p == 2 = 1
+  | p > 2  = m
+ackermann m n p = ackermann m (ackermann m (n-1) p) (p-1)
+
 -- corecursive
 fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
