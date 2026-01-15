@@ -26,7 +26,6 @@ typedef struct Frame {
 } Frame;
 
 void renderFrame(Frame *frame){
-    size_t totalShade = strlen(shade);
     printf("\033[2J\033[H");
     fflush(stdout);
     for (int y = 0; y < HEIGHT; ++y) {
@@ -53,9 +52,29 @@ typedef struct Vec3d {
     double z;
 } Vec3d;
 
+typedef struct {
+    Vec3d *data;
+    size_t len;
+} Vec3Buf; // more safe design@
+
+static Vec3Buf vec3bufAlloc(size_t len) {
+    Vec3Buf b = {0};
+    b.data = malloc(len * sizeof *b.data);
+    if (!b.data) return (Vec3Buf){0};
+    b.len = len;
+    return b;
+}
+
+static void vec3bufFree(Vec3Buf *b) {
+    if (!b) return;
+    free(b->data);
+    b->data = NULL;
+    b->len = 0;
+}
+
 void point(Frame *frame, ScreenPoint screenPt) {
     Point pt = screenPt.pt;
-    if (0 < pt.x && pt.x < WIDTH && 0 < pt.y && pt.y < HEIGHT) {
+    if (0 <= pt.x && pt.x < WIDTH && 0 <= pt.y && pt.y < HEIGHT) {
         frame->data[pt.x][pt.y] = max(frame->data[pt.x][pt.y], screenPt.bright);
     }
 }
@@ -67,7 +86,7 @@ ScreenPoint screen(Vec3d pt) {
     pt.y = (1-(pt.y+1)/2) * HEIGHT;
     screenPt.pt.x = (int)floor(pt.x);
     screenPt.pt.y = (int)floor(pt.y);
-    screenPt.bright = (int)clip(floor((1-pt.z/2)*totalShade), 0, totalShade-1);
+    screenPt.bright = clip((int)floor((1-pt.z/2)*totalShade), 0, totalShade-1);
     return screenPt;
 }
 
@@ -78,27 +97,27 @@ Vec3d project(Vec3d pt) {
     return pt;
 }
 
-Vec3d pointMul(Vec3d p, double scale) {
-    p.x *= scale;
-    p.y *= scale;
-    p.z *= scale;
-    return p;
+Vec3d vec3PointMul(Vec3d pt, double scale) {
+    pt.x *= scale;
+    pt.y *= scale;
+    pt.z *= scale;
+    return pt;
 }
 
 double square(double x) {
     return pow(x, 2);
 }
 
-Vec3d normalize(Vec3d p) {
-    double norm = sqrt(square(p.x)+square(p.y)+square(p.z));
-    return pointMul(p, 1/norm);
+Vec3d vec3Normalize(Vec3d pt) {
+    double norm = sqrt(square(pt.x)+square(pt.y)+square(pt.z));
+    return vec3PointMul(pt, 1/norm);
 }
 
-Vec3d cross(Vec3d p1, Vec3d p2){
+Vec3d vec3Cross(Vec3d pt1, Vec3d pt2){
     Vec3d n = {
-        .x = p1.y*p2.z-p1.z*p2.y,
-        .y = -(p1.x*p2.z-p1.z*p2.x),
-        .z = p1.x*p2.y-p1.y*p2.x
+        .x = pt1.y*pt2.z-pt1.z*pt2.y,
+        .y = -(pt1.x*pt2.z-pt1.z*pt2.x),
+        .z = pt1.x*pt2.y-pt1.y*pt2.x
     };
     return n;
 }
@@ -106,7 +125,7 @@ Vec3d cross(Vec3d p1, Vec3d p2){
 Vec3d solveEq(Vec3d normal) {
     Vec3d v = {1, 1, 1};
     if (normal.x != 0) {
-        v.x = (-normal.y-normal.y)/normal.x;
+        v.x = (-normal.y-normal.z)/normal.x;
     } else if (normal.z != 0) {
         v.z = (-normal.x-normal.y)/normal.z;
     } else {
@@ -117,10 +136,10 @@ Vec3d solveEq(Vec3d normal) {
 }
 
 Vec3d polarCoord(Vec3d origin, Vec3d orientation, double t, double radius){
-    Vec3d u1 = normalize(solveEq(orientation));
-    Vec3d u2 = normalize(cross(orientation, u1));
-    u1 = pointMul(u1, radius * cos(2.0*M_PI*t));
-    u2 = pointMul(u2, radius * sin(2.0*M_PI*t));
+    Vec3d u1 = vec3Normalize(solveEq(orientation));
+    Vec3d u2 = vec3Normalize(vec3Cross(orientation, u1));
+    u1 = vec3PointMul(u1, radius * cos(2.0*M_PI*t));
+    u2 = vec3PointMul(u2, radius * sin(2.0*M_PI*t));
     
     Vec3d pt = {
         .x = origin.x + u1.x + u2.x,
@@ -139,37 +158,35 @@ Vec3d sphereCoord(double theta, double phi) {
     return pt;
 }
 
-Vec3d *makeCircle(Vec3d origin, Vec3d orientation, int N){
-    Vec3d *points = malloc(N * sizeof(*points));
-    if (!points) return NULL;
+// Bad Design
+// Vec3d *makeCircle(Vec3d origin, Vec3d orientation, int N){
+//     Vec3d *points = malloc(N * sizeof(*points));
+//     if (!points) return NULL;
 
-    for (int i = 0; i<N; i++) {
-        double t = (double)i / N;
-        Vec3d pt = polarCoord(origin, orientation, t, 0.2);
-        points[i] = pt;
-    }
-    return points;
-}
+//     for (int i = 0; i<N; ++i) {
+//         double t = (double)i / N;
+//         Vec3d pt = polarCoord(origin, orientation, t, 0.2);
+//         points[i] = pt;
+//     }
+//     return points;
+// }
 
-Vec3d *makeDonut(Vec3d origin, Vec3d orientation, int N, int M) {
-    (void)orientation;
+static int fillDonut(Vec3Buf buf, Vec3d origin, Vec3d orientation, int N, int M) {
+    size_t need = (size_t)N * (size_t)M;
+    if (!buf.data || buf.len < need) return 0;
 
-    Vec3d *points = malloc((size_t)N*M*sizeof(*points));
-    if (!points) return NULL;
-
-    for (int i = 0; i<N; i++) {
+    for (int i = 0; i<N; ++i) {
         double t = (double)i / N;
         Vec3d circleOrigin = polarCoord(origin, orientation, t, 0.5);
-        Vec3d normalVec = normalize(cross(orientation, circleOrigin));
-        Vec3d *circle = makeCircle(circleOrigin, normalVec, M);
-        if (!circle) {
-            free(points);
-            return NULL;
+        Vec3d normalVec = vec3Normalize(vec3Cross(orientation, circleOrigin));
+
+        for (int j = 0; j < M; ++j) {
+            double s = (double)j / M;
+            Vec3d pt = polarCoord(circleOrigin, normalVec, s, 0.2);
+            buf.data[(size_t)i * (size_t)M + (size_t)j] = pt;
         }
-        memcpy(points+(size_t)i * M, circle, (size_t)M*sizeof(*circle));
-        free(circle);
     } 
-    return points;
+    return 1;
 }
 
 int main() {
@@ -183,9 +200,10 @@ int main() {
     Vec3d origin = {0, 0, 0};
     double theta = 0;
     double phi = 0;
-    const int N = 128;
-    const int M = 128;
-    int totalPoints = N*M;
+    const size_t N = 128;
+    const size_t M = 128;
+    const size_t totalPoints = N*M;
+    Vec3Buf pts = vec3bufAlloc(totalPoints);
 
     while (1) {
         long current = now_ms();
@@ -199,20 +217,19 @@ int main() {
         phi += (double)dt / 1000;
         
         Vec3d orientation = sphereCoord(theta, phi);
-        Vec3d *points = makeDonut(origin, orientation, N, M);
-        if (!points) {
+        if (!fillDonut(pts, origin, orientation, N, M)) {
+            vec3bufFree(&pts);
             return 1;
         }
-        for (int i=0; i<totalPoints; i++) {
-            point(frame, screen(project(points[i])));
+        for (int i=0; i<totalPoints; ++i) {
+            point(frame, screen(project(pts.data[i])));
         }
 
         renderFrame(frame);
         memset(frame->data, 0, sizeof frame->data);
-        free(points);
-        // exit(0);
     }
 
+    vec3bufFree(&pts);
     free(frame);
     return 0;
 }
