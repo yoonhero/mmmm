@@ -61,17 +61,17 @@ int main(int argc, char *argv[]) {
                 running = false;
                 break;
             case SDL_KEYDOWN:
-                if (bf.status != WAIT_INPUT)
-                    continue;
+                // if (bf.status != WAIT_INPUT)
+                //     continue;
                 switch (event.key.keysym.sym) {
                 case SDLK_w:
                     bf.input(1);
                     break;
                 case SDLK_s:
-                    bf.input(2);
+                    bf.input(3);
                     break;
                 case SDLK_a:
-                    bf.input(3);
+                    bf.input(2);
                     break;
                 case SDLK_d:
                     bf.input(4);
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
             renderer.clear();
             renderScreen(renderer, screen);
             renderer.show();
-            SDL_Delay(1000);
+            SDL_Delay(100);
         }
     }
 
