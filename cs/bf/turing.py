@@ -1,54 +1,68 @@
 #!/usr/bin/env python
-
-draw_cursor = '++++++++++.'
-delete_cursor = '----------.'
-
+# Always start at home.
+home = 0
 alloc_table = {
     'input': 1,
     'apple': 2,
     'reg': 3,
     'if': 6, # [6:9] = 0 VALUE 0 1
-    'snake': 10
+    'snake': 10 # heap memory
 }
-INPUT = alloc_table["input"]
-IF = alloc_table["if"]
-REG = alloc_table["reg"]
-SNAKE = alloc_table["snake"]
+INPUT_AREA = alloc_table["input"]
+IF_AREA = alloc_table["if"]
+REG_AREA = alloc_table["reg"]
+SNAKE_AREA = alloc_table["snake"]
 
 FRONT = '>'
 BACK = '<'
 INC = '+'
 DEC = '-'
+INPUT = ','
+PRINT = '.'
 
 ####### BASICS #######
 reset = '[-]'
 loop = lambda work: f'[{work}]'
-gotox = lambda dir: lambda x: dir*x
-goworkback = lambda x: lambda work: f'{gotox(FRONT)(x)}{work}{gotox(BACK)(x)}'
-backworkgo = lambda x: lambda work: f'{gotox(BACK)(x)}{work}{gotox(FRONT)(x)}'
+go_dir_by_x = lambda dir: lambda x: dir*x
+go_work_back = lambda x: lambda work: f'{go_dir_by_x(FRONT)(x)}{work}{go_dir_by_x(BACK)(x)}'
+back_work_go = lambda x: lambda work: f'{go_dir_by_x(BACK)(x)}{work}{go_dir_by_x(FRONT)(x)}'
 
-change = lambda x: lambda how: lambda a: goworkback(x)(how*a)
-move = lambda d: f'[-{gotox(FRONT if d>0 else BACK)(abs(d))}+{gotox(BACK if d>0 else FRONT)(abs(d))}]'
-moveatob = lambda origin: lambda dest: goworkback(origin)(move(dest-origin))
-copy = goworkback(REG)('[->+>+<<]>>'+move(-2))
+change = lambda x: lambda how: lambda a: go_work_back(x)(how*a)
+move = lambda d: f'[-{go_dir_by_x(FRONT if d>0 else BACK)(abs(d))}+{go_dir_by_x(BACK if d>0 else FRONT)(abs(d))}]'
+move_a_to_b = lambda origin: lambda dest: go_work_back(origin)(move(dest-origin))
+load_in_reg0 = lambda data_pos: move_a_to_b(data_pos)(REG_AREA)
+load_in_reg1 = lambda data_pos: move_a_to_b(data_pos)(REG_AREA+1)
+copy_reg0_to_reg1 = go_work_back(REG_AREA)('[->+>+<<]>>'+move(-2))
 
 ####### CONDITION #######
-ifathenb = lambda a: lambda b: moveatob(REG+1)(IF+1) + goworkback(IF)(f'>{a}[<]>>[<{backworkgo(IF+2)(b)}]<{reset}<') # (0or1)0
-glide = ''
+# reg_1 -> if_area_1
+move_reg1_to_if1 = move_a_to_b(REG_AREA+1)(IF_AREA+1)
+# use if_area_1
+if_a_then_b = lambda a: lambda b: go_work_back(IF_AREA)(f'>{a}[<]>>[<{back_work_go(IF_AREA+2)(b)}]<{reset}<') # (0or1)0
+move_if_a_then_b = lambda a: lambda b: move_reg1_to_if1 + if_a_then_b(a)(b)
+# reg_0 == reg_1 + reg_2 not safe (it can be overrided)
+if_equal = lambda b: go_work_back(REG_AREA)('[->-<]')+move_if_a_then_b('')(b)
+if_nequal = lambda b: go_work_back(REG_AREA)(f'[->-<]>[{reset}+>]<[<]>-<')+move_if_a_then_b('')(b)
 
-ifmovethenb = lambda move: lambda b: moveatob(INPUT)(REG+1)+ifathenb(move)(b)
+prepare_if_move = move_a_to_b(INPUT_AREA)(REG_AREA+1)
 # w/a/s/d : 1/2/3/4
-ifmoveforward = ifmovethenb('-')(change(SNAKE)(INC)(8))
-ifmovebackward = ifmovethenb('---')(change(SNAKE)(DEC)(8))
-ifmoveright = ifmovethenb('----')(change(SNAKE)(DEC)(1))
-ifmoveleft = ifmovethenb('--')(change(SNAKE)(INC)(1))
-print(ifmoveforward)
+if_move_forward = if_a_then_b('-')(change(SNAKE_AREA)(INC)(8))
+if_move_backward = if_a_then_b('---')(change(SNAKE_AREA)(DEC)(8))
+if_move_right = if_a_then_b('----')(change(SNAKE_AREA)(DEC)(1))
+if_move_left = if_a_then_b('--')(change(SNAKE_AREA)(INC)(1))
 
-init = '+'
-init += goworkback(IF+3)('+') # if trigger flag
+# caution: need to delete after drawing.
+draw_cursor = change(INC)(10)+PRINT 
+delete_cursor = change(DEC)(10)+PRINT
+move_cursor = move_a_to_b(SNAKE_AREA)
 
-work = ''
-main = loop(work)
+######## BUILD PROGRAM ##########
+init_script = '+'
+init_script += go_work_back(IF_AREA+3)('+') # if trigger flag
+
+work_script = ''
+main_script = loop(work_script)
+script = init_script + main_script
 
 def optimize(code):
     from collections import deque
@@ -68,4 +82,7 @@ def optimize(code):
             buf.append(cur)
     flush()
     return optimized
-print(optimize(ifmoveforward))
+
+print(f"Result: \n\n{optimize(script)}")
+with open("test.bf", "r") as f:
+    f.write(optimize(script))
