@@ -12,8 +12,8 @@ The ultimate goal of these session would be solving the "unsolved" Millennium Pr
 
 no more mystery. i will explain all seemingly magic things.
 
--   [ ] xv-6 OS operated on risc-v
--   [ ] gcc! (Ken Thompson - "Reflections on Trusting Trust")
+-   [ ] xv-6 OS operated on risc-v (DOS on 6502 = Apple II)
+-   [ ] gcc! (Ken Thompson - "Reflections on Trusting Trust") / GDB
 -   [ ] io without stdio
 -   [ ] Malware Detect (fix [v3](https://gall.dcinside.com/mini/board/lists/?id=v3museum), NIDS?)
 -   [ ] [TinyTPU](https://5iri.me/blog/tiny-tpu-week)
@@ -32,3 +32,4 @@ no more mystery. i will explain all seemingly magic things.
 -   [ ] Reverse engineering [COVID-19](https://github.com/geohot/corona) + AlphaFold
 -   [ ] [OpenCola](<https://en.wikipedia.org/wiki/OpenCola_(drink)>)
 -   [ ] Game Boy Advance Emulator + Fan Game
+-   [ ] [Solve Rubik's Cube](https://www.acmicpc.net/problem/24902)
