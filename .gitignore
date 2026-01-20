@@ -5,3 +5,4 @@
 /accelerator/pytorch
 *.vvp
 *.vcd
+output

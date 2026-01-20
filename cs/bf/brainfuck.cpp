@@ -7,6 +7,7 @@
 #include <sstream>
 #include <stdlib.h>
 #include <string>
+#include <time.h>
 #include <utility>
 
 #define uint8 unsigned char
@@ -39,6 +40,12 @@ static std::string read_all_code(int argc, char *argv[]);
 static bool is_bf_token(char ch);
 static std::string filter_bf_tokens(const std::string &raw);
 
+static long now_ms(void) {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec * 1000L + ts.tv_nsec / 1000000L;
+}
+
 int main(int argc, char *argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         std::cout << SDL_GetError() << "\n";
@@ -52,17 +59,17 @@ int main(int argc, char *argv[]) {
     // std::cout << code.data() << "\n";
     BF bf(code.data(), SCREEN_SIZE);
 
+    const long frame_ms = 1000 / 5; // there's big time lag on 56~63. 10fps
+                                    // cannot stabilize well through.
+    long prevTick = now_ms();
+
     bool running = true;
     while (running) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
-            switch (event.type) {
-            case SDL_QUIT:
+            if (event.type == SDL_QUIT)
                 running = false;
-                break;
-            case SDL_KEYDOWN:
-                // if (bf.status != WAIT_INPUT)
-                //     continue;
+            if (event.type == SDL_KEYDOWN) {
                 switch (event.key.keysym.sym) {
                 case SDLK_w:
                     bf.input(1);
@@ -76,12 +83,7 @@ int main(int argc, char *argv[]) {
                 case SDLK_d:
                     bf.input(4);
                     break;
-                default:
-                    bf.input(0);
-                    break;
                 }
-            default:
-                break;
             }
         }
 
@@ -90,12 +92,30 @@ int main(int argc, char *argv[]) {
             break;
         }
 
+        // debugging
+        int upto = 14;
+        if (bf.ptr >= SCREEN_SIZE && bf.ptr < SCREEN_SIZE + upto) {
+            for (int i = 0; i < upto; i++) {
+                if (i == 2 || i == 4 || i == 5 || i == 8 || i == 12 || i == 13)
+                    std::cout << "| ";
+                if (i + SCREEN_SIZE == bf.ptr) {
+                    std::cout << ">";
+                }
+                std::cout << std::to_string(bf.tape[SCREEN_SIZE + i]) << " ";
+            }
+            std::cout << "\n";
+        }
+
         if (bf.status == UPDATE) {
             memcpy(screen, bf.tape, SCREEN_SIZE * sizeof(uint8));
             renderer.clear();
             renderScreen(renderer, screen);
             renderer.show();
-            SDL_Delay(100);
+            long now = now_ms();
+            long elapsed = now - prevTick;
+            if (elapsed < frame_ms)
+                SDL_Delay(frame_ms - elapsed);
+            prevTick = now_ms();
         }
     }
 
@@ -127,11 +147,14 @@ bool BF::step() {
         break;
     case ',':
         if (inputs.empty()) {
-            status = WAIT_INPUT;
-            return true;
+            // status = WAIT_INPUT;
+            // inputs.push(0);
+            // return true;
+            tape[ptr] = 0;
+        } else {
+            tape[ptr] = inputs.front();
+            inputs.pop();
         }
-        tape[ptr] = inputs.front();
-        inputs.pop();
         break;
     case '[':
         if (tape[ptr] == 0) {
