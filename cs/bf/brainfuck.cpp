@@ -93,10 +93,11 @@ int main(int argc, char *argv[]) {
         }
 
         // debugging
-        int upto = 14;
+        int upto = 16 + 8;
         if (bf.ptr >= SCREEN_SIZE && bf.ptr < SCREEN_SIZE + upto) {
             for (int i = 0; i < upto; i++) {
-                if (i == 2 || i == 4 || i == 5 || i == 8 || i == 12 || i == 13)
+                if (i == 2 || i == 4 || i == 5 || i == 10 || i == 14 ||
+                    i == 15 || i == 16 || i == 17)
                     std::cout << "| ";
                 if (i + SCREEN_SIZE == bf.ptr) {
                     std::cout << ">";
@@ -116,6 +117,7 @@ int main(int argc, char *argv[]) {
             if (elapsed < frame_ms)
                 SDL_Delay(frame_ms - elapsed);
             prevTick = now_ms();
+            // exit(0);
         }
     }
 
@@ -193,7 +195,13 @@ void BF::input(uint8 in) { inputs.push(in); }
 
 static void renderScreen(Renderer &renderer, uint8 *screen) {
     for (int i = 0; i < SCREEN_SIZE; ++i) {
-        Color color = {screen[i], screen[i], screen[i], 0};
+        const uint pixel = screen[i];
+        Color color = {0};
+        if (pixel > 127) {
+            color.r = (pixel - 128) * 2;
+        } else {
+            color.g = pixel * 2;
+        }
         renderer.renderLattice(i, color);
     }
 }
