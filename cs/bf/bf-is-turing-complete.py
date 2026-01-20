@@ -118,22 +118,23 @@ load_5th_snake = load_nth_snake(5)(if_nth_gq_y_sub1(5)(APPLE_AREA)+if_nth_gq_mth
 load_6th_snake = load_nth_snake(6)(if_nth_gq_y_sub1(6)(APPLE_AREA)+if_nth_gq_mth_sub1(6)(0)+if_nth_gq_mth_sub1(6)(1)+if_nth_gq_mth_sub1(6)(2)+if_nth_gq_mth_sub1(6)(3)+if_nth_gq_mth_sub1(6)(4)+if_nth_gq_mth_sub1(6)(5))
 load_7th_snake = load_nth_snake(7)(if_nth_gq_y_sub1(7)(APPLE_AREA)+if_nth_gq_mth_sub1(7)(0)+if_nth_gq_mth_sub1(7)(1)+if_nth_gq_mth_sub1(7)(2)+if_nth_gq_mth_sub1(7)(3)+if_nth_gq_mth_sub1(7)(4)+if_nth_gq_mth_sub1(7)(5)+if_nth_gq_mth_sub1(7)(6))
 
-mod64 = lambda x: if_x_gq_a(x)(64)(go_sub_n(x)(64)+if_x_gq_a(x)(64)(go_sub_n(x)(64)+if_x_gq_a(x)(64)(go_sub_n(x)(64)))) # third time enough
+mod64 = lambda x: if_x_geq_a(x)(64)(go_sub_n(x)(64)+if_x_geq_a(x)(64)(go_sub_n(x)(64)+if_x_geq_a(x)(64)(go_sub_n(x)(64)))) # third time enough
 shift_and_back = shift(1)+'<'
 body_update = go_work_back(SNAKE_AREA+4)(shift_and_back*5+repeat(GO_FRONT)(5))+safe_move_a_to_b(SNAKE_REG_AREA)(SNAKE_AREA)
 reset_nth_body = lambda n: if_x_eq_a(SNAKE_SIZE_AREA)(n)(go_work_back(SNAKE_AREA+n)(reset))
 reset_apple = move_a_to_b(COUNTER_AREA)(APPLE_AREA) + mod64(APPLE_AREA)
 if_head_touch_apple = if_x_eq_y(SNAKE_AREA)(APPLE_AREA)(go_add_n(SNAKE_SIZE_AREA)(1)+reset_apple) \
     +reset_nth_body(1)+reset_nth_body(2)+reset_nth_body(3)+reset_nth_body(4)+reset_nth_body(5)
-# TODO: reset apple
+
 end_game = '[]'
+check_head_nth_collision = lambda n: if_x_geq_a(SNAKE_SIZE_AREA)(n)(if_x_eq_y(SNAKE_AREA)(SNAKE_AREA+n)(end_game))
+check_head_collision = "".join(map(check_head_nth_collision, range(1,8)))
 
 ######## BUILD PROGRAM ##########
 init_script = add_n(1) # set home 1
 init_script += go_work_back(IF_AREA+3)(INC) # if trigger flag
 init_script += go_add_n(SNAKE_SIZE_AREA)(1)
 init_script += go_add_n(SNAKE_AREA)(4)
-# init_script += go_add_n(SNAKE_AREA+1)(3)
 init_script += go_add_n(INPUT_AREA)(1)
 init_script += go_add_n(APPLE_AREA)(11)
 
@@ -141,7 +142,6 @@ work_script = ''
 def add_line(work):
     global work_script
     work_script += work
-    # work_script += go_work_back(COUNTER_AREA)(add_n(1))
 
 add_line(go_add_n(COUNTER_AREA)(11))
 ### CHECK MOVE
@@ -154,8 +154,8 @@ add_line(if_move_left)
 ### SNAKE LOGIC
 add_line(body_update)
 add_line(if_head_touch_apple)
+add_line(check_head_collision)
 
-# add_line(safe_load_xy_reg0_reg1(SNAKE_AREA)(APPLE_AREA)+if_reg0_bigger_than_reg1('>'+INC+'<'))
 add_line(load_apple)
 add_line(load_0th_snake)
 add_line(load_1th_snake)
@@ -167,7 +167,6 @@ add_line(load_6th_snake)
 add_line(load_7th_snake)
 add_line(PRINT)
 add_line(reset_screen)
-# add_line(end_game)
 
 main_script = loop(work_script)
 script = init_script + main_script
