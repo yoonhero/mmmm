@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
     // std::cout << code.data() << "\n";
     BF bf(code.data(), SCREEN_SIZE);
 
-    const long frame_ms = 1000 / 5; // there's big time lag on 56~63. 10fps
+    const long frame_ms = 1000 / 3; // there's big time lag on 56~63. 10fps
                                     // cannot stabilize well through.
     long prevTick = now_ms();
 
@@ -93,19 +93,19 @@ int main(int argc, char *argv[]) {
         }
 
         // debugging
-        int upto = 16 + 8;
-        if (bf.ptr >= SCREEN_SIZE && bf.ptr < SCREEN_SIZE + upto) {
-            for (int i = 0; i < upto; i++) {
-                if (i == 2 || i == 4 || i == 5 || i == 10 || i == 14 ||
-                    i == 15 || i == 16 || i == 17)
-                    std::cout << "| ";
-                if (i + SCREEN_SIZE == bf.ptr) {
-                    std::cout << ">";
-                }
-                std::cout << std::to_string(bf.tape[SCREEN_SIZE + i]) << " ";
-            }
-            std::cout << "\n";
-        }
+        // int upto = 17 + 5;
+        // if (bf.ptr >= SCREEN_SIZE && bf.ptr < SCREEN_SIZE + upto) {
+        //     for (int i = 0; i < upto; i++) {
+        //         if (i == 2 || i == 4 || i == 5 || i == 10 || i == 14 ||
+        //             i == 15 || i == 16 || i == 17)
+        //             std::cout << "| ";
+        //         if (i + SCREEN_SIZE == bf.ptr) {
+        //             std::cout << ">";
+        //         }
+        //         std::cout << std::to_string(bf.tape[SCREEN_SIZE + i]) << " ";
+        //     }
+        //     std::cout << "\n";
+        // }
 
         if (bf.status == UPDATE) {
             memcpy(screen, bf.tape, SCREEN_SIZE * sizeof(uint8));
@@ -117,7 +117,6 @@ int main(int argc, char *argv[]) {
             if (elapsed < frame_ms)
                 SDL_Delay(frame_ms - elapsed);
             prevTick = now_ms();
-            // exit(0);
         }
     }
 

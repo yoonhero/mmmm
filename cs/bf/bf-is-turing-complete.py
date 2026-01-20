@@ -10,7 +10,7 @@ alloc_table = {
     'counter': 14,
     'snake_reg': 15,
     'snake_size': 16,
-    'snake': 18 # heap memory
+    'snake': 17 # heap memory
 }
 INPUT_AREA = alloc_table["input"]
 APPLE_AREA = alloc_table["apple"]
@@ -45,7 +45,7 @@ go_sub_n = lambda x: lambda n: go_work_back(x)(sub_n(n))
 
 shift = lambda d: f'[-{repeat(GO_FRONT if d>0 else GO_BACK)(abs(d))}+{repeat(GO_BACK if d>0 else GO_FRONT)(abs(d))}]' if d != 0 else ''
 move_a_to_b = lambda origin: lambda dest: go_work_back(origin)(shift(dest-origin))
-safe_move_a_to_b = lambda origin: lambda dest: reset_x(dest)+move_a_to_b(origin)(dest)
+safe_move_a_to_b = lambda origin: lambda dest: (reset_x(dest) if origin != dest else '') +move_a_to_b(origin)(dest)
 load_in_reg0 = lambda data_pos: move_a_to_b(data_pos)(REG_AREA)
 load_in_reg1 = lambda data_pos: move_a_to_b(data_pos)(REG_AREA+1)
 copy_reg0_to_reg1 = go_work_back(REG_AREA)('[->+>+<<]>>'+shift(-2)+'<<')
@@ -63,7 +63,10 @@ move_reg1_if_a_then_b = lambda a: lambda b: move_reg1_to_if1 + if_a_then_b(a)(b)
 # reg_0 == reg_1 + reg_2 not safe (it can be overrided)
 if_equal = lambda b: go_work_back(REG_AREA)('[->-<]')+move_reg1_if_a_then_b(NOTHING)(b)
 if_nequal = lambda b: go_work_back(REG_AREA)(f'[->-<]>[{reset}+>]<[<]>-<')+move_reg1_if_a_then_b(NOTHING)(b)
+if_x_nequal_y = lambda x: lambda y: lambda b: safe_load_xy_reg0_reg1(x)(y) + if_nequal(b)
 if_x_nequal_m = lambda x: lambda m: lambda b: safe_load_data(x)(REG_AREA) + go_add_n(REG_AREA+1)(m) + if_nequal(b)
+if_x_eq_y = lambda x: lambda y: lambda b: safe_load_xy_reg0_reg1(x)(y)+if_equal(b)
+if_x_eq_a = lambda x: lambda a: lambda b: safe_load_data(x)(REG_AREA)+go_add_n(REG_AREA+1)(a)+if_equal(b)
 EMPTY = lambda b: b
 def nand_fixed(x, nums):
     if len(nums) == 0:
@@ -71,11 +74,11 @@ def nand_fixed(x, nums):
     current_condition = if_x_nequal_m(x)(nums[0])
     next_step = nand_fixed(x, nums[1:])
     return lambda b: current_condition(next_step(b))
-if_reg0_bigger_than_reg1 = lambda b: go_work_back(REG_AREA)('[->-[<<]>]>[>>]<<<')+move_reg1_if_a_then_b('')(b)
-if_x_bigger_than_y = lambda x: lambda y: lambda b: safe_load_xy_reg0_reg1(x)(y)+if_reg0_bigger_than_reg1(b)
-if_x_bigger_than_a = lambda x: lambda a: lambda b: safe_load_data(x)(REG_AREA)+go_add_n(REG_AREA+1)(a)+if_reg0_bigger_than_reg1(b)
-if_x_equal_y = lambda x: lambda y: lambda b: safe_load_xy_reg0_reg1(x)(y)+if_equal(b)
-if_x_equal_a = lambda x: lambda a: lambda b: safe_load_data(x)(REG_AREA)+go_add_n(REG_AREA+1)(a)+if_equal(b)
+if_reg0_geq_reg1 = lambda b: go_work_back(REG_AREA)('>[<<]>[->-[<<]>]>[>>]<<<')+move_reg1_if_a_then_b('')(b)
+if_x_geq_y = lambda x: lambda y: lambda b: safe_load_xy_reg0_reg1(x)(y)+if_reg0_geq_reg1(b)
+if_x_geq_a = lambda x: lambda a: lambda b: safe_load_data(x)(REG_AREA)+go_add_n(REG_AREA+1)(a)+if_reg0_geq_reg1(b)
+if_x_gq_y = lambda x: lambda y: lambda b: if_x_nequal_y(x)(y)(if_x_geq_y(x)(y)(b))
+if_x_gq_a = lambda x: lambda a: lambda b: if_x_nequal_m(x)(a)(if_x_geq_a(x)(a)(b))
 
 get_input = go_work_back(INPUT_AREA+1)(INPUT)+safe_load_data(INPUT_AREA+1)(REG_AREA)+if_nequal(safe_move_a_to_b(INPUT_AREA+1)(INPUT_AREA)) # if input is non-zero, accept it.
 # get_input = go_work_back(INPUT_AREA)(INPUT)
@@ -103,29 +106,35 @@ cursor_routine = lambda y: DEC+back_work_go(y)(f'[<]+[>]<')
 load_cursor = lambda x: lambda y: lambda pixel: lambda work='': safe_load_data(x)(y)+work+go_work_back(y)(loop(cursor_routine(y)))+glider+draw_pixel(pixel)+'>[->]<+' 
 load_apple = load_cursor(APPLE_AREA)(REG_AREA)(191)()
 
-if_nth_bigger_than_y_sub1 = lambda n: lambda y: if_x_bigger_than_y(SNAKE_AREA+n)(y)(go_sub_n(SNAKE_REG_AREA)(1))
-if_nth_bigger_than_mth_sub1 = lambda n: lambda m: if_nth_bigger_than_y_sub1(n)(SNAKE_AREA+m)
-load_0th_snake = load_cursor(SNAKE_AREA)(SNAKE_REG_AREA)(63)(if_nth_bigger_than_y_sub1(0)(APPLE_AREA))
-load_nth_snake = lambda n: lambda cond: if_x_bigger_than_a(REG_AREA+n)(n)(load_cursor(SNAKE_AREA)(SNAKE_REG_AREA)(63)(cond))
-load_1th_snake = load_nth_snake(1)(if_nth_bigger_than_y_sub1(1)(APPLE_AREA)+if_nth_bigger_than_mth_sub1(1)(0))
-load_2th_snake = load_nth_snake(2)(if_nth_bigger_than_y_sub1(2)(APPLE_AREA)+if_nth_bigger_than_mth_sub1(2)(0)+if_nth_bigger_than_mth_sub1(2)(1))
-load_3th_snake = load_nth_snake(3)(if_nth_bigger_than_y_sub1(3)(APPLE_AREA)+if_nth_bigger_than_mth_sub1(3)(0)+if_nth_bigger_than_mth_sub1(3)(1)+if_nth_bigger_than_mth_sub1(3)(2))
-load_4th_snake = load_nth_snake(4)(if_nth_bigger_than_y_sub1(4)(APPLE_AREA)+if_nth_bigger_than_mth_sub1(4)(0)+if_nth_bigger_than_mth_sub1(4)(1)+if_nth_bigger_than_mth_sub1(4)(2)+if_nth_bigger_than_mth_sub1(4)(3))
+if_nth_gq_y_sub1 = lambda n: lambda y: if_x_gq_y(SNAKE_AREA+n)(y)(go_sub_n(SNAKE_REG_AREA)(1))
+if_nth_gq_mth_sub1 = lambda n: lambda m: if_nth_gq_y_sub1(n)(SNAKE_AREA+m)
+load_0th_snake = load_cursor(SNAKE_AREA)(SNAKE_REG_AREA)(63)(if_nth_gq_y_sub1(0)(APPLE_AREA))
+load_nth_snake = lambda n: lambda cond: if_x_gq_a(SNAKE_SIZE_AREA)(n)(load_cursor(SNAKE_AREA+n)(SNAKE_REG_AREA)(63)(cond))
+load_1th_snake = load_nth_snake(1)(if_nth_gq_y_sub1(1)(APPLE_AREA)+if_nth_gq_mth_sub1(1)(0))
+load_2th_snake = load_nth_snake(2)(if_nth_gq_y_sub1(2)(APPLE_AREA)+if_nth_gq_mth_sub1(2)(0)+if_nth_gq_mth_sub1(2)(1))
+load_3th_snake = load_nth_snake(3)(if_nth_gq_y_sub1(3)(APPLE_AREA)+if_nth_gq_mth_sub1(3)(0)+if_nth_gq_mth_sub1(3)(1)+if_nth_gq_mth_sub1(3)(2))
+load_4th_snake = load_nth_snake(4)(if_nth_gq_y_sub1(4)(APPLE_AREA)+if_nth_gq_mth_sub1(4)(0)+if_nth_gq_mth_sub1(4)(1)+if_nth_gq_mth_sub1(4)(2)+if_nth_gq_mth_sub1(4)(3))
+load_5th_snake = load_nth_snake(5)(if_nth_gq_y_sub1(5)(APPLE_AREA)+if_nth_gq_mth_sub1(5)(0)+if_nth_gq_mth_sub1(5)(1)+if_nth_gq_mth_sub1(5)(2)+if_nth_gq_mth_sub1(5)(3)+if_nth_gq_mth_sub1(5)(4))
+load_6th_snake = load_nth_snake(6)(if_nth_gq_y_sub1(6)(APPLE_AREA)+if_nth_gq_mth_sub1(6)(0)+if_nth_gq_mth_sub1(6)(1)+if_nth_gq_mth_sub1(6)(2)+if_nth_gq_mth_sub1(6)(3)+if_nth_gq_mth_sub1(6)(4)+if_nth_gq_mth_sub1(6)(5))
+load_7th_snake = load_nth_snake(7)(if_nth_gq_y_sub1(7)(APPLE_AREA)+if_nth_gq_mth_sub1(7)(0)+if_nth_gq_mth_sub1(7)(1)+if_nth_gq_mth_sub1(7)(2)+if_nth_gq_mth_sub1(7)(3)+if_nth_gq_mth_sub1(7)(4)+if_nth_gq_mth_sub1(7)(5)+if_nth_gq_mth_sub1(7)(6))
 
+mod64 = lambda x: if_x_gq_a(x)(64)(go_sub_n(x)(64)+if_x_gq_a(x)(64)(go_sub_n(x)(64)+if_x_gq_a(x)(64)(go_sub_n(x)(64)))) # third time enough
 shift_and_back = shift(1)+'<'
-body_update = go_work_back(SNAKE_AREA+4)(shift_and_back*4+repeat(GO_FRONT)(4))+move_a_to_b(SNAKE_REG_AREA)(SNAKE_AREA)
-reset_nth_body = lambda n: if_x_equal_a(SNAKE_SIZE_AREA)(n)(go_work_back(SNAKE_AREA+n+1)(reset))
-if_head_touch_apple = if_x_equal_y(SNAKE_REG_AREA)(APPLE_AREA)(go_add_n(SNAKE_SIZE_AREA)(1)) \
+body_update = go_work_back(SNAKE_AREA+4)(shift_and_back*5+repeat(GO_FRONT)(5))+safe_move_a_to_b(SNAKE_REG_AREA)(SNAKE_AREA)
+reset_nth_body = lambda n: if_x_eq_a(SNAKE_SIZE_AREA)(n)(go_work_back(SNAKE_AREA+n)(reset))
+reset_apple = move_a_to_b(COUNTER_AREA)(APPLE_AREA) + mod64(APPLE_AREA)
+if_head_touch_apple = if_x_eq_y(SNAKE_AREA)(APPLE_AREA)(go_add_n(SNAKE_SIZE_AREA)(1)+reset_apple) \
     +reset_nth_body(1)+reset_nth_body(2)+reset_nth_body(3)+reset_nth_body(4)+reset_nth_body(5)
-
+# TODO: reset apple
 end_game = '[]'
 
 ######## BUILD PROGRAM ##########
 init_script = add_n(1) # set home 1
 init_script += go_work_back(IF_AREA+3)(INC) # if trigger flag
 init_script += go_add_n(SNAKE_SIZE_AREA)(1)
-init_script += go_add_n(SNAKE_AREA)(13)
-init_script += go_add_n(INPUT_AREA)(2)
+init_script += go_add_n(SNAKE_AREA)(4)
+# init_script += go_add_n(SNAKE_AREA+1)(3)
+init_script += go_add_n(INPUT_AREA)(1)
 init_script += go_add_n(APPLE_AREA)(11)
 
 work_script = ''
@@ -134,6 +143,7 @@ def add_line(work):
     work_script += work
     # work_script += go_work_back(COUNTER_AREA)(add_n(1))
 
+add_line(go_add_n(COUNTER_AREA)(11))
 ### CHECK MOVE
 add_line(get_input)
 add_line(prepare_if_move)
@@ -141,7 +151,6 @@ add_line(if_move_forward)
 add_line(if_move_backward)
 add_line(if_move_right)
 add_line(if_move_left)
-
 ### SNAKE LOGIC
 add_line(body_update)
 add_line(if_head_touch_apple)
@@ -153,6 +162,9 @@ add_line(load_1th_snake)
 add_line(load_2th_snake)
 add_line(load_3th_snake)
 add_line(load_4th_snake)
+add_line(load_5th_snake)
+add_line(load_6th_snake)
+add_line(load_7th_snake)
 add_line(PRINT)
 add_line(reset_screen)
 # add_line(end_game)
@@ -179,8 +191,8 @@ def optimize(code):
     flush()
     return optimized
 
-# bf_script = script
+bf_script = script
 bf_script = optimize(script)
 print(f"Length: {len(bf_script)}\nResult: {bf_script}")
 with open("test.bf", "w") as f:
-    f.write(optimize(script))
+    f.write(bf_script)
