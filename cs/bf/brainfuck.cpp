@@ -1,5 +1,7 @@
 #include "renderer.h"
+#include "sound.h"
 #include <SDL.h>
+#include <SDL_audio.h>
 #include <fstream>
 #include <iostream>
 #include <iterator>
@@ -14,7 +16,7 @@
 #define SCREEN_SIZE 8 * 8
 #define inputBuf std::queue<uint8>
 
-enum Status { DONE, UPDATE, IDLE, WAIT_INPUT };
+enum Status { DONE, UPDATE, IDLE, WAIT_INPUT, BIP };
 
 class BF {
   public:
@@ -24,7 +26,6 @@ class BF {
     char current_char;
     Status status;
     inputBuf inputs;
-
     BF(const char *code, unsigned int startPtr)
         : source_code(code), ptr(startPtr), i(0), status(IDLE) {}
     void input(uint8 in);
@@ -47,13 +48,21 @@ static long now_ms(void) {
 }
 
 int main(int argc, char *argv[]) {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+    if (SDL_Init(SDL_INIT_VIDEO) != 0 || SDL_Init(SDL_INIT_AUDIO) != 0) {
         std::cout << SDL_GetError() << "\n";
         return 1;
     }
 
     uint8 screen[SCREEN_SIZE];
     Renderer renderer(8, 8, 60);
+
+    std::unique_ptr<Bip> sound;
+    try {
+        sound = std::make_unique<Bip>(660.0f);
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << "\n";
+        return 1;
+    }
 
     std::string code = filter_bf_tokens(read_all_code(argc, argv));
     // std::cout << code.data() << "\n";
@@ -92,6 +101,10 @@ int main(int argc, char *argv[]) {
             break;
         }
 
+        if (bf.status == BIP) {
+            sound->play();
+        }
+
         // debugging
         // int upto = 17 + 5;
         // if (bf.ptr >= SCREEN_SIZE && bf.ptr < SCREEN_SIZE + upto) {
@@ -117,6 +130,7 @@ int main(int argc, char *argv[]) {
             if (elapsed < frame_ms)
                 SDL_Delay(frame_ms - elapsed);
             prevTick = now_ms();
+            sound->stop();
         }
     }
 
@@ -183,6 +197,9 @@ bool BF::step() {
             }
         }
         break;
+    case '!':
+        status = BIP;
+        break;
     default:
         return false;
     }
@@ -225,6 +242,7 @@ static bool is_bf_token(char ch) {
     case ',':
     case '[':
     case ']':
+    case '!':
         return true;
     }
     return false;

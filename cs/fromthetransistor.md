@@ -21,6 +21,6 @@ This is unfold++ of https://github.com/geohot/fromthetransistor.
 > INIT, PTR_INC, PTR_DEC, REG_INC, REG_DEC, READ, WRITE, JUMP
 
 -   BF Chip in DLS - much simpler than ARM's but BF is actually turing complete! So you "can" build anything.
-    -   [Snake Game Showcase](https://www.youtube.com/watch?v=Qn0yFkgNXqQ&t=3s)
+    -   [Snake Game Showcase](./bf/bf-is-turing-complete.py)
 -   BF Assembler - easy!
 -   Turn Python into BF - [check out](./lang/pythonic.py)

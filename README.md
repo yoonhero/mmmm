@@ -12,6 +12,7 @@ The ultimate goal of these session would be solving the "unsolved" Millennium Pr
 
 no more mystery. i will explain all seemingly magic things.
 
+-   [ ] Brainfuck MLP circuit with custom parallel bf - quantization+scheduling ops(functional language compiler)+custom hw+pcbway
 -   [ ] xv-6 OS operated on risc-v (DOS on 6502 = Apple II)
 -   [ ] gcc! (Ken Thompson - "Reflections on Trusting Trust") / GDB
 -   [ ] io without stdio
@@ -31,5 +32,5 @@ no more mystery. i will explain all seemingly magic things.
 -   [ ] [Search Artificial Life](https://sakana.ai/asal/)
 -   [ ] Reverse engineering [COVID-19](https://github.com/geohot/corona) + AlphaFold
 -   [ ] [OpenCola](<https://en.wikipedia.org/wiki/OpenCola_(drink)>)
--   [ ] Game Boy Advance Emulator + Fan Game
+-   [ ] Game Boy Advance Emulator + Fan Game (Portal 2)
 -   [ ] [Solve Rubik's Cube](https://www.acmicpc.net/problem/24902)

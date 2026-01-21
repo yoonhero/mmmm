@@ -14,6 +14,7 @@ typedef struct {
 } __attribute__((packed)) MsgHdr;
 
 // IPC - share mem + (pipes + mq(tt) + socket):message passing
+// ---> using poll/select pattern...
 size_t nchild = 0;
 int c2p_pipes[8][2]; // [child][read/write]
 int to_parent[2];
@@ -23,7 +24,8 @@ static int readn(int fd, void *p, size_t n) {
     size_t got = 0;
     while (got < n) {
         ssize_t r = read(fd, cur+got, n-got);
-        if (r < 0) {if (r == EINTR) continue; return -1;} 
+        if (r < 0) {if (errno == EINTR) continue; return -1;} 
+        if (r == 0) return 0;
         got += (size_t)r;
     }
     return 1;
@@ -33,8 +35,8 @@ static int written(int fd, const void *p, size_t n) {
     const uint8_t *cur = (const uint8_t *)p;
     size_t sent = 0;
     while (sent < n) {
-        ssize_t r = write(fd, p+sent, n-sent);
-        if (r < 0) {if(r == EINTR) continue; return -1;}
+        ssize_t r = write(fd, cur+sent, n-sent);
+        if (r < 0) {if(errno == EINTR) continue; return -1;}
         sent += (size_t)r;
     }
     return 1;
@@ -86,6 +88,9 @@ static PNode deserialize(uint8_t *blob) {
     return node;
 }
 
+// const int* p -> *p is immutable
+// int* const p -> p is immutable
+// const int* const p -> both immutable
 static char *repeat_char(const char *ch, int count) {
     char *repeated_char = (char*)malloc(strlen(ch)*count);
     repeated_char[0] = '\0';
