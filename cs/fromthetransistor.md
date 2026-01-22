@@ -18,9 +18,10 @@ This is unfold++ of https://github.com/geohot/fromthetransistor.
 
 **Midterm proj - Have a fun with [Brainfuck](https://esolangs.org/wiki/Brainfuck)**
 
-> INIT, PTR_INC, PTR_DEC, REG_INC, REG_DEC, READ, WRITE, JUMP
+-   [BF Chip in DLS](./bf_sheet.md) - much simpler than ARM's but BF is actually turing complete! So you "can" build anything.
+    -   BF Assembler - BF->BF Chip ISA(I defined)
+    -   It's [Snake Game](./bf/bf-is-turing-complete.py)
 
--   BF Chip in DLS - much simpler than ARM's but BF is actually turing complete! So you "can" build anything.
-    -   [Snake Game Showcase](./bf/bf-is-turing-complete.py)
--   BF Assembler - easy!
--   Turn Python into BF - [check out](./lang/pythonic.py)
+**Make practical one, Arm7**
+
+> Say bye, bye to mos6502 and bf chip...
