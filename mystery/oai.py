@@ -51,5 +51,17 @@ if x.grad != None:
 #   2. Moving a bit is much expensive.
 #     ㄴ gpu hierarchy: Grid(software)-HBM > Block(SM)-L2 > Warp-L1(Shared) > Threads-Register
 #	  ㄴ Deepseek using PTX: MoE(streaming core) / Register Pressure / private hardware call
-#   3. Dynamic indexing is bad. Use vectorization instead. (list[L//2] <<< list*mask)
+#   3. Dynamic indexing is bad. Use vectorization instead. (list[dynamic] <<< list*mask)
 #   4. GPU is actually fast - mul_add_: CPU-1ns / GPU-1μs & 2048x2048: CPU-28ms / GPU-209μs
+
+# radix sort - malloc is $$$ -> in GPU, GOOD = static flow
+# first thought rather choose quicksort -> divergence $$$ = data-dependent flow
+
+# Example
+#   ㄴ branching vs branchless
+#     1. if (a > b) result = a*2;
+#     2. result = (a>b)*(a*2)
+#
+#   ㄴ Bit Masking (abs)
+#     1. if (x < 0) return -x; else return x;
+#     2. 2-complement bit-mask
