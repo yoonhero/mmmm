@@ -54,6 +54,15 @@ m1 >=> m2 = \x ->
 idFish :: a -> Writer a
 idFish x = (x, "")
 
+-- model theory as Haskell perspective
+--   T = class / M = instance            $M \models T$
+--   Language = ops / Domain = operands
+-- 
+-- QE(Quantifiable elimination) - 양화사 없이도 동치인 공식으로 바꿀 수 있음
+--   -> flat surface theory = easy to tame  
+--
+-- L(A) := L U {c_a | a in |A|}
+
 main :: IO ()
 main = do
     print $ Frank {frankField = Just "Haha"}
