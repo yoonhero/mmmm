@@ -2,6 +2,7 @@
 import qualified Data.Map as Map
 import Data.List (intercalate)
 import qualified Data.Set as Set
+import Data.Char (ord, chr)
 
 data Nat = Z | S Nat
 
@@ -94,6 +95,17 @@ pretty expr = case expr of
     Mul e1 e2 -> (parent pretty e1) ++ "*" ++ (parent pretty e2)
     Neg e     ->  "-" ++ parent pretty e
 
+digitToInt x = ord x - ord '0'
+isDigit =  (\x -> x >= 0 && x < 10) . digitToInt
+
+solveRPN :: (Num a, Read a) => String -> a
+solveRPN = head . foldl parse [] . words
+    where
+        parse (x:y:ys) "*" = (x*y):ys
+        parse (x:y:ys) "-" = (x-y):ys
+        parse (x:y:ys) "+" = (x+y):ys
+        parse xs numberString = read numberString:xs
+
 -- Json Parser
 
 data J
@@ -183,7 +195,7 @@ encode j = case j of
     JNum n -> show n
     JStr s -> show s
     JArr arr -> "[" ++ intercalate ", " (map encode arr) ++ "]" 
-    JObj map_ -> "{" ++ (tail . tail) (Map.foldlWithKey (\acc k a -> acc++", "++k++": "++encode a) "" map_)  ++ "}"
+    JObj map_ -> "{" ++ (tail . tail) (Map.foldlWithKey (\acc k a -> acc++", "++show k++": "++encode a) "" map_)  ++ "}"
 
 strip :: String -> String
 strip = f . f 
@@ -226,9 +238,6 @@ decode s = let ss = strip s in case head ss of
         "\"null\"" -> JNull
         "\"true\"" -> JBool True
         "\"false\"" -> JBool False
-        _ -> case read ss of
-            Double -> JNum x
-            String -> JStr
 
 main :: IO ()
 main = do
@@ -243,7 +252,8 @@ main = do
     print $ checkParens "()(((())))()(("
 
     print $ pretty sampleExpr
-    print $ eval $ sampleExpr
+    print $ eval sampleExpr
+    print $ "Solve: (1+2)*3 is " ++ show (solveRPN "1 2 + 3 *")
 
     print $ json
     print $ get json [(Key "hello")]

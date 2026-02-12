@@ -34,3 +34,4 @@ no more mystery. i will explain all seemingly magic things.
 -   [ ] [OpenCola](<https://en.wikipedia.org/wiki/OpenCola_(drink)>)
 -   [ ] Game Boy Advance Emulator + Fan Game (Portal 2)
 -   [ ] [Solve Rubik's Cube](https://www.acmicpc.net/problem/24902)
+-   [ ] Handcrafted NTM! (I can do optimize better than ADAM)

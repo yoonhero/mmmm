@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SVG `fill-rule` and the point-in-polygon problem.</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .container {
+                font-family: monospace;
+            }
+            p {
+                font-size: 15px;
+            }
+
+            svg {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="https://x.com/DanHollick/status/2010624428057510083">SOURCE</a>
+        <!-- SVG = Scalable Vector Graphics -->
+        <div class="container">
+            <h3>Ray casting</h3>
+            <p>
+                <a href="https://en.wikipedia.org/wiki/Jordan_curve_theorem">Jordan Curve thm</a>: ray intersect it an even times if point is on outside and odd
+                times if point is inside. (not vice versa)<br />Euler characteristic (V-E+F=2) proof has similar idea(?)
+            </p>
+            <h3>Winding number</h3>
+            <p>Do you know green's thm?</p>
+            <svg width="300" height="100">
+                <polygon points="100,10 100,90 200,10 200,90" style="fill: lime; stroke: purple" />
+            </svg>
+
+            <svg viewBox="-10 -10 220 120" width="300" height="100">
+                <!-- Sunday's winding number algorithm -->
+                <polygon fill-rule="nonzero" stroke="red" points="50,0 21,90 98,35 2,35 79,90" />
+
+                <!-- Ray casting -->
+                <polygon fill-rule="evenodd" stroke="red" points="150,0 121,90 198,35 102,35 179,90" />
+            </svg>
+        </div>
+
+        <!-- <div class="container">
+            <svg viewBox="-100 -100 200 200" width="200" height="200">
+                <path stroke="red" stroke-width="3" fill="non" d="M0,0 L50,0 M0,0 L0,50" skew></path>
+            </svg>
+        </div> -->
+    </body>
+</html>
