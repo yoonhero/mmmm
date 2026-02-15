@@ -7,3 +7,4 @@
 *.vcd
 output
 .vscode
+tmp
