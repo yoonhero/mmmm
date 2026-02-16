@@ -1,0 +1,104 @@
+<div class="intro">
+    <img width="100%" src="https://hondoom.com/zbxe/files/attach/images/814649/917/817/1c7caaa8e57c2d4e03ba98c408d31414.jpg" />
+    <ul>
+        <li>HTML은 프언이 아니다(?)</li>
+        <li><a href="https://lemire.me/blog/2011/03/08/breaking-news-htmlcss-is-turing-complete/">HTML+CSS</a>는 프언이다.</li>
+        <li><a href="https://www.reddit.com/r/programming/comments/d4xcgs/svg_is_turing_complete/">HTML+SMIL(SVG)</a>는 프언이다.</li>
+        <li>but why?</li>
+    </ul>
+</div>
+
+<h1>어떻게 HTML+CSS가 turing-complete이 될 수 있을까?</h1>
+
+<p>
+    CSS Lifecycle be like: <i>Parse->DOM->Style Recalculation<strong>(!important)</strong></i>
+</p>
+
+<div class="logic">
+    <div class="switch">
+        <input type="checkbox" id="a" />
+        <input type="checkbox" id="b" />
+    </div>
+
+    <div class="outcome or">OR(A, B)</div>
+    <div class="outcome and">AND(A, B)</div>
+    <div class="outcome not">NOT(A)</div>
+</div>
+<!-- scd IDEA = using mix-blend-mode/screen/difference -->
+
+<p>we have NAND = we have everything</p>
+
+<!-- <span>1rem</span> -->
+
+<h1>어떻게 HTML+SVG가 turing-complete이 될 수 있을까?</h1>
+
+<p>To be continued</p>
+
+<style>
+    .intro {
+        width: 300px;
+    }
+
+    .logic {
+        width: 300px;
+        padding: 10px;
+        border: 2px solid black;
+        text-align: center;
+    }
+
+    .outcome::after {
+        display: none;
+        content: "💡";
+    }
+
+    *::selection {
+        background-color: beige;
+    }
+
+    h1::first-letter {
+        /* 1em=font-size of that element */
+        /* 1rem=root font-size */
+        font-size: 4rem;
+    }
+
+    span::after {
+        content: "2rem";
+        font-size: 2em;
+    }
+    /* it doens't work! ::after is fake element(not exist on DOM tree) */
+    span::after::after {
+        content: "4em";
+        font-size: 2em;
+    }
+
+    li::marker {
+        /* holy crab */
+        color: orange;
+    }
+
+    /* :: = pseudo-element */
+    /*  ㄴ  */
+    a[href^="https"]::after {
+        content: "🔓";
+    }
+
+    /* : = pseudo-class */
+    /*  ㄴ Browser manage this state(DOM)  */
+    input[type="checkbox"]:hover {
+        transform: scale(1.2);
+    }
+
+    .switch:has(#a:checked):has(#b:checked) ~ .and::after {
+        display: inline-block;
+    }
+
+    /* + = next / ~ = subsequent brother */
+    .switch:has(#a:not(:checked)) ~ .not::after {
+        display: inline-block;
+    }
+
+    .switch:has(#a:checked) ~ .or::after,
+    .switch:has(#b:checked) ~ .or::after {
+        display: inline-block;
+    }
+</style>
