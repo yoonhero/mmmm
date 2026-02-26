@@ -1,0 +1,575 @@
+Coat              Bag               Shirt             Ankle boot        Shirt             
+
+     BBBY               ;;`               YyY              'YYy            ,'BBBy;_       
+   BByyyBBB            "" /              YyYy,             /YYY'.         -;~"BB~~~.      
+  "BByyyyBB"           /_'_              YYYYy             s//ss"         ,":     ~:      
+  YByyyyyyyY          's-'BY             yyyYy             '//sy"~        ~~'     :~      
+  sYyyyyyyyY-         ~YYsyY             BYYyY             :ss/"/s        ;;'-..- ,,      
+  yYyYYyyyy/.         ~"sYsY             BYYYy             :~BY;//~       ~s:...- :'      
+  YysYYyyyyy,        `Y...BB             sYYyy             ;~y/;"/~       `"`...- ~:      
+  yYYyYyYyyy,        `Y_--,s            /YsYyY            .,~By;;;~       ;/s---.."/      
+  yyYYYyYyyy'        _BBYYYs           `BsYYyY            :`:_';/~:       "/B....'/"_     
+  yyyYYyYYsy:         yYYYYY           ;ysYYYY;       s:.~:;"::::/~       /'~.....'/-     
+  yyyYYYYYBy:         yyYYYY           /ByBBBBs       _yY"~~~~:~~;";      /;~-...-:,_     
+  yyYYYYYyyy~         yyByyY           yBBBYYBs        :"'::~:`'_/"~      ;;;.....:,_     
+  YyyYYYYYyY"         YBBBBY         . YBBBBBBY        '/B      _`/       -"/;B:  ;',     
+  ByyYBBBByy"         B"YBBB           YBBBB'sB`                  .       'sys'~  ;y      
+
+
+Bag               T-shirt/top       Pullover          Bag               Pullover          
+
+      :~y            ~syBBssy          _"sBsYy~           _,~/`,..          '~yyy-        
+     ~, ;           BYssyyysYy        ,"sssYYy;s        -____-----,        -YYYY/Y'       
+     Y / ,          YYssYYssYY        ;/YyYYy/yB       -y:`...-_",,        YYsYss/y~      
+    `.-- _          YYsssYssYY        sssYYYssyy      __--.--_.//-~        yYYsss/y~      
+    :_   :         :yyyssyyBYYy       syyYYYysyy       _~/___,_`Y""       -ys":sB"'y      
+    ':   /~        BYYyssssssysY      YYBYyYsyBY      -s/s;/",YY/s/,       ys:~sYYy/-     
+    `'_.,;`          _yssssss         YyYyYyyyBY      ."yY"/"y/"BY/,      .''~::yy~s_     
+    :~,_`s`           yYssYYs         yByyyyyyyY      ;"s/""";s/sys'      .~/'~__-`"`     
+    ''',;:'           yYssss/         yByyyyyByy      `"//""/s/Bsss/      .~;:--_"```     
+    :``,~'~           yyYssss         yyYyyyyysY      YY"y//ss/yBs//      .~~~~__':;`     
+    ~~;;;'s           YYYYssY         yyyyyyyByB      sysyssYY/YY/Ys      -'~"  _::'`     
+    ~~"sy//           YYssss/         yyyyyYyyyB      Yy/sYYYYYYYs"-        ~:_~::--.     
+   -:s""sYs          .YYYYssY         yBByBByyyB       Y                    :~   _.       
+  .-:;Y/YY/~         -yYYYYYY         .BBBByyB"B`      YB                                 
+
+
+Dress             Sandal            T-shirt/top       T-shirt/top       T-shirt/top       
+
+    _',:`ss                            ysYYBYyy-          /"~/Y            `ByYBBB'       
+    .:"/"/"`                          :YYYyyyyYBy        :~/":"~:         sByYyyYByY      
+     '";~///                          BYYYyBYyYBY       :;~:_'::~`        yyyYsYyyyy      
+     '/"ss"                          .ByYsB"/BYBy       ~;Y:,::Bs:.       Yy YYYyyyB      
+     'ss;~//                  '      _BBBBsYyBByy-      ';y`,``sY',       yyyyYYYYyyy     
+    -'/YB~::         :~`///YYYY        BB";y~"B-:       ,"B````B'          ,yYYYYyB       
+    "ssBs`:-        "yy: ,sYYy         /BY""yYB         ,:B,```y:          'yYyYYyB       
+    /"ssys:        `/:s'~,/y";`-       /Byy"yB,          '/''''B:           yYYYYy.       
+   -"/sYy,'       ~;"/,`/Ys/ss/;       /Bys/Ys;          `''::``:           YYYYYy`       
+   `"//YY/,_       ``/-` `";;;/"       "Bys/Ys;          '''':'';           YYYYYy'       
+   ,;syY"/,_             ,              ByYyyY;          -','''':          -YYYYYy-       
+   ::""Y'~~~                           YByyyyY;          ,``':'':          _///Y/s:       
+   ~s//s/"Y"                           BByYyyy;          ,B ''`::_         _//YY"Y"       
+   "ss/s//s~                           yBBB/Yys          '```'B '          _s/yyYsY       
+
+
+Coat              Pullover          Trouser           Bag               Trouser           
+
+    -~BYs,            sYsYYY`           ./sBy~                               sYBYy        
+   -~:Yy;~_         `s//yY/Yy_          `Y/s/;                               sssss        
+  -~~~;";:;-        """""";~~;          `BYY_"            :""::',            YY/Ys        
+  ,;~:~~::;~        """""";/;/          `Byy`~           ""/`'`Y/~'          YYBY"        
+ `~"~;/;~~;~-       "/"""";//s          _,sy/:         YssssYyysssYy         //BB'        
+ ,~s~~;~~'~~,       Y"""""""ys          ,/Y~/,        :BYY-BYBs/sYYB         sYYsY        
+ ,Ys~~~~~:;B~      .//""""""/s           "Y:B`        ;BByBYYYsYYyyB         sYy/Y        
+ ,sY;~~~~;;~~      `///"""""s"           /s,Y.        YYBBBYYYsssyyB         "Yy;         
+ `;y~~~"~~;;~      ;s//""/"s//_          /Y_B         B/yYyyyyByyyYy         ;yy;         
+ ,/:~:;";~~;'      ;B""""""///_          /s_y         YByYYYsyyByyYy         sYy/         
+ ';;"';;`~~;`      "y""""""""/,          "/~s         ByYyYY::'`yyyB         YByY         
+ ~~";:~""~:s'      "/Y""""";"/:          ss/y         YyyB                   Ysys         
+ ~~;Y";;;s~;`      "y "/""""'Y_          "_:s                                sB/B         
+ `/./By"";_Y-      ;y s":`''./`          Y_~"                                yssB         
+
+
+Trouser           Bag               Trouser           Shirt             Dress             
+
+     BYyyB-                              yyyB~             ssYs              BBBy:        
+    .yyyyB~                             ;ys/~;           YssYBsss           /BYyy/        
+    .yyyBB;        :      ~             'Y/Y;/          ssssssssss          ;BYyB"        
+    _BBBBB:        ~;"     :Y;`_        yY"Y;s          sYssssssYs          ;/YB;"        
+    ;BBByy/       .;"~_B._Bss;".        Y/s/;s          syssssssYY          ~s"Y;'        
+    -BBBBy'       _~sBByyyYsyy/;        YssYYy          ssssYssYss          :yyB:`        
+     BBBBB:       BByYyyByyBYssB        ss/YY"          YssYsssYYs          ~yYy;:        
+     yBBBB_       BByyyyyyyByyYB        ss/sY;          yYYYYsssYY          :sYB":        
+     BBBB'.       By~yByyyyyyyYB        ss/YY~          yByYssssyY          ~yYyY~        
+     BBBB         yByyyYyyyBYB/y        Y/sY/;         .yBYYY/sYBs          ~yyyY;        
+     BByB:        BByByYyyyBByBB        YssY/;         -yBYYsssYB/          ;syYs"        
+     ByyB'        BYBByyyyyByBBy        ssss/s         -yBsYYYsYYs          ;YYBy"        
+     yBBB~         "B___.-_,-           sYss/s         -/yBYYsYYys`         sYyyY/        
+     Byy~          B,_                  YsyyYB          yy,,,```yY;         ;BYYs/        
+
+
+Ankle boot        Pullover          Sneaker           Ankle boot        Ankle boot        
+
+                     :sYByYY/                              ;B/-'                          
+       'YYBY_       ``"//s:Y"`                             B:~BsY             'Y";/sY/    
+       yYsYYy       :::::'::'~                             B/;;sy`            YyYYyys-    
+       yYYsYy       ::''''':/:              '              //BsYyB            YyyYYYs     
+       YYsssY.      ;~~~''':/;             ,~   `          /sYssyY            YYYYYY/     
+       BYYsYY       ~~~::/;:~:           "://s~:~,         sYYYYyy            YYy"yYy     
+      `yYYYYs"      ::"~''::::          .~"ssY//"          /YYYByy.           Ys/"yys     
+      yBsssyss     '~B::~::'/~'        .""""BYBy""         sYYYByB`          YYYs/YYs`    
+      yYYYYB";     :;s~`~"~'s;~     .-_,"s;/YYBy":        :sYYYBYy'         /YYYYsYYs/    
+    ,/sssYys//     ~"y;'~/,:Y~~     ,,,,:sssYY~;',        `/YYYB~/~.    ys/YYyYYyYYYsB    
+      YY/"yss_     ;~~"~~/;:';;       .----Bs:::'`     -_:`YYyy:~``:     YYYYYyYYYyYYy    
+~YsY//s///"s/:     ;"~y"//s ;~;     --____,'`_-.`_    ,`~:''`~"~y;:_    syyyyYYYYYyYYs    
+ "///ssy _"sY`     ";:_;Y~; ~;;                        ;/;,:':~,~:`,                      
+     _             ~/Y_,`';;/;;                          ,_____,_,--                      
+
+
+Dress             Pullover          Ankle boot        Shirt             Dress             
+
+    "~"::/            BsBBByB                              yByy              ~`''         
+    s/s/;"`          BBBBBBBB                            yyyyyyB/           y` `:         
+    s/YY~Y'          ByByyyyy/                          .YYYYYYYs_          /":/:"        
+    /sYss/B          BByyyyyy/             /sY:  ~      `Ys/sYssY/          -s~;/"        
+    ";BY//B          ByByyyyyY            ,YYYyB"~      `YYYYys;;y.         _/~"~.        
+    ""yB/B          ~BBByyyyyY            y/sYBYs~      ,yyYYYys`y~       . _:,/;`        
+    `yYyys          :BBBByyyyy            sssssYs/      ,ysYYYYYsy:         _::"::        
+    yyYyys          ;yByyByyyy          ////BsY/ss      `ysYYYYYyB;         -:`;~:        
+    ByYYyy          ;ByyyyyyBy      /YYyYY/YsYYs/"     _:YsyYYyYyY;         __,";'        
+    BYyyy/          ;`yyyyByyy      /yYYBYYYYssss"     ""s"YYYYYyy~         -_,:,_        
+    ByyBys          ;~yyyyyyBy      :YYysYYYYyBY;'     :YYYYYYYYyY~         __,",,        
+    yYyYY/          ""ByyyBysy        .~ssyB  . _`     /YByYYYBYyy~         __```_        
+    yyyyyy;         ;"yyyyyBs/                         _/ByyYyYYy/~         ,,`-`,        
+    yyyYys          s`:Y/'...s                         'YByyyBBBsB'         _``,`:        
+
+
+T-shirt/top       Coat              Pullover          Trouser           Ankle boot        
+
+    '~;/Y/_            yYYY             ;'Ys::             YBYBs                          
+  ."'';:`'``          sss""Y           _,,/s```            "yYsY              //s,        
+  "',````,,'         '//s"//"         ."'`::'``           _BYsYY              ssyBYB~/    
+  "s,````,,`'        s/Y"""/s/        -':''"::`'          ~BYsy_              YYYYYYs-    
+  :Yy::',`,':       .ss////Yss       ,`//~~'::':'         :BYYy`             :sssy/s/_    
+   //;;``',         's///sss/s.      ./Y/B~~:`s;`         _B/YY_             ,s/ss/Ys.    
+    /;'_,'_         /sY/ssssss,       ;;B;~~:,",-          yYB/,             :sBsY"ss_    
+    ";~,`~'         /s///s/sss'       "~/~~~:';~.          Y-y/`            `ss"YYYY;"    
+    '/~':"`         /Y/////s//~       ;;;~~::::;_          /-Y"'           B//sYysYsY:    
+    ""~'''`        -"Ys////s//:       ;;;/;~~:;"-          y,;;.        "sB////sYBy/s"    
+    "";'~~`        -"/s//YssY;-       ;,;~B~~~""_          yyB,_        Y/sssYsYy BYYs    
+  .-"~~::~'        ,s/Bs/s//s/-       ~ "ss~sY//_          yYB;_         YBByyyyy BBYs    
+   ,/"""~",        `/"""///s//        s        /,          yyB;              _      -     
+   'sBs~~;'         :~~/Y~/",-.                            ByB"                           
+
+
+Pullover          Ankle boot        T-shirt/top       Sneaker           Dress             
+
+     yBByB                              '"y/-:_                             Yyy~Ys        
+    YByyYy-             ~YYBBBY        .;""Y/:_                             yYYysY        
+   yYYYYssY-            BByyyBy/        ".-..;-                             yYsYYy        
+  .sYsYsssy;            syyYYYy         "s.;,,`                            -yYYyYY        
+  :yysYYsY//            BYyyYYY         `,.,',`               ;"_.~-        .YYYYY        
+  /BysYsyYYY            yYyYYyB         ',,_,,_           .`'///;'~,         Yssss        
+  sBYYYYYYYY            BByYYyBB        ;,_-,`.        .:;YB`;sYsYB_         Ysyss        
+  YBYYYYYYYY.           BByyYyyB        /,``,~.       :~/;;;:;//;BB-        .s/sss        
+  YBysYYYYYY_          /BByYYYYY        ',`'`'-       .`'/"~;~~;";"          sssss        
+  sYyYYYYYss,         .BBBBysYys        '`````_        _;~;;~;:;`';`        .ssYYY        
+  yByYYyYYYB"      'YByyYBBByysy       -':``':~        -;:;;;/"s~~:`         yssYs        
+  YyYYYyYYYy;     YyYBBBYYBBYy/~       ,'`'``~:                              YYYY/        
+  YYyYYYYYYY~     sYyYYyBB  yBY:       ~~`':'::                              YYYss        
+   '_-----,       ''/yBBBBBByy;;       ;~''~:~'_                             YYy~`        
+
+
+Dress             Ankle boot        Sneaker           Pullover          T-shirt/top       
+
+      '`                                                  ."YYs:          .""Y""s"/`_     
+       :'                                                /,,_:,,/~      ._,`_,'',__,,`    
+       B/                                               ,,,,`,,`,~      .-':,,,,,,,,',    
+        ~                ss   `,                        ,`,,,,``:;      _`,;/`,,`,`,'`    
+        ,               .ssssYYy           .B           ,s,,````s~      ::`':`,```'''`    
+       ``               ssYYYyyB         "/sy_  /"     -:';````,Y'_     ':`,''```:'':_    
+       /`              sssYYYsBy      /ByyYyyYB;/s     `':',`'``::'     _:~~```,,':;``    
+       :'            .///sYYYYsy    `"yyssY/;~"""/     '::`,`:'`:''     ~;";:````,'`';    
+       :` -       -_ -////ssBY;,    s/yBysssYYY"Ys     `:::,`''''~:     ~s:":'```````:    
+       -` .       ,```'s/":~~,''    -.,``,`,----.-     `':~,`''''`'     /`'::'`'''```~    
+     y~ss"        ,'`````,',,,'_                       ::;;``''''~`     `:~~:'~''''',_    
+     ,-.ss          .,,,``,,,`,,                       ':";'`':.'~,     -``':::'::```_    
+     ,~Ysy                                             `:sy~::~,,_:     _''~::'''/"''`    
+     ,YsYY                                             _~`/`:`''';:     `:~~:~:'':"/;,    
+
+
+T-shirt/top       T-shirt/top       Coat              Sneaker           Sneaker           
+
+     :BBs_           -~`  YYY-            yyY/                                            
+  _-___,___,        YYyYByYyBBy         '/yy:`                                            
+  -_--.--__-.      _BYyBBBByyyy        :~/Bys/,                                           
+ --.....--_--      yyBYsB/yyyBy`      :;:`/~:s~~                                ""/YY,    
+ --_.-..--___     ,ByBYyBBYYByYB      ;";:'~~~"~`            :~                -"BYYB_    
+ ---...---__-     yYyy---YyYBBBY      ;;;:'':;s;`.         --YY   :`          ~/;"s"":    
+  -.--.--_--      "YYy-----YYBYB      ";;~''::/;'       ,""Ys"/ss"Y;         "Y/y";s;;    
+  - --..--_.      Byyy-.---.-BBB      ";;:'~:~;;'     ;,~ `,s/Y:,""`      _""Y///s":"/    
+  -__--.....      BByB-----._BBB      ;;":~;;';~`     __``,'//;/yYy~    ;;B;"""""//s//    
+  --------..-     YyyB..---.-BYB      ~;;:~;;~;;:      ~````-....,,,    :~;""/";""~~`"    
+  .--.----..      :yyy--......._      ;"sys~"/;":                       `'::~":```-``'    
+   --__--.,        ;BB---..---`.      ;`;~:";/s";                       ::~~::'~,,':'`    
+   ------_--      -" .-.----...-      ;~;;;~;"~;`                                         
+  .-~-__----      -- ...-_ ...        "s/;s";/s":                                         
+
+
+Pullover          Sneaker           Pullover          Dress             Sandal            
+
+   ByYBBByB_                            yyyyyB:               "                           
+  /Ysss/""Yy;                          YyyyyyyyY          -.s/BY.                         
+  "sssss//sYs                         YYYYyyyYyY                                    ,     
+  s/sssYysY/;                         yyYYYYYYyy                                '~::_-    
+  sssssssYsss            "'/ `Y_      ByyYYYYYyy             '`                 YYs"      
+  sss/ssYYsss          -sBBy";~'      yByYYYYyBB             ';                    "s~    
+  ssssYsYYYss        ~~s/yyssss/      ;BYYYYYyBB             "/B                   ,,y    
+  ssssssssssY     _YY;"sYYYY//;s      ;BYYYYYyBy-           _;-B                 ,_B      
+ _ssssssYsssY     :::";~:~~://~s      :BYYYYYyBy'           ,~';~       ~;;;/Ys//"Y`:s    
+ `ssssssssYYY     ~;;;;"~;;;;"/"      ~BYYYYYyyy:            ;:,:       ~/s/syYBy"sy;/    
+ :YYssssssYYs          ..             ;BYysYYYyY:            ,,,_        Ys/s//YsYssY;    
+ :YYssYYssYss                         ~BYysYYyYy:                                         
+ :YsyssssssYs                          "s"sYBy/;;                                         
+ ~yYyyYYYYYys                         -;,__`'`_",                                         
+
+
+Pullover          Dress             Dress             Trouser           Shirt             
+
+   , ,/;".             ~'Y;             :YsYs:             BBByY              ~:`         
+  -''`.,'`''           YBYy,           .,`ss''_            Byyyy               B          
+  _:`'``''''-          YByB;           `,`Ys:_'           ,ByyBy                  .       
+ ,`,,,'':;"',          yyyy,           `,`yy._,           ~Byyyy                          
+.`:`,,,```''`.         ByyBB            :'yy``            'YYyYy                          
+ '`':````:'```         ByByB            ~,y~``            `BYyYY                          
+ ''`''```'``:`         ByB/B            ;:s~`'             BssY;            -             
+ :``'```,:``~'         ByBBB            :~~~''.            YssY,                          
+ :'```'`'"``:'         yBBBB,           :~::':             YssY-              :           
+ :'''`;"":,::'         BBBBBB           "~::~~             Y/sY.                          
+'~:''''`s~;':.         yByyBY           /:~'"~             YY/B                           
+,:;~`"'''~''~          BBByB            s/""/~             YY/Y                           
+ '`~Y/";"";~~.         BBBBB            s/Y~~;             YYYy                           
+ :::~`/;;:;;~-         BByBB            ssys"-             yYyy                           
+
+
+Sandal            Ankle boot        Shirt             Coat              Coat              
+
+                                          YY~              'BB/_            ;:Yy;"        
+       __                ""/"          . ."/:            _yYBBYY:           "Bs":""       
+                        s/"/"s/           '::            YYYys~ys_         ;~ByyBYy       
+        .               YY;/""/'           ,;           :BYsYssYs,        'Y ;BB;"s,      
+        Y  -            yyBBY"/;           :~           /BBsYYYYB;        "B""Bs;;y;      
+        ":, ;           YY"~s//Y           `;.          ;yYYYYYYyB        /B~:Y;~~Y/      
+         -,Bs          ";s/"/s;s           :',          YyYYYYYYyy-       /Bs:';;~Ys      
+  '__'  :;;~s~        ;""s/;;/""          .`:'          yBYYYYYYBB.       "B"':"~;Y/      
+~;;"/s/YYysYY;    --~~;;"ss"~"""        ,   ':          yyYYyYYYBB'      `/y::~"~~y/      
+_``:~'~::~~~:`    ~"~'"/"s~";";~        '-  //          y/YYysYYYy~       "Y:::~~:yY      
+..-``::'`_;`,-    Ys/s//"ss""";;        :_,'`~          yBYYYYYYYy~       "s;::;::~Y      
+                   ;"ssYYYs/y/          'B,~Y~`        'yYYYYYYYYy;       ;";'::~~~/      
+                  ~-''/yyB ':` ,        ;y;;B;_        ~yYYYYYyyyy/       ~/`':;:`:Y      
+                                        _~"'y~:        ;;Y      ;//                       
+
+
+Coat              Trouser           Pullover          Ankle boot        Pullover          
+
+     /Yys'             YYYY"             ,ssY~                               YBBs"        
+    Yy"yY/            '/"B""           .YyYYYs_                             "YYyYs        
+    syBBYs            ~;"s";          -ssY//ss/-             ':'`;`        YBYsYBYY       
+   :s/BBY/"           :~"/;"          :Yss/s/Ys;            ::::_:`'      ,YYYYYYYYB      
+   "/YBYYs/.          `"/Y~/          :YyssssyB:            `~";::`,      ~yyYYYYYYy      
+   s///sY/"           -/s//:          :yyYss/YBs           -/'``:~':      YyBYYYYBYy      
+  .///sss//-          _/:ss'          :yYYYsYYBY.          -~':''~'~      YyBsYYYyyy      
+  ~s;"/ss/Y;          .Y'ss'          "yYyyYYYyY'         ::::::~~:'      yyyYYYYYYyY     
+  //s/sss/"/          .s://'         ,yBYsyYYy'y`        .:::':'/,:'      y/BYYyYYYy/     
+  /s////s//"           s;"s_         :BBYsyys":B,      ~''~~~:::_,~.      YYyYYyYyyy/     
+  /Y////ss//           s:;s-         ~YBYyyyYY'B`     ""s"`~~~:```:       YByyyyYYyyY     
+  /s////////           /~~Y-         ;YsyyyyBs:B~     _"//~~:":',,:-      yBYyyyyyyyY     
+  /ssss/////           /;YY          ~yYYYYyYsYy'       _'"~::'':`,`      yBYyByyyBYY     
+  sY --''~"Y           sY;Y,          ,yYYyYY,Y;-       .B_,'    ...      :yy~"''::YY     
+
+
+Pullover          Ankle boot        Ankle boot        Sneaker           Coat              
+
+     sBB"                                                                   `;ByB,        
+   .;Yss"";                                                                .yyyyYYy       
+  -". .,-..-                                -Y                             yyYyyYyY"      
+  ."'     .-              ; _ ~            ;sYyyy                         `yYsYYYYys      
+   "~:.---`.             _/"/:,            "/syyy                         "ByYYYYyy/      
+   /;`-,__/'.            `"/";'           ~y/YyyY           -:`B  s-      /BBsYysYB"`     
+   ;/_,,__/'             /BYyB's          ssssyYY:        '~`""sBy"Y      syBYYyYsBs:     
+  ."s_,_../'            ,YY;yB;:        `'/ssysYs~     ''Byy/"//s;Y/     _ysyYsYsYy/~     
+  .sB,_.._".      ~"sssYYsYy.,::        YYYssssYB"    //Ys////sYyy/Y     "ysysYyYYss/     
+  ./Y_,_._/:      :~YsByYByBYY/s    ._______--____     .--------__      ;YYsYssyYysBs     
+  .,`_____/.      ~~YYyyyByyYyy/    ...-_, ---_---                       /yYBYYyYyyys     
+  .-___,,__-       ,:'''`'`B',`,     ---,,--_-___-                       syyByBBBBBBs~    
+  -_,__,,,.-                        --____..---,_-                       YysYYByYB/B;:    
+  `_--_,_- -                        --___--.._-:_-                          "/-yy;. --    
+
+
+T-shirt/top       Coat              Bag               Ankle boot        Ankle boot        
+
+     '''`              BBBBs             "BBY                                             
+  .'::BB~':_         ,ByyByY'            ";_s                                             
+ Y',;':'`;'''       yyYyyyyYy"        '//,,'_s"s             yBBByyY             '        
+ ::B``'``,:~~s      BByYYyyyyy        ,ss/YssYs;             BBBBBY/                /     
+:s~s"`''`,/"/Y      ByyY/yYyyy        s//////"/:             BByBBB            'sYYB/     
+~'"/...--. `;       BByYyYYYBB        //""//////             BBBByB_          _;yYsyy~    
+ .-----.....-       BByYYYyBBy        /y//////"/            YByBBByB          "ByyyyYs    
+  .__ y".-          ByYYYYYBBB        "y""////"/`          -y/BBBBBB       ,""~:`'YY//    
+  -__ .. .   .      BBYsYYYByB        sY""///"Ys'          YyyyyyBBB     :~~;';~::~///    
+  ._-...--..        BByYYYYYyY        sss/"///"s'        `ByyyyyBBBB    "/~~:::~`_~;s'    
+  .--..-----        yyyYYYY/yy        s/"/ss///Y"     ssyyyyyyyyByBB      .`':~::_/~~~    
+  ---.._-- .        yyBYYYYByy        ssssYss//ys     yByyByyyYBBByB                      
+  ...--_--..        yyByyyBByB        "ss//////Y/       .~s~;y_ BBBB                      
+   ----.---.        yyByBBBByy        //s//////Bs                                         
+
+
+Shirt             T-shirt/top       Dress             Trouser           T-shirt/top       
+
+     'BB"              yBYB~            /"ssY/            `sYsy;            :"YsY'        
+   /yyYYYy/          ;yysyyYs;          yyYs/B            ;sYss;            / `y~'        
+  's/yYyY//"         ;YYyyYYY-          YyBBBys           ~/~/~~            /~~:;"        
+  ;s///"s"/"        _""BsYB"sY         .. Y~  .           ;ssYY;           '''''`'~       
+ _sY//""//"""       _'y""~""y~          _`'~/             ~~sY:'           ~''''``"       
+ ;;/s////"///        :/""sB"y            y~::             '~ysY'           ys'''`;B       
+ ";B""////"Y;        .;//""s            .Y;B~             _;yYs'           B'`''`'B       
+ //B//////"Y:        .;""""/            .Y'B'              ;YYs:           ;:`'''~        
+ :Y/s/////"/;        -:"""//            -s,y~-             ss//`            :':''`        
+ _Yss//s///y~        --"~~//             "'Bs-             YY/s'            :::'''        
+ '////s////Y"        __/////             ;;Ys_             Yssy'            :::'``        
+ "/"//Ysss///        __""/;"             ;;Ys_             Ys/Y-           -:'~'::-       
+ ,/s///s//s/~        '`""s/s             ;"~~"             Ys y            _~:~::~,       
+ `;/      ,Y;        -___' .-            "sB;-             yss/-           ---  ..-       
+
+
+Pullover          Shirt             T-shirt/top       Coat              Shirt             
+
+   sBBBBBB;                             :syy _             /By"             :YY,;y        
+   ByBByyBB~          _B:BB            :,`BB"/,          _Yyssss"          ,;'//Y"_       
+   ByyyyyyB/         ,ByByBBBB        :",,``~_';         "Ysys//"/         "/B~:y""       
+   BYyyyyBBY        `BBBBBBByB,       ;;~,`';~""        ,YYYYYs"""        `::Ys;Y/Y       
+  _ByyyyyBBB        BBBBBByBBBY      ~~;;:;B~~~~-       Yys;YY//Y"        B;/://///Y      
+  -BByyyyBB_       YYBBBBB:BByy      s"s"~"~~;;/"       YBsyys"/y/        Bss~yy///Y`     
+  'B~ByyyBB,       BBBBBBByBBYB      y"B~~;~~~"s"       syYys/sYY/        YYs;Yss/YY'     
+  ;B"ByyyB,,       BBBByy/ByBBB         ~:~:~~          /yYBsssYYs        Ys/;BY/"YY"     
+  /B/Byyyy'`       BBBBBBBBBBBB         :~::~~          syYYyYYYys       'YY"";"/;YY"     
+  sB'ByyBB'_       "B"BBBBBBBBB_        :~:~~~          sYYsyYYYYs        Ys/"s""/ss;     
+  sBB'yyyB'        ByBBBBB:BBBy;        :::::~          s/YYYYsYys        s"//"/";ss"     
+   BByyyyy         BBYBBBysyBBy,        :::~~~.         s/YYYYYYYy       '//s///""/Y/     
+   ;Byyyyy         yyB      yBy`        :::':;-         s/'`YBs:/s       ;Yssss/sss//     
+                    By      /BB`              .         y .;y//"`y        /YBYBYYs s"     
+
+
+Sneaker           Coat              T-shirt/top       Dress             Sandal            
+
+                     'BByyBB`            ~y/y             ~s; //:                         
+  B.YYYByyy~'       _BByyByyBB.        .-    _           '~~"/~~~'                        
+  ."`"y;``""/:     _ByyYyyyyyB~        -.                '~~;"::'/                        
+  ..'-_-_``,~.     /ByyByyyyyBY         _                ;;~~;:~";                        
+  .,'.,,_,,_-      `ByyBBByyyYy        .-    .            's"~;/"~               ``;Y,    
+   ,,_,_,,_,,_     ,yBBBByBYyyy              .            ,"':~"/;           yYsByyYY.    
+    ,,,,,```'-      ByyBByBYBy          ..                :/"':,""          ' /YYYBy:.    
+    ,,,,,``;`,      BBBBByBYBB          .                 :/::`~s~        ,"~~/;YYYss/    
+    `,,,,':',_      ByBBBBBsyy,              .-           /"~~;y-       /B/ssYY/YYyYYY    
+    ,,,`,':,,       BBByyyyBsB~      ..-      _           ""~~;~        ssssyYYY  YYs/    
+    ``,``:',`       ByByyyyBYB:        `                  /";~;"         -BsYYBy/ :BBB    
+    `,``'`~`        BYByyyyBsB~        _                 -""~;""                          
+  .,':`':''`,       B/                 _                  """"""                          
+   ```'`'```,       Bs       B                            Y~;/;"                          
+
+
+Sandal            Pullover          Pullover          Sandal            Bag               
+
+                      _"._~/s           YY:BYY'                               ~`,         
+                     ;s//Bsss:         ssY--yyYY                             ;~ /_        
+                    ;sss/sYssY        -sYYYYYssY                            ~     :       
+                    ssYs/sssss        -ssYYYs/sY                           ',     `       
+      ,s;;;"Y       ssss/sssYs        -sYsYsssss             `ByyyB      ,_'",,,,`s~,     
+    Y''"//"ss,      YY/sssYsYY        .YsssssYYY            _'ByyY       .,'~,```'"`__    
+ ''~Y"/s~BBs        yy/sssssYY        -YssYs/YyY-          y;sYYy"B      :,:~_`,`"``;`    
+- :~'` :YBYyY       yysssssYYY.       .yssYYsYyY`        ;B~:;; /        :~:~_''`:`:;,    
+'```'`Y`'YY;s`      yYYsssssYsY       .BsssYssB"_     ./////":~:/~`,    ~~'`~,"/,~`~~B    
+.   .,'      -      yYysssssYYY       -yYsssssy`"     `""/~/~";::~':     yY:~`""``:"~'    
+                    YYsssssssss       _syssYssy                          YY`;'""::':::    
+                    syYssssssys       ,/YssssYB,                         'Y,/:""`,:'~     
+                    YYYssssssBs       _Y~YsYYYY`                            ':~;''        
+                      -                                                                   
+
+
+Shirt             Dress             Shirt             Sneaker           Sandal            
+
+     `yys              ~ .               .y',                                             
+  .;//"/;";           ~BBBBy:           ~BByBs-                                           
+  `Yy'y~'yB~          ~ByyyB:          ,yYyYssY             ssYY                          
+  ,Ys~/';sYy_        -ByyyyB"         yssyYs~"s:           YyByY                          
+  ,Y;:;;;YYY'        :ByyyyBy         yY/Yyy//ss           'BBBY                   'Bs    
+ `~y;;:;;"yY/_        ByyBBY_         yyYyyyy/YY          .yyBs/          yyBYBsBBssBB    
+ '~;/;:";;ys/'        BYyyyB_         BByyYYYsBy          _Byyy/s"       _yysYs/BB yBB    
+ '";";~;~~"Bs"       ,BYyyyyB         ByYyYyYYYy,        `/ByyyBys--    s"/"Y.   B.-,B    
+"`;;""~YY"~Y//       /BYyyyyY         ByyyyYyyyB'     `""/'~/"`,,'-`    `"";:'.. _yByB    
+s'";/Y;s""/s/"      -syyyyyy/         ByyyYYYyBY'     :~y/;;:,`'B"'`    B~ssB.::~:s:;s    
+/"Y;;;;s""/s"_       BByyyyyB-        yyyyByyysy`     ,:Y/',`,,,,,,_     ';""s--- :`:     
+s"//"";""/s/",        Byyyyy,         yyyByBByYy:      ..___-__```_,                      
+~"//'/""//ss/`        ByyBBB'          By/    YY/                                         
+:"ssy~:;~/Y//"        /yyBBB:          yYyBs`,yy;                                         
+
+
+Coat              Bag               Coat              Coat              Dress             
+
+    YYsssYs.                             /YB'             .BBB,-            `ByYy~        
+    YyYYyYY                            `ssyBYs-          yyByyYYs.         `sBssBY;`      
+   .sssssss              Y /          'sYyyyyYs-        /yyBBBYYYY         yYYsYYYy       
+   ysYssYss`        /By/YyYYy/s"      YyssyyssY/        yyYYyYYYYy         ssyYsYsy       
+   yyYssYsYs`      ByyyYyYYYyYyY      YBYYyysYYs        yByYYYYYyy        _Y/YYsY`s       
+   ByysYssy/      YYYYYYYYYYYYYy      yByyyYYYB/        yyyYYYYYyy_        //YYyY:s       
+   ByY/ssYys'     YsYyYYYYYYyYYB      yByYyyYYB/.       BByYYYYYYy'        "s/yYYy/       
+   ByYsssYB:'     BYYYYYYYYyyYYY      yBYYyByYBY-       BByYYYYY"yB        :sYYYsY;       
+   yyYYYsyY~.     BYYYYYyyYYyyYy      yBYYYyYyYy.       YByYYsYYsYB        ;YsYsss/       
+   ByYYssYy~'     BYYYYYYYYYYYYy      Yy .-sYyYY-       YBYYYyYYyyB        ~yYYYYYs       
+   ByYYYsYyY`     YyYYYYYYYyYYyy      /y       Y-       YBYYYYYYYyy        :BYYsYsY       
+   _yByyYB:;`      yyyYYYYYYyYBy      ;B       Y        YBBYYYYyyBY         yYYsssB       
+   :"s/"sB`,          yYYYYY                            Y:/ssssYyB          sYYyss-       
+   `     .                                              Y        s_         YyBBBs.       
+
+
+Sneaker           Pullover          Coat              Trouser           Coat              
+
+                     s/s//Bs/            YyyY.             `BB//             BBYB,        
+                     ";/Ys";;/          :yYYY`            :yyyy/           ~YyYYBYY       
+                    ,""s/s//~Y          'yyY_:            -Byyy/           YyYsYYYY:      
+                    ~s/sss/"s;          ':yyY;             yBBy/          'YyYYYyyy;      
+       ,`,         _"s""//""s"          `:YYYs             yBB//          :YyYYYyyy;      
+     `s/sYBBs:     ,/s////s"ys,         ,sBsYy  '          sBBY/          /ysyYYyYy/      
+   '';yYyYYBYY     ,ss;////;Y",         `yBYYy             sBYy:          ~BYyysYyBBY     
+;~//;:'yYYs/s:     'Ys///ss;Y/'         `BYYyy             YBYy;          ~yYYYYYYBYY     
+;YyY:'''`'"~~Y     :sy//~ys;Y:y         :Bs;Yy_            YY~Y           ;yByYYYYyYY     
+  ...------:       sss//'"s/YsY         :ByYY;             sy~B.           YByYYYsY_y     
+                   yYY/sys,`YYY         :yyy;'             sY,/            ;ByYYYYY-~     
+                   YsByYyBBBsYy         :Byyy'             ss_s           .;ByYYyss-~     
+                   YYByyyY"yyYs         :y//Y'             ssy"           '               
+                   'YyB/ss"Y/sy         "y/YY              /s /                           
+
+
+Ankle boot        Sneaker           Coat              Sandal            Ankle boot        
+
+     BByyy                             -YyyBYB                                            
+     yYYByyB;                          yyyByyBy                                           
+     yyYYyyBB                          YBBBYyBB"                                          
+      yYyyB"B                         _YByyyyYyy                                /         
+     sYYYyyyy`           ,     "      ~yyyyyYYyY              .s__~/           Y;yBys     
+     ssYssyyyB         _`_s"-'"/      yyByyyyYyy             . ;Byy/          /ss/YBB     
+     YsssyBsYy       -///"""""""      BByyYYyyyB~        .. ,   sysy         syBYBBBy     
+     YYYsyysyB     :`;~~,,/""/;s      BByyyByyBB;       s:--:~/B`BBB     -:sYyBYyBYyB     
+    "/yyyBysyy    '~Y;y/Byy;""~:      BByyyyyyBBY     _-'', ~`....:y    ys/~"ByyyyYyys    
+  .'ByBBysyYB,    "//;""///~~:;:     ,BByyyyyyyyY      -``,__..----,    ;/yByyyyyyYBBB    
+ '~:;yyyyYBY;`     :;:;"""/;~~;:     ;yByyyyyyyBs     .----..-. ---     BsyyyyyyyyyyyB    
+_Ys:~yyyBYyYY~           -           /BByyyyy"YBs                           ..            
+ ;-".    -,`,                        /BsyyYBy~~B"                                         
+ -y"      ,yY.                        B-...,,,-y~                                         
+
+
+Dress             Bag               Shirt             Shirt             Ankle boot        
+
+    -yYYsy             'yB~              ,BB-             `yBBys              sByBB""s    
+    s/";YY             /~ s           .;//yBBs//         `sssYss`       /YyyyyYyyyYysy    
+    YYYYYy            :`  "s         ;"yYyy/YYy/        _;;;/Y;s/       ,,''ssYYYYYBys    
+    YYYYyy,           '~s///`        :yY""yYY/y//       's";/";;Y,      Yy:YYssssYYys"    
+     YYYYB            "' `:Y:        BYys//Y;ss//.      '/";/"/YY;         yYYssYYY;      
+     YYyY,            ":':'B        /"/Bs///ssY//B      "///";""s"         BYsssyYy~      
+     YYYY_           ";::`'B~       ysYBYyy/sss~B~      /ys//~Y/Y/          ''_'y__       
+    ,yYYYy          BYY`:''''        yBBsyByBs~Yy/      sy"//s/sY/         `/s- s,_Y      
+    /yYYYY          YsYs~;::B        yyByyys'BYYyB      sB"////syy       /""``- ;,,/'     
+    YYYsYY          ys/y/""/B        BBByyBB~ByyyB      ~Y;/s//sYY       ,;;'``-'_,":     
+    Y/YYYy          y/syYyBB        yyyBByY/BBYyyy      ;Y//////YY      '';_-:`   ,s:     
+    ysssYB           /Ysys~B,       yBBY:YyY. s`BY     `YYs/ss/sYY      `:~,--_   ;''     
+    YYYYBy           "Yyyyys'       yYYY ---- s'YY     ,YYsYY"sYyY       _s/      -;'     
+    YBYYBB            sYyBBB`        Ysy      YsYs     -y/      -_                        
+
+
+Dress             Ankle boot        Sandal            Trouser           T-shirt/top       
+
+    ByBByy_                                               syYysB-                         
+   ;yYYYYyY,                                              B/YYsy:           `~`.:;        
+   /YYsssYY,                                              YsYYYY'.         ''sByYs.       
+   Byys//YY~              -"~ `            -_:Yyy         yYYYYY"        ,_'ss"ByY~_`     
+   ByyBYYyB'            --/sYYY/            -y~/Y         y~yyyy"        ;':"Y""";~;`     
+   yBYB"sBy:            '/yyssY            :sB`"~Y         yyyyY;         /s"//Y""s/`     
+   /BY"//Yy'           _,/BBYYs'             yY-.          yyyys'          -///B/Y,       
+   ;ByB;YYY~          :',/YYYyY"             sYs           yyyy;'          -""/Y"s`       
+    yYY~YYY'      -__,,,;ssBByyY        `,  :y :-          y"yB,           `///YYY,       
+    yyY~BYyY      "Y/s::;`BByBYB        `'  ~/ .-'         YBys.           's//YYy;       
+   _BysyyYYs      /ssBs;;s'_Byy         ,;,_'              Ysys             Y///yYY       
+   ,BYYYYYY/          _-..-.             .:,-              BY//             /s~ssY;       
+   `ByYsyyYs                                               B"s/             /s/ssY;       
+   -BBBByY,                                                BB/"             s/YYYY.       
+
+
+Dress             Shirt             Ankle boot        Coat              T-shirt/top       
+
+    BsByy;              '/:                               Y"BByy:           _._..-        
+    BYBBYY            :YBBys`                            ,~~:;;~~           .YyYs`        
+  :BYYYYYYY,          ``Byyy,               ,"'~"/       `;;~;~:~:          ~YYYsY-       
+  ~BYsYYYYy`          ~Yyyys'              -`:"""/      ,~~~':`'".          Y/YYy"-       
+   BYyYYY-.           ~YyyY;~              `;Ysss-      ~;~~:~::~s-        /ysYsys;       
+  _Y/yYYYB',          :Yyyy":              ;"///s'      ;;~~~:~'~"-        Yysssssy       
+   yyyYYYy`           ";BBYy'             ./~""/Y.      "~;~~";;;"'        YYssYYY:       
+   yBYYYYy            /ysYy"              _;"sssss     -;;;:::";;;;        YYssssy'       
+   "YYyyYB.           syYYy;         .'";;/"/sss/Y     _/Y:::~:";;;        YyYYYyys       
+   ssYYyYB`           sBYYYs        s;/s///"//////     `/~:::~:~";~       -"yYyYYys.      
+   YYYYsYY"         .-YyYYY~-       sssY"///s/sYsY     _~/~~~~~~:;;       .`YsyysY/~      
+   YssYsYYY          _YyyyyB~       YYYB~////;YyYB     ;"~~~~::;~;"         ~YyBYYs       
+   YsYYYYYY          _yyyyyBs.                  .      ""YYs~~;;~~~         ;ByY: s       
+   YYYYssBB          _y/sByy:                          '~.;"";~~ ':         :BYBBYY       
+
+
+T-shirt/top       Trouser           Pullover          Trouser           Sneaker           
+
+      YYB"             YYYYY           _/ByYB.            `YBBY:                          
+                      :Yssss          .;/BYYs/,           'yys/;                          
+ /    "._.            //yyss          ~Y/'Y";~~/          "ysss:                          
+     "yy/B            /YYYss          ~Y/:~~;/Y"          sysY:y                          
+    -;y/"Y            ssyyss          "yBy;;/YY/          syYY.Y                          
+    .BB""s            ysYy/Y          /YyY;~YYY/          /y,BYs              .;Y;"_/;    
+     syY/y'           YsyY"Y          ysYsY~"y/Y          sy,Bs/          _""BYBY/sYYY    
+    ~ByBYy            sYsY/Y          yBYsy:/Ysy          /y_y//        s/;"syYssYys/s    
+   :Byyyyy            sYYyss          "Byss:"Ysy-         "y/Yss        ss""//YByYYsYY    
+  ,yByyYyy            sYyBYs          "ByY'';sss-         ;y;`YY        --'~'''`:```__    
+   Byyyyyy-           sBsyss          "ByYs,~sss'         _yY y/           .              
+   BByyyyB,           sBYyys          ;s/sY~sssY:         `Ys-Y~                          
+   ByYyyyy,            B/Yys          '//sY'sB:y:         _YY./:                          
+   BBBBBBBY            BByys          /`s//syy /,         'YB ;                           
+
+
+Coat              Trouser           Sandal            T-shirt/top       Pullover          
+
+      yB,             BBysYs                             -"/  s            .s"";/~~       
+     ByBBB            yyYYyy                            //BBByBYYs         :"/"/";~`      
+    ByyyyyB           ByYYYy                            Yy~:BB:YyY        .:,;~:;~~:      
+   BBYBByyB           yYyyYB                   ::       YBB//BBYyY        _~`':::'~:      
+   ByBBByyy           sBsBYY                ~:sss:      ;yYyBYyYYy        ,~":::::/~      
+   ByyBBBBy           /ByBBB               ~/ysyy:      :Ys/"ByYy/        '_'~::~~"~      
+  .ByBBBBBys          :ByByB                 sYYY;       .sB`"s;s         ':'::''~/'      
+  _BBBBBBB"B          ~ByyBy            :~   yyY~~       -yyBBBYy         ':`;::~~;:      
+  :BBBBBBBBB          ~"Byyy         .~/Yss"yYyYyY       ."yB,yYy         :~`~:'':~:      
+  YyBBBBByBB          ~BB;yy        YYY/YYYYYsyYyY       .:BB/yyy         :::::::::~      
+  BBBBByByBy           BB;BY         .,ss"~Y""ssy'        sB:/syy         '-'::::'::      
+  BBBBBBBBBB           By~BB.                 BYY~        /y"syBy         :'':'::::~      
+  yBBBY~`BYy           BB;yB,                             :y;"""_         `~:::'::~~      
+  ~B"YBBBB/"           B/sBY_                               ";;/.         ':::::~::`      
+
+
+T-shirt/top       Bag               Pullover          Ankle boot        Dress             
+
+    `Y~~,-              -s-            .;sBB/Y                              /Y,.~'        
+   _,s"~``'             /s/s.         :"/""/""~-                           ;/y:"~;~       
+   , s/Y~`-            /Bs//B         """;";;,;s                           :;;~~~;~`      
+     /~~~'-        -BBBBsByyBBY       """;;;~"/"                           ~/;~~";;s      
+     ;~;::        - ByyBBByyyBYs      "s/"~~:"ss             YyBBBy`       ////"/Y/y      
+     ~,"::        YYyyyyyyyyyByB      :B;";~~~ys            BByByyyB       ss""""YBB      
+     ;'"~~        'syyyyyyyyBByB      `B"";;;"Bs           YyBByyyBB       ByB"/"sBB      
+    ,":'_~         /yyyyBByyBByB      :yB~~~~"Bs           yyyyByByy       BYy;//yyy      
+    ,,:'~:_       /YyBByByyByByB      :B~:~~//Bs      ;BBBYyYyBBBBy;        Y///"y        
+    ``;`~~`        YYYByBBYBBByB      :B~~_,_;ss       yyyyyyyBBBByB        s////s        
+    ,`~~~~'       /BsYBBBBBBBBYB      ;y::~"_;s/      :/':'~:;;//;Y/        Y////Y        
+    _'~~~~;       `,BB-_''~ y;~:        ~;~/_"""      ~:::`::~'_``'_        Y/s//Y        
+    '~:~~~'       yYyy       -s"        :~;:~:..                            Ysss/s        
+    ~""~~~;        `sB                  ::':~:.                             y""/YY        
+
+
+Dress             Pullover          Dress             Coat              Dress             
+
+    yyBsBY,            y/yY              -/:"`             ~BB~                 `         
+    yYYYYY-          _YYYYssY           `~s"~'`          `;"BBB;,           /~sy""        
+   yYYYyY/B.        ,ssssYsss/          -":'_`          ./";";/""'         ."yyY//,       
+   BYYYYYYB         ss//ss///Y          ,y/yy;          `/"""";//~         '//s/ss'       
+   yYYYYYYy         /Yss//sssY          -::':'          'y/"sYBYy"         `'.//`s:       
+   BYYYYYBy         sYYs//syYY           :::'`          ~yY//YB"Ys         ~` ""`;~       
+   BYYYYYyy         sys/////BY           :::'`          yyY~"yBYYY         ;'_::':;'      
+   yYYYYyyy.        sB//////Bs_         -":::'          sys ss"Ys"         'Y''BB`;`      
+    YYYyyBy`        sBs////YB"'         B:::::          sYY,y~/Y/"        .'~::',,;_      
+    YYYyyyy.        Y"Y/s/ssYY'          :~~~`          YYY.'. YY/.        :"~'~,`;,      
+   _YYyyYy-         Y~Yssss/sY:          :~~~:.         s"Y-.-_yy/         ~":~~,`,,      
+   YyYy/YB:.        s/BysssYYY"          :;;~'          //Ys...Y /        .;"~~~`''`      
+   yyyyYyys         YyyyYYYYYY/          '~~~'           "s/y. Y ;        ."B::'`,`:      
+   y~BBBBys         :YBBB`,--"/         ~;::~~           /                 ;~;~Y`_:'      
+

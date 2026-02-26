@@ -9,3 +9,4 @@ output
 .vscode
 tmp
 activation/cache
+*.ttf
