@@ -7,7 +7,8 @@ alloc_table = {
     'counter': 14,
     'snake_reg': 15,
     'snake_size': 16,
-    'snake': 17 # heap memory
+    'snake': 17, # heap memory
+    'memory': 64
 }
 
 INPUT_AREA = alloc_table["input"]
@@ -80,7 +81,8 @@ def add_line(work):
 add_line(go_add_n(COUNTER_AREA)(11)) # randomnized apple position
 
 ### CHECK MOVE
-add_line(get_input)
+if __name__ == "__main__":
+    add_line(get_input)
 add_line(prepare_if_move)
 add_line(if_move_forward)
 add_line(if_move_backward)
@@ -103,6 +105,7 @@ script = init_snake + main_script
 
 bf_script = script
 bf_script = optimize(script)
-print(f"Length: {len(bf_script)}\nResult: {bf_script}")
-with open("snake.bf", "w") as f:
-    f.write(bf_script)
+if __name__ == "__main__":
+    print(f"Length: {len(bf_script)}\nResult: {bf_script}")
+    with open("snake.bf", "w") as f:
+        f.write(bf_script)
