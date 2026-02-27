@@ -10,3 +10,6 @@ output
 tmp
 activation/cache
 *.ttf
+*.pt
+fashionshow/codex
+*/.venv
