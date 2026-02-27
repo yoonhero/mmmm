@@ -13,3 +13,4 @@ activation/cache
 *.pt
 fashionshow/codex
 */.venv
+*/**/__pycache__
