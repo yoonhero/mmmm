@@ -27,7 +27,7 @@ int4_add_x_y = lambda x: lambda y: add_x_y(x)(y)+go_sub_n(REG0)(8)
 # INT4_MUL = reg0 reg1 ((reg2)) reg3
 int4_mul_x_y = lambda x: lambda y: mul_x_y(x)(y)+go_add_n(REG2)(72)+move_a_to_b(REG2)(SRAM)+add_x_y(x)(y)+move_a_to_b(SRAM)(REG2)+go_add_n(REG1)(8)+go_work_back(REG0)('[->[->->+<<]>>[-<<+>>]<<<]')
 
-relu = lambda x: if_x_geq_y(ZERO)(x)(go_work_back(MEMORY)(reset+add_n(8)))
+relu = lambda x: if_x_geq_y(ZERO)(x)(go_work_back(x)(reset+add_n(8)))
 clamp = lambda x: if_x_geq_a(x)(15)(go_work_back(x)(reset+add_n(15)))
 
 int4_mul = lambda x: lambda y: lambda dest: int4_mul_x_y(x)(y)+move_a_to_b(REG2)(dest)
@@ -60,37 +60,33 @@ matmul4x4 = lambda a_start: lambda b_start: lambda c_start: \
     clamp(c_start+8)+clamp(c_start+9)+clamp(c_start+10)+clamp(c_start+11) + \
     clamp(c_start+12)+clamp(c_start+13)+clamp(c_start+14)+clamp(c_start+15)
 
-linear4x4_no_bias = lambda w_start: lambda b_start: lambda c_start: \
-    int4_mul(w_start)(b_start)(c_start) + \
-    int4_mul(w_start+1)(b_start+1)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+2)(b_start+2)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+3)(b_start+3)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+4)(b_start)(c_start) + \
-    int4_mul(w_start+5)(b_start+1)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+6)(b_start+2)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+7)(b_start+3)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+8)(b_start)(c_start) + \
-    int4_mul(w_start+9)(b_start+1)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+10)(b_start+2)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+11)(b_start+3)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+12)(b_start)(c_start) + \
-    int4_mul(w_start+13)(b_start+1)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+14)(b_start+2)(c_start)+go_sub_n(c_start)(8) + \
-    int4_mul(w_start+15)(b_start+3)(c_start)+go_sub_n(c_start)(8) + \
-    clamp(c_start)+clamp(c_start+1)+clamp(c_start+2)+clamp(c_start+3)
+linear4x4_row_no_bias = lambda w_start: lambda x_start: lambda dest: \
+    go_work_back(dest)(reset)+ \
+    int4_mul(w_start)(x_start)(dest) + \
+    int4_mul(w_start+1)(x_start+1)(dest)+go_sub_n(dest)(8) + \
+    int4_mul(w_start+2)(x_start+2)(dest)+go_sub_n(dest)(8) + \
+    int4_mul(w_start+3)(x_start+3)(dest)+go_sub_n(dest)(8) + \
+    clamp(dest)
 
-bias_add = lambda dest: lambda bias: safe_load_data(bias)(REG0)+move_a_to_b(REG0)(dest)
+linear4x4_no_bias = lambda w_start: lambda x_start: lambda c_start: \
+    linear4x4_row_no_bias(w_start)(x_start)(c_start) + \
+    linear4x4_row_no_bias(w_start+4)(x_start)(c_start+1) + \
+    linear4x4_row_no_bias(w_start+8)(x_start)(c_start+2) + \
+    linear4x4_row_no_bias(w_start+12)(x_start)(c_start+3)
+
+# int4 encoded bias add: (y+8) + (b+8) -> (y+b)+8
+bias_add = lambda dest: lambda bias: safe_load_data(bias)(REG0)+move_a_to_b(REG0)(dest)+go_sub_n(dest)(8)+clamp(dest)
 linear4x4_bias = lambda w_start: lambda x_start: lambda bias_start: lambda result_start: \
     linear4x4_no_bias(w_start)(x_start)(result_start)+\
     bias_add(result_start)(bias_start)+bias_add(result_start+1)(bias_start+1)+\
     bias_add(result_start+2)(bias_start+2)+bias_add(result_start+3)(bias_start+3)
 
 # w/a/s/d : 1/2/3/4
-maximum = go_work_back(OBV+4)(reset) + \
-    if_x_geq_y(OBV)(OBV+1)(if_x_geq_y(OBV)(OBV+2)(if_x_geq_y(OBV)(OBV+3)(go_add_n(OBV+4)(1)))) + \
-    if_x_geq_y(OBV+1)(OBV)(if_x_geq_y(OBV+1)(OBV+2)(if_x_geq_y(OBV+1)(OBV+3)(go_add_n(OBV+4)(2)))) + \
-    if_x_geq_y(OBV+2)(OBV)(if_x_geq_y(OBV+2)(OBV+1)(if_x_geq_y(OBV+2)(OBV+3)(go_add_n(OBV+4)(3)))) + \
-    if_x_geq_y(OBV+3)(OBV)(if_x_geq_y(OBV+3)(OBV+1)(if_x_geq_y(OBV+3)(OBV+2)(go_add_n(OBV+4)(4))))
+maximum = \
+    if_x_geq_y(OBV)(OBV+1)(if_x_geq_y(OBV)(OBV+2)(if_x_geq_y(OBV)(OBV+3)(go_work_back(OBV+4)(reset)+go_add_n(OBV+4)(1)))) + \
+    if_x_geq_y(OBV+1)(OBV)(if_x_geq_y(OBV+1)(OBV+2)(if_x_geq_y(OBV+1)(OBV+3)(go_work_back(OBV+4)(reset)+go_add_n(OBV+4)(2)))) + \
+    if_x_geq_y(OBV+2)(OBV)(if_x_geq_y(OBV+2)(OBV+1)(if_x_geq_y(OBV+2)(OBV+3)(go_work_back(OBV+4)(reset)+go_add_n(OBV+4)(3)))) + \
+    if_x_geq_y(OBV+3)(OBV)(if_x_geq_y(OBV+3)(OBV+1)(if_x_geq_y(OBV+3)(OBV+2)(go_work_back(OBV+4)(reset)+go_add_n(OBV+4)(4))))
 
 sub = '[-<->]'
 # result on SRAM
@@ -102,8 +98,8 @@ mod8 = lambda x: safe_load_data(x)(SRAM) + if_x_geq_a(SRAM)(8)(go_sub_n(SRAM)(8)
                                                 if_x_geq_a(SRAM)(8)(go_sub_n(SRAM)(8)+
                                                     if_x_geq_a(SRAM)(8)(go_sub_n(SRAM)(8))))))))
 # result on REG1
-div8 = lambda x: mod8(x)+safe_load_data(x)(REG0)+move_a_to_b(SRAM)(REG1)+sub+\
-    '<[-------->+<]'
+div8 = lambda x: mod8(x)+safe_load_data(x)(REG0)+move_a_to_b(SRAM)(REG1)+ go_work_back(REG1)(sub+\
+    '<[-------->+<]>')
 # result on REG0
 int4_sub = lambda x: lambda y: safe_load_xy_reg0_reg1(x)(y)+go_work_back(REG1)(sub)+go_add_n(REG0)(8)
 get_obv = if_x_eq_a(INPUT_AREA)(1)(go_work_back(OBV+3)(go_add_n(9)))+\
@@ -132,19 +128,23 @@ move_YtoX = safe_move_a_to_b(Y)(OBV)+\
     safe_move_a_to_b(Y+2)(OBV+2)+\
     safe_move_a_to_b(Y+3)(OBV+3)
 
-predict = linear4x4_bias(W0)(OBV)(B0)(Y)+move_YtoX + \
+reluX = relu(OBV)+relu(OBV+1)+relu(OBV+2)+relu(OBV+3)
+
+predict = linear4x4_bias(W0)(OBV)(B0)(Y)+move_YtoX+reluX +\
     maximum + safe_move_a_to_b(OBV+4)(INPUT_AREA)
 
 work_script += get_obv
 work_script += predict
 
 main_script = loop(work_script)
+
+init_script += go_add_n(ZERO)(8)
 w0 = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
 b0 = [-1, 0, -1, 0]
-for i in range(8):
-    init_snake += go_add_n(W0+i)(w0[i])
+for i in range(16):
+    init_snake += go_add_n(W0+i)(8+w0[i])
 for i in range(4):
-    init_snake += go_add_n(B0+i)(b0[i])
+    init_snake += go_add_n(B0+i)(8+b0[i])
 script = init_snake + main_script
 
 bf_script = optimize(script)
