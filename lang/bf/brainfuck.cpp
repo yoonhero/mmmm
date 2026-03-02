@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "resources/resource.h"
 #include "sound.h"
 #include <SDL.h>
 #include <algorithm>
@@ -13,6 +14,13 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+
+#ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#endif
 
 #define STB_TRUETYPE_IMPLEMENTATION
 #include "third_party/stb_truetype.h"
@@ -103,10 +111,13 @@ class RetroFontCache {
     ~RetroFontCache() { reset(); }
 
     bool load(SDL_Renderer *renderer, const char *font_path, float pixel_height);
+    bool loadFromBytes(SDL_Renderer *renderer, const std::vector<unsigned char> &font_bytes,
+                       float pixel_height);
     void draw(SDL_Renderer *renderer, char ch, const SDL_Rect &dst, Color color) const;
     void reset();
 
   private:
+    bool initializeFromCurrentData(SDL_Renderer *renderer, float pixel_height);
     bool buildGlyph(SDL_Renderer *renderer, char ch);
     const GlyphTexture *getGlyph(char ch) const;
 
@@ -488,6 +499,21 @@ bool RetroFontCache::load(SDL_Renderer *renderer, const char *font_path, float p
     if (font_data_.empty()) {
         return false;
     }
+    return initializeFromCurrentData(renderer, pixel_height);
+}
+
+bool RetroFontCache::loadFromBytes(SDL_Renderer *renderer,
+                                   const std::vector<unsigned char> &font_bytes,
+                                   float pixel_height) {
+    reset();
+    font_data_ = font_bytes;
+    if (font_data_.empty()) {
+        return false;
+    }
+    return initializeFromCurrentData(renderer, pixel_height);
+}
+
+bool RetroFontCache::initializeFromCurrentData(SDL_Renderer *renderer, float pixel_height) {
     if (!stbtt_InitFont(&info_, font_data_.data(),
                         stbtt_GetFontOffsetForIndex(font_data_.data(), 0))) {
         return false;
@@ -829,6 +855,35 @@ static void renderButtons(Renderer &renderer, const RetroFontCache &font, bool p
     draw_button(BUTTON_RESET_X, BUTTON_RESET_W, "RESET", false, true, {235, 235, 235, 255});
 }
 
+#ifdef _WIN32
+static bool readResourceBytes(int resource_id, std::vector<unsigned char> &out) {
+    out.clear();
+    HMODULE module = GetModuleHandleW(nullptr);
+    if (!module) {
+        return false;
+    }
+    HRSRC resource = FindResourceW(module, MAKEINTRESOURCEW(resource_id), MAKEINTRESOURCEW(10));
+    if (!resource) {
+        return false;
+    }
+    DWORD size = SizeofResource(module, resource);
+    if (size == 0) {
+        return false;
+    }
+    HGLOBAL loaded = LoadResource(module, resource);
+    if (!loaded) {
+        return false;
+    }
+    const void *data = LockResource(loaded);
+    if (!data) {
+        return false;
+    }
+    const auto *bytes = static_cast<const unsigned char *>(data);
+    out.assign(bytes, bytes + size);
+    return true;
+}
+#endif
+
 static bool loadRetroFont(RetroFontCache &font, SDL_Renderer *renderer) {
     constexpr const char *FONT_CANDIDATES[] = {"assets/fonts/Retro Gaming.ttf",
                                                "./assets/fonts/Retro Gaming.ttf",
@@ -837,6 +892,13 @@ static bool loadRetroFont(RetroFontCache &font, SDL_Renderer *renderer) {
                                                "./Retro Gaming.ttf",
                                                ".\\Retro Gaming.ttf"};
     const float font_pixels = static_cast<float>(SLOT_H * BLOCK_SIZE - 4);
+#ifdef _WIN32
+    std::vector<unsigned char> embedded_font;
+    if (readResourceBytes(IDR_RETRO_FONT, embedded_font) &&
+        font.loadFromBytes(renderer, embedded_font, font_pixels)) {
+        return true;
+    }
+#endif
     for (const char *path : FONT_CANDIDATES) {
         if (font.load(renderer, path, font_pixels)) {
             return true;
@@ -847,6 +909,12 @@ static bool loadRetroFont(RetroFontCache &font, SDL_Renderer *renderer) {
 }
 
 static std::string read_all_code() {
+#ifdef _WIN32
+    std::vector<unsigned char> embedded_code;
+    if (readResourceBytes(IDR_SNAKE_BF, embedded_code)) {
+        return std::string(embedded_code.begin(), embedded_code.end());
+    }
+#endif
     const std::vector<std::string> candidates = {"assets/programs/snake.bf",
                                                  "./assets/programs/snake.bf",
                                                  "../assets/programs/snake.bf",

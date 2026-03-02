@@ -1,1 +1,5 @@
+#include "resource.h"
+
 IDI_APP_ICON ICON "brainfuck_snake.ico"
+IDR_SNAKE_BF RCDATA "..\\assets\\programs\\snake.bf"
+IDR_RETRO_FONT RCDATA "..\\assets\\fonts\\Retro Gaming.ttf"
