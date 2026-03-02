@@ -134,6 +134,8 @@ static void drawTextCentered(Renderer &renderer, const RetroFontCache &font, con
 static void renderButtons(Renderer &renderer, const RetroFontCache &font, bool paused);
 static bool loadRetroFont(RetroFontCache &font, SDL_Renderer *renderer);
 static int estimateOpsToNextOutputLinear(const std::string &code, size_t ip);
+static std::string readTextFileFromCandidates(const std::vector<std::string> &paths,
+                                              const char *error_message);
 
 int main() {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
@@ -828,7 +830,11 @@ static void renderButtons(Renderer &renderer, const RetroFontCache &font, bool p
 }
 
 static bool loadRetroFont(RetroFontCache &font, SDL_Renderer *renderer) {
-    constexpr const char *FONT_CANDIDATES[] = {"Retro Gaming.ttf", "./Retro Gaming.ttf",
+    constexpr const char *FONT_CANDIDATES[] = {"assets/fonts/Retro Gaming.ttf",
+                                               "./assets/fonts/Retro Gaming.ttf",
+                                               "../assets/fonts/Retro Gaming.ttf",
+                                               "Retro Gaming.ttf",
+                                               "./Retro Gaming.ttf",
                                                ".\\Retro Gaming.ttf"};
     const float font_pixels = static_cast<float>(SLOT_H * BLOCK_SIZE - 4);
     for (const char *path : FONT_CANDIDATES) {
@@ -841,12 +847,11 @@ static bool loadRetroFont(RetroFontCache &font, SDL_Renderer *renderer) {
 }
 
 static std::string read_all_code() {
-    constexpr const char *kProgramPath = "snake.bf";
-    std::ifstream in(kProgramPath, std::ios::binary);
-    if (!in) {
-        throw std::runtime_error("failed to open snake.bf");
-    }
-    return std::string(std::istreambuf_iterator<char>(in), {});
+    const std::vector<std::string> candidates = {"assets/programs/snake.bf",
+                                                 "./assets/programs/snake.bf",
+                                                 "../assets/programs/snake.bf",
+                                                 "snake.bf"};
+    return readTextFileFromCandidates(candidates, "failed to open snake.bf");
 }
 
 static bool is_bf_token(char ch) {
@@ -889,4 +894,15 @@ static int estimateOpsToNextOutputLinear(const std::string &code, size_t ip) {
     }
     // Fallback for loops/back-jumps: use full code span as coarse upper bound.
     return static_cast<int>(std::max<size_t>(1, code.size()));
+}
+
+static std::string readTextFileFromCandidates(const std::vector<std::string> &paths,
+                                              const char *error_message) {
+    for (const std::string &path : paths) {
+        std::ifstream in(path, std::ios::binary);
+        if (in) {
+            return std::string(std::istreambuf_iterator<char>(in), {});
+        }
+    }
+    throw std::runtime_error(error_message ? error_message : "failed to open file");
 }
