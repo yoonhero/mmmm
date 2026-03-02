@@ -12,7 +12,10 @@ class Renderer {
 
     void clear();
     void renderLattice(int loc, Color color);
+    void setTitle(const char *title);
     void show();
+    SDL_Renderer *nativeRenderer();
+    int blockSize() const;
 
   private:
     SDL_Renderer *renderer_ = nullptr;
