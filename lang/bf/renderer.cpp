@@ -43,4 +43,10 @@ void Renderer::renderLattice(int loc, Color color) {
     return;
 }
 
+void Renderer::setTitle(const char *title) { SDL_SetWindowTitle(window, title); }
+
 void Renderer::show() { SDL_RenderPresent(renderer_); }
+
+SDL_Renderer *Renderer::nativeRenderer() { return renderer_; }
+
+int Renderer::blockSize() const { return block_size; }
