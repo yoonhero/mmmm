@@ -16,6 +16,19 @@ def f(x): # template on python!
     if isinstance(x, str): x += " !"
     return x
 
+class S(str):
+    pass
+
+s = S("a")
+print(type(s), isinstance(s, str))
+y = "!" + s
+print(type(y), isinstance(y, str))
+
+def not_work_f[T](x: T) -> T:
+    if isinstance(x, str): # you should obey morph rule.
+        return x+"!"
+    return x
+
 print(f("a"))
 print(f(1))
 
