@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{graphicx} 
+\usepackage{kotex}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Hom}{\operatorname{Hom}}
+
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\innerp}{\langle}{\rangle}
+
+\title{뭐시기}
+\author{윤승현}
+\date{2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{theorem}
+    $\eps, \id, \im, \ker$
+    Let $x \in \R$. $\int_a^b x \dd x$
+    \label{thm:main}
+\end{theorem}
+
+\begin{proof}
+Let $R$ be a finite domain...
+\begin{align*}
+(a+b)^2 
+  &= a^2 + 2ab + b^2 \\
+  &= a^2 + b^2 + 2ab.
+\end{align*}
+
+\[
+f(x)=\begin{cases}
+    a & \text{if } x<a \\
+    x & \text{otherwise}
+\end{cases}
+\]
+As shown in \cref{thm:main}
+\end{proof}
+
+\[
+\inner{x}{y}
+\abs{v}
+\]
+
+\end{document}
