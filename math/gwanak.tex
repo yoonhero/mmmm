@@ -1,0 +1,207 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{kotex}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2\baselineskip}
+\renewcommand{\arraystretch}{1.12}
+\setlist[enumerate]{topsep=1pt,itemsep=2pt,leftmargin=18pt}
+\setlist[itemize]{topsep=1pt,itemsep=1pt,leftmargin=16pt}
+
+\title{\vspace{-1.2em}3주차: 오차역전파 학습지}
+\author{ML기초 시그 by 윤승현}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-2.3em}
+
+\section*{1. 계산 그래프로 보는 AND}
+
+\[
+z=x+y,\qquad s=z-\theta\;(\theta=1.5),\qquad \texttt{pred}=\mathbf{1}[s\ge 0]
+\]
+
+\begin{center}
+\resizebox{0.88\textwidth}{!}{%
+\begin{tikzpicture}[
+>=Latex,
+node distance=11mm and 13mm,
+box/.style={draw, rounded corners=8pt, minimum height=9mm, minimum width=21mm, align=center, thick},
+op/.style={box, fill=blue!18},
+param/.style={box, fill=violet!18},
+judge/.style={box, fill=green!18},
+io/.style={box, fill=orange!18, minimum width=15mm}
+]
+\node[io] (x) {$x$};
+\node[io, below=14mm of x] (y) {$y$};
+\node[op, right=16mm of $(x)!0.5!(y)$, minimum width=28mm, minimum height=21mm] (sum) {\Large$+$};
+\node[param, right=16mm of sum, minimum width=24mm] (sub) {$-\theta$};
+\node[judge, right=16mm of sub, minimum width=26mm] (geq) {$0$ 이상};
+\node[io, right=12mm of geq, fill=cyan!20] (pred) {\texttt{pred}};
+\node[draw, rounded corners=5pt, fill=white, inner sep=2pt, below=1mm of sub] (theta) {$\theta=1.5$};
+
+\draw[->, thick] (x.east) -- ++(5mm,0) |- (sum.west);
+\draw[->, thick] (y.east) -- ++(5mm,0) |- (sum.west);
+\draw[->, thick] (sum.east) -- (sub.west);
+\draw[->, thick] (sub.east) -- (geq.west);
+\draw[->, thick] (geq.east) -- (pred.west);
+\end{tikzpicture}%
+}
+\end{center}
+
+\begin{enumerate}
+\item 가능한 모든 입력쌍 \((x,y)\in\{0,1\}^2\)에 대해 표를 완성하시오.
+
+\begin{center}
+\begin{tabular}{c c | c c c}
+\hline
+\(x\) & \(y\) & \(z=x+y\) & \(s=z-1.5\) & \texttt{pred} \\
+\hline
+0 & 0 & & & \\
+0 & 1 & & & \\
+1 & 0 & & & \\
+1 & 1 & & & \\
+\hline
+\end{tabular}
+\end{center}
+
+\item \(Loss=(pred-true)^2\)라 하자. \((x,y)=(1,1)\), \(true=1\)일 때
+\[
+\frac{\partial Loss}{\partial \theta}
+\]
+를 구하시오.
+
+\item
+\[
+\theta=\theta_{\mathrm{old}}-0.1\frac{\partial Loss}{\partial \theta}
+\]
+로 업데이트했을 때 Loss를 구하시오.
+
+\item 위와 같이 업데이트했을 때 Loss가 줄어드는 이유를 간단히 설명하시오.
+\end{enumerate}
+
+\newpage
+
+\section*{2. 손으로 훈련시켜봐요(XOR)}
+
+\[
+a=W_1x+b_1,\qquad
+h=\mathrm{ReLU}(a),\qquad
+\hat y=W_2h+b_2,\qquad
+Loss=\frac12(\hat y-y)^2
+\]
+
+\[
+x=
+\begin{bmatrix}
+1\\1
+\end{bmatrix},\quad
+W_1=
+\begin{bmatrix}
+1&0.5\\
+0&1
+\end{bmatrix},\quad
+b_1=
+\begin{bmatrix}
+0\\0
+\end{bmatrix}
+\]
+
+\[
+W_2=
+\begin{bmatrix}
+1&1
+\end{bmatrix},\qquad
+b_2=0,\qquad
+y=0
+\]
+
+\[
+\mathrm{ReLU}(t)=\max(0,t)
+\]
+
+\begin{enumerate}
+\item \textbf{순전파}
+\[
+a=\underline{\hspace{2.8cm}},\qquad
+h=\underline{\hspace{2.8cm}},\qquad
+\hat y=\underline{\hspace{1.8cm}},\qquad
+Loss=\underline{\hspace{1.8cm}}
+\]
+
+\item \textbf{출력층 업데이트}
+
+\[
+\frac{\partial Loss}{\partial \hat y}=\hat y-y,\qquad
+\frac{\partial \hat y}{\partial W_2}=h,\qquad
+\frac{\partial \hat y}{\partial b_2}=1
+\]
+
+\[
+\frac{\partial Loss}{\partial W_2}=\underline{\hspace{3cm}},\qquad
+\frac{\partial Loss}{\partial b_2}=\underline{\hspace{2cm}}
+\]
+
+\[
+W_2^{new}=W_2-0.1\frac{\partial Loss}{\partial W_2}
+=\underline{\hspace{3.5cm}}
+\]
+
+\[
+b_2^{new}=b_2-0.1\frac{\partial Loss}{\partial b_2}
+=\underline{\hspace{2.5cm}}
+\]
+
+\item \textbf{ReLU 지나기}
+
+\[
+\mathrm{ReLU}'(t)=
+\begin{cases}
+1 & (t>0)\\
+0 & (t<0)
+\end{cases}
+\qquad
+\mathrm{ReLU}'(a)=\underline{\hspace{2.5cm}}
+\]
+
+\[
+\frac{\partial Loss}{\partial a}
+=\underline{\hspace{3cm}}
+\]
+
+\item \textbf{첫 층 업데이트}
+
+\[
+\frac{\partial Loss}{\partial W_1}
+=\underline{\hspace{3.7cm}},\qquad
+\frac{\partial Loss}{\partial b_1}
+=\underline{\hspace{2.5cm}}
+\]
+
+\[
+W_1^{new}=W_1-0.1\frac{\partial Loss}{\partial W_1}
+=\underline{\hspace{3.5cm}}
+\]
+
+\[
+b_1^{new}=b_1-0.1\frac{\partial Loss}{\partial b_1}
+=\underline{\hspace{2.5cm}}
+\]
+
+\item \textbf{확인}
+
+업데이트 후 다시 순전파하여
+\[
+\hat y_{\mathrm{new}}=\underline{\hspace{1.8cm}},\qquad
+Loss_{\mathrm{new}}=\underline{\hspace{1.8cm}}
+\]
+를 구하시오.
+\end{enumerate}
+
+\end{document}

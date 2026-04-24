@@ -1,0 +1,254 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{kotex}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+
+\title{위상수학 1 과제2}
+\author{윤승현}
+\date{April 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{Ch4.}
+
+\subsection*{4.1.1}
+
+Given space X with indiscrete topology to be Hausdorff space, $x,y\in X$ an open set $x\in O_x, y\in O_y, O_x \cap O_y = \emptyset$. There're trivially only two spaces, $\emptyset, \{a\}$. ($\because$ $|X|>1$ we can choose two points in $X$ and $X \cap X\neq \emptyset$)
+
+\subsection*{4.1.2}
+
+Every subset in finite point set is compact. By Lemma 4.1, compact set in Hausdorff space is closed set. Thus, every subset in three point set should be open ($A \subset X, A\in \tau$). There's only discrete topology satisfying this condition.
+
+\subsection*{4.1.3}
+
+Suppose X is Hausdorff space, then $x,y \in \mathbb{R}$ an open set $x\in O_x, y\in O_y, O_x \cap O_y = \emptyset$. Since $O_x$ is open, $X-O_x$ is finite. Then $O_y \subseteq X-O_x $ cannot be open. Thus, X is non-Hausdorff space.
+
+\subsection*{4.1.4}
+
+
+
+
+
+
+\subsection*{4.1.5}
+
+Let compact set in X be $A, B$. By Lemma 4.1(2), $A, B$ is closed in Hausdorff space X. Finite intersection of closed set is also closed set. So $A \cap B \subseteq A$ is closed in compact set A. By Lemma 4.1(1), $A \cap B$ is compact.
+
+\subsection*{4.1.6}
+
+Given set X(at least two element) with indiscrete topology, $ x, y \in X$ s.t. $x\neq y$, there's only one open set $X$ containing for each $x$, $y$. So X is non-Hausdorff.\\
+Every subset A in X is compact ($\because$ unique open cover {X}). If A is not empty or whole, A is non-closed compact subset ($\because$ $X-A$ is neither $\emptyset$ nor $X$)
+
+\subsection*{4.1.7}
+
+Let open cover $\{V_\alpha\}_{\alpha \in A}$ which covers $Y$.\\ $f^{-1}(V_\alpha)$ is open since $f$ is conti. And the collection of inverse image of $V_\alpha$ cover X, by $\bigcup_{\alpha \in A} f^{-1}(V_\alpha)=f^{-1}(\bigcup_{\alpha \in A}V_\alpha)=f^{-1}(Y)=X$ (f is onto).\\
+As X is compact, $X=\bigcup_{i \leq n}{f^{-1}(V_{\alpha_i})}$.\\ Then, $f(X)=f(\bigcup_{i \leq n}{f^{-1}(V_{\alpha_i})})=\bigcup_{i \leq n}{f(f^{-1}(V_{\alpha_i})})=\bigcup_{i \leq n} V_{\alpha_i}=Y$.
+$Y$ is compact.
+
+\subsection*{4.1.8}
+
+From 4.1.7, $f(X)$ is compact as $f$ is conti and $X$ is compact. From 4.1.7, we know $f(X)$ is compact, then closed and bounded (by thm 4.1). Therefore $f$ is bounded.
+
+\subsection*{4.1.9}
+
+Let $X=\mathbb{R}$, $Y=[0,1]$. By Heine-Borel theorem, X is not compact and Y is compact. Let's consider following map.
+
+\[
+f(x) =
+\begin{cases}
+0 & \text{if } x \leq 0\\
+x & \text{if } 0 < x < 1\\
+1 & \text{otherwise}
+\end{cases}
+\]
+
+Let A be a nonempty open interval in Y. ($A=(a,b)\cap Y$)
+
+\[
+f^{-1}(A)=
+\begin{cases}
+(a,b) & \text{if } 0\leq a < b \leq1\\
+(-\infty, b) & \text{if } a<0, b\leq1\\
+(a, \infty) & \text{if } a\geq0, b>1\\
+(-\infty,\infty) & \text{otherwise}
+\end{cases}
+\]
+
+Since A is continuous map, we find an example X not compact.
+
+
+\subsection*{4.1.10}
+
+By lemma 4.1(1), closed subset under compact space is compact, C is compact. From 4.1.7, $f(C)$ is compact ($\because$ $f: C\to f(C)$ is onto, C is compact). By lemma 4.1(2), compact subset under Hausdorff space is closed, then $f(C)$ is closed.
+
+\subsection*{4.1.11}
+
+Let $g: Y\to X$, $g=f^{-1}$ and $\forall A$ be a compact set in X. By Lemma 4.1(b), A is closed in Hausdorff space X. From 4.1.10, $g^{-1}(A)=f(A)$ is also closed. ($\because$ $f|A$ is continuous and $A$ is compact, $Y$ is Hausdorff). From 3.3.5, $g$ is continuous. Then f is Homeomorphism.
+
+\subsection*{4.1.12}
+
+a) Let A be a bounded set in X, $\exists N_K(0)$ s.t $A\subseteq N_K(0)$. ($N_K(x):=\{y:d(x,y) < K\}$\\
+$x \in \overline{A}-A$, $N_\epsilon(x) \cap A \neq \emptyset$. Then $d(x,0)<d(x,z)+d(z,0)\leq \epsilon+K$.\\
+Therefore, $\forall x \in \overline{A}$, $d(x,0)<\epsilon+K \implies \overline{A}\subset N_{K+\epsilon}(0)$. The closure of A is bounded and closed.\\
+
+b) Let A be a bounded set in X. From 4.1.12(a), $\overline{A}$ is closed and bounded. By Heine-Borel theorem, the closure of A is compact. From 4.1.8, the image of the closure of A is bounded. $f(A)$ is bounded. ($\because$ $f(A) \subset f(\overline{A})$)
+
+\subsection*{4.2.1}
+
+First, $\mathbb{R}$ is Homeomorphic to $(0,1)$. Let $f:(0,1)\to \{0,1,...,9\}^\mathbb{N}$, $x=0.a_1a_2a_3...$, $f(x)=\prod_n^\infty a_i$ unless for sufficiently large $N$, $n>N$ $a_n=9$. ($\because$ $0.999...=1$)\\
+(단사) $f(x_1)=f(x_2) \implies \text{decimal is all identical} \implies x_1=x_2$\\
+Let $g:\{0,1,...,9\}^\mathbb{N} \to (0,1)$, $g(\alpha)=\sum_{n=1} \alpha_i 10^{-2n}$.
+(단사) $g(\alpha)=g(\beta)  \implies (\forall i)\alpha_i=\beta_i \implies \alpha = \beta$.
+From two injective function, we know some 1-1 and onto function exists. (칸토어-베른슈타인 정리)
+
+Every finite set is compact. By thm 4.3, its product is also compact. Suppose a product of finite space is Homeomorphic to the real numbers. From 4.1.7, the real numbers should be compact, contradiction. ($\because$ a product of finite space is compact, there's continuous map onto the real numbers)
+
+\subsection*{4.2.2}
+
+By thm 4.2, $A=\times_{x\in I} [0,1]$ indexed with uncountable set $I$ is compact space. ($\because$ closed and bounded set is compact in $\mathbb{R}$ by Heine-Borel thm) Suppose there is countable basis $\zeta$.\\
+Let a $x \in A$. First, consider $B_\alpha\in\zeta$ s.t. $x \in B_\alpha$. The collection of it is countable. $B=\bigcup_{\alpha} B_\alpha$. Since $B_\alpha$ can have finite $i$ s.t. $\pi_i(B_\alpha)\neq [0,1]$. Union of this $F=\bigcup_{n\in \mathbb{N}} F_n$, we have $j\in I \text{-}F$ ($\because$ $I$ is uncountable and $F$ is countable) Then $y_j\in [0,1]$, $B(j, [0,1]-\{y_j\})$ is open in $A$ containing $x$. But basis cannot cover $U$, contradiction.
+
+\subsection*{4.2.3}
+
+Let $X$ be a compact metric space. In the middle proof of thm 4.2, it has countable basis $\{O_{k,m,i}\}$.
+
+From 4.2.2, $A=\times_{x\in I} [0,1]$ has no countable basis. From prop 4.1, 4.2, $[0,1]$ is Hausdorff and its product is also be Hausdorff. Then, $A$ is compact, Hausdorff which is not a metric space.
+
+\subsection*{4.3.1}
+
+(if) Let two points set $A=\{a,b\}$ with discrete topology. $\{a\}, \{b\} \subset A$ is open in A. Then $f^{-1}(\{a\}), f^{-1}(\{b\})$ is also open. ($\because$ $f$ is continuous)\\
+$f^{-1}(\{a\}) \neq \emptyset$, $f^{-1}(\{b\}) \neq \emptyset$ and $f^{-1}(\{a\}) \cup f^{-1}(\{b\})=X$ ($\because$ $f$ is onto) Suppose $f^{-1}(\{a\}) \cap f^{-1}(\{b\}) \neq \emptyset \implies (\exists x) f(x)=a=b$, contradiction. Then $X$ is disconnected.
+
+(only if) There's open set $U, V \subset X$ s.t. $U \cup V = X, U\cap V = \emptyset$ and $U, V$ is not empty. Let $f: X \to A$, $f(U)=\{a\}, f(V)=\{b\}$. Let's consider inverse image of every open set in $A$. $f^{-1}(\emptyset)=\emptyset$, $f^{-1}(\{a\})=U$, $f^{-1}(\{b\})=V$, $f^{-1}(\{a,b\})=X$. Then $f$ is continuous.
+
+\subsection*{4.3.2}
+
+Let connected set $X=[x_1, x_2]$. By Prop 4.5, $f(X)$ is connected. ($\because$ $f:X\to f(X)$ is continuous and onto)\\
+Suppose $(\nexists x)f(x)=\epsilon$ for $f(x_1) \leq \epsilon \leq f(x_2)$. Then $A=(-\infty, \epsilon)\cap f(X)$, $B=(\epsilon, \infty)\cap f(X)$ is open relative to $f(X)$ and separate $f(X)$. ($\because$ $A \cap B \subset (-\infty, \epsilon) \cap (\epsilon, \infty)=\emptyset$ and $A \cup B=(\mathbb{R}-{\epsilon}) \cap f(X)=f(X)$. $f(x_1) \in A$, $f(x_2) \in B$) It contradicts to $f(X)$ is connected.\\
+
+\subsection*{4.3.3}
+
+Let $g(x):I\to [-1,1]$, $g(x)=x-f(x)$. ($g(0)=0-f(0)\leq 0$ and $g(1)=1-f(1) \geq 0$) Suppose $g(0) < 0 \wedge g(1) > 0$. (otherwise we have $f(x)=x$)\\
+Let $h(x)=x$.
+For each $x \in I$, $(\forall \epsilon \exists \delta)d(x,y)<\delta \implies d(f(x), f(y)) < \epsilon /2$ and $d(x,y)<\delta \implies d(h(x), h(y)) < \epsilon /2$. Then $d(x,y)<\delta \implies d(g(x),g(y))=|(h(x)-f(x))-(h(y)-f(y))|\leq d(h(x),h(y))+d(f(x),f(y)) \leq \epsilon$. Thus $g(x)$ is continuous.
+
+From previous problem, we know $(\exists t)g(0) \leq g(t)=0 \leq g(1)$. Then $f(t)=t$.
+
+\subsection*{4.3.4}
+
+There's more than two elements in the product of finite sets. (otherwise it's clearly connected) Let the basis $B(i, O_i)$. Since $x\in X_i$, $\{x\}$ is open in discrete topology. $B(i, {x})$ is also open. With finite intersection of basis, $\times_{i \leq n} B(i,{x_i})$ is also open.\\
+Then $a\in X=X_1 \times. ..\times X_n$, $A=\{a\}$ is open and complements $B=A^C$ is also open. ($\because$ X is discrete topology as finite intersection of product space basis is open) $A \cap B=\emptyset \wedge A\cup B=X$ and $A, B$ is not empty. Then $X$ is disconnected.
+
+\subsection*{4.3.5}
+
+Let's consider $A=\{((x,y):x^2+y^2=1\}$, $B=\{(x,y) : x^2+4y^2=1\}$. By Prop 4.9, $A$ and $B$ is connected since it is path connected. ($\because$ $f:I\to A$, $f: t\to (cos 2\pi t, sin 2\pi t)$ is continuous, similarly $B$ for $g:t \to (cos2\pi t, 1/2sin2\pi t)$.)\\
+Then, $A \cap B=\{(-1,0),(1,0)\}$ and it is disconnected.
+
+\subsection*{4.3.6}
+
+Choose difference $x,y\in S^n$. Let $t\in[0,1]$, $v(t)=tx+(1-t)y$. $f:I\to R^{n+1}$, $f:t\to \frac{v(t)}{||v(t)||}$. (if $x=-y$, add intermediate point $z \in R^{n+1}$ on $v(t)$) Then, $f(0)=x$, $f(1)=y$ and $f(t)\in S^n$. We only need to show $f$ is continuous.\\
+If for $x\in\mathbb{R}$, $a(x), b(x)$ is continuous, $\frac{a(x)}{b(x)}$ is continuous if $b(x) \neq 0$. The finite product of continuous function also be continuous. So $f(x)$ is continuous, then $S^n$ is path-connected.
+By Prop 4.9, $S^n$ is connected.
+
+\subsection*{4.3.7}
+
+Let's consider $Z \subsetneq W \subsetneq \overline{Z}$. (otherwise $Z, \overline{Z}$ is connected by Prop 4.8 . Suppose $W$ is disconnected. There's $A, B$ which separate $W$.\\
+$(A\cap W) \cup(B\cap W) = W \implies (A\cap Z) \cup(B\cap Z) = Z$, then either $A\cap Z$ or $B \cap Z$ should be $\emptyset$ (otherwise it becomes disconnected)\\
+$x\in A-Z \implies x\in Z^b$(from in the middle of Prop 4.8 proof), $A$ is open thus $x \notin Z^b$. ($\because$ every open set containing $x$ intersects with $Z$)\\
+Then $W$ is connected.
+
+\subsection*{4.3.8}
+
+Suppose there is a connected closed subsets $U$ in $\mathbb{R}$ s.t. union of disjoint closed sets, $U=A=[a_1,a_2]\sqcup B=[b_1,b_2]$ with $a_2 < b_1$.\\
+Select $a\in A$, $b\in B$. Then $U=\{x:a<x<b \wedge x \notin A\cup B \}$ is non-empty. Otherwise, $a_2=b_1$. Construct $x \in U$, $A=(-\infty, x)\cap A$, $B=(x, \infty)\cap B$. Both $A, B$ are open relative to $U$ and disjoint. Thus $U$ is disconnected.\\
+Then, all connected closed subsets is among this form, $[a,b]$, $(-\infty, a]$, $[a,\infty)$, $\emptyset$, $\mathbb{R}$.
+
+\section*{Ch5}
+
+\subsection*{5.1.1}
+
+Suppose $A=\times_a X_a$ satisfies axiom of first countability.\\
+Let a $x \in A$. $B=\bigcup_{n} O_n$. Since $O_n$ can have finite $i$ s.t. $\pi_i(O_n)\neq X_a$. Union of this $F=\bigcup_{n\in \mathbb{N}} F_n$, we have $j\in I-F$ ($\because$ $\mathbb{R}$ is uncountable and $F$ is countable) Let $f$ be a continuous function map $X_a$ to $[0,1]$. Then $f_0(y_j)\in [0,1]$ s.t. $f(y_j) \neq f(x_j)$, $C=B(j, f^{-1}([0,1]-\{y_j\}))$ is open in $A$ with containing $x$. ($\because$ inverse image of open function in continuous function is also open) But any $O_n \not\subset C$, since $f(\pi_j(O_n))=[0,1] \not\subset f(\pi_j(C))=[0,1]-\{y_j\}$. It's contradiction.\\
+Then $A$ satisfies neither axiom of countability. ($\because$ if second countability holds, first countability also holds)
+
+\subsection*{5.1.2}
+
+$X_a$ is compact since it is Homeomorphic to $[0,1]$. By thm 4.3, its product is also compact.\\
+\textbf{Claim: $X$ is Hausdorff space!}\\
+Let a two distinct point in $x, y \in X$. $\exists a \in \mathbb{R}$, $\pi_a(A) \neq \pi_a(B)$. Since $f(\pi_a(A)), f(\pi_a(B))$ is distinct and $[0,1]$ is Hausdorff ($\because$), there is open set $O_x, O_y$ s.t. disjoint and containing $x, y$. Then $O_{x,1}=B(a, f^{-1}(O_x))$ and $O_{y,1}=B(a, f^{-1}(O_y))$ is disjoint and containing $x, y$. Thus $X$ is Hausdorff.\\
+By Prop 5.5, $X$ is normal and from 4.2.3, it is not a metric space.\\
+(omit)
+
+\subsection*{5.1.3}
+
+Let metric space $X$, and it subspace $A$. Choose a point $x\in A$ and an open set $O_A$ in $A$ containing $x$, $(\exists O_X)O_A=O_X \cap A$. Since metric space satisfies the first axiom of countability(by Prop 5.2), $(\exists O_n)x \in O_n \subset O_X$. Then $x \in O_n \cap A \subset O_A$. Therefore, $A$ satisfies the first axiom of countability.\\
+Every subset of metric space is metric space by Prop 2.6, then $A$ is normal by Prop 5.4.
+
+\subsection*{5.1.4}
+
+\subsection*{5.1.5}
+
+First, let's prove this build topology. The union of open set is trivially open. Let's consider finite intersection of open set $F=\bigcap_n O_n$. $(x_1,y_1)\in F$, There are entire disc with center $(x_1,y_1)$ for each $O_n$. Then set $r=min(\{\epsilon_n\})\neq0$, disc radius $r$ with center $(x_1,y_1)$ is lying in $\sigma$.\\
+Second, let's show open ball in $X$ is open with this topology. Let open ball B Since open ball in $R^2$ is open, for $x \in B$, there is open ball $B_\delta(x)\subset B$. Then pick $0<p<\delta/3$, disc radius $p$ with center $(x_1, y_1)$ is lying in $B$. So $B$ is open.\\
+Choose distinct point $(x_1, y_1), (x_2, y_2) \in X$. Let's consider following conditions.
+
+1) $y_1,y_2\neq 0$
+
+Set $r=min(\{d((x_1, y_1), (x_2, y_2))/3, y_1, y_2\})$. Let open ball with radius $r$ with center $(x_1, y_1), (x_2, y_2)$ be $C_1, C_2$. Then, $C_1$ and $C_2$ is open in this topology, $C_1 \cap C_2=\emptyset$.
+
+2) $y_1=0$ nand $y_2=0$
+
+WLOG, set $y_1=0$. Let $y=y_2/2$, $E=(0, y)\times \mathbb{R}$ is open in this topology since it's open in metric space, then it's union of open ball. Let $D=[0, y)$. Choose $(a,b)\in D$. For $b\neq0$, there's some disc since $b\in E$. Otherwise, disc with radius $y/3$ center at $(a,y/3)$ lying in $D$. Let an open ball with radius $y$ center at $(x_2, y_2)$ S. $S \cap D = \emptyset$
+
+3) $y_1=0$ and $y_2=0$
+
+Similarly, $r=|x_1-x_2|/2$, $A=(x_1-r, x_1+r)\times \mathbb{R}$ and $B=(x_2-r, x_2+r) \times \mathbb{R}$ is open. And $A \cap B = \emptyset$.
+
+Thus this space is Hausdorff topology space.
+
+\subsection*{5.1.6}
+\subsection*{5.1.7}
+\subsection*{5.1.8}
+\subsection*{5.1.9}
+
+Let $X$ be a normal space. From 3.3.3, closed subset of $A$ is closed in X iff $A$ is closed. Let a disjoint and closed subset $C_1, C_2$ in $A$. Then $C_1, C_2$ is closed in $X$. Since $X$ is normal, $(\exists O_1, O_2) C_1 \subset O_1, C_2 \subset O_2$, $O_1\cap O_2 = \emptyset$. $O_1 \cap A, O_2 \cap A$ is disjoint and open in $A$. Then $A$ is normal.
+
+\subsection*{5.2.1}
+
+Let $A={x_1}$ and $B={x_2}$. Since in housdorff space single point is closed subset, A and B is disjoint closed set in normal space. By Urysohn's Lemma, there is a $f$ s.t. $f(x_1)=0$ and $f(x_2)=1$, then it separates two points.
+
+\subsection*{5.2.2}
+
+Let a compact Hausdorff space X. By Prop 5.5, X is normal. From 4.1.8, $f$ is continuous and $X$ is compact, then $f$ is bounded. From 5.2.1, it can separate points.
+
+\subsection*{5.2.3}
+
+Let infinite set $X$ with indiscrete topology. Suppose $f(X)$ contains more than two points. Than take distinct $y_1, y_2 \in f(X)$. Let an open set $O_{y_1}=\mathbb{R}-\{y_1\}$.
+Then $f^{-1}(O_{y_1})$ should be open. ($\because$ $f$ is continuous function) But $f^{-1}(O_{y_1}) \neq X$, then not open. It's contradiction. $f(X)$ contains only one element then $f$ is constant function.
+
+\subsection*{5.2.4}
+
+Let $X=R$ with metric function $d(x,y)$ as following.
+
+\[
+d(x,y) =
+\begin{cases}
+0 & \text{if } x = y\\
+1 & \text{if } x \neq y\\
+\end{cases}
+\]
+
+It gives discrete topology. Suppose $X$ satisfies the second axiom of countability. Since every point $x\in X$, $\{x\}$ is open, then $\{x\}$ in countable basis. But it's contradiction, since $X$ is non-countable.
+
+\end{document}
+
+
+
+

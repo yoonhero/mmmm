@@ -14,3 +14,6 @@ activation/cache
 fashionshow/codex
 */.venv
 */**/__pycache__
+puzzle/data
+math/dist
+.DS_Store
