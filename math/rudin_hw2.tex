@@ -1,0 +1,232 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{graphicx} 
+\usepackage{kotex}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\ntoinf}{n \to \infty}
+
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\innerp}{\langle}{\rangle}
+
+\title{해개연1 과제2}
+\author{윤승현}
+\date{2026.04}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{5.}
+
+\begin{lemma}
+    Let $b_n=\sup_{m \geq n} a_m$, then
+    \[
+    \limsup_{\ntoinf} a_n = \lim_{\ntoinf} b_n
+    \]
+    \label{lemma:limsup}
+\end{lemma}
+
+\begin{proof}
+    The $b_n$ is monotically decreasing sequence. ($\because$ $\{a_k\}_{k \geq n+1} \subset \{a_k\}_{k \geq n}$) In extended real, $L:=\lim b_n=\inf b_n$. 
+
+    Set a subsequence $\{a_{n_j}\}$ converges to $c$ s.t. $n_j > N$, $a_{n_j} \leq b_N$ since $a_{n_j} \in \{a_k\}_{k \geq N}$. $c \leq b_N$, then $c \leq \inf b_n = L$ Then $\limsup a_n \leq L$.\\
+    For sufficiently large $k$, $b_n < L + 1/k$ for $n \geq N_k$. Since $b_n = \sup_{m \geq N_k} a_m$, $\exists n_k > N_k > k$,
+    
+    \[
+        a_{n_k}>b_{N_k}-1/k \implies a_{n_k}>L-1/k
+    \]
+
+    \[
+        0 \leq d(a_{n_k}, L) < 1/k
+    \]
+
+    Then $L \leq \limsup a_n$. Therefore $\limsup a_n=\lim b_n$
+\end{proof}
+
+For $n$, $\sup_{m \geq n}(a_m+b_m) \leq \sup(a_m) + \sup(b_m)$. ($\because \, a_m \leq \sup_{m \geq n}(a_m)$ similarly $b_m$ then its sum is bounded) With \cref{lemma:limsup}, we have $\limsup(a_n+b_n)\leq\lim(\sup(a_m) + \sup(b_m))=\limsup(a_n)+\limsup(b_n)$ ($\because$ it is not form of $\infty - \infty$)
+
+\subsection*{8.}
+
+Since $b_n$ is monotone and bounded. For the monotically decreasing case, it converges to $\alpha$ by Thm 3.14. Let $c_n=b_n-\alpha$. Then $c_0 \geq c_1 \geq ...$, $\lim b_n=0$ by Thm 3.3. Similarly, for the monotically increasing case, it converges to $\beta$ and let $c_n=-b_n+\beta$ satisfying previous statements.\\
+By Thm 3.22 (Cauchy criterion), $\eps>0$ $\exists N$ s.t. 
+
+\[
+\abs*{\sum_{n}^{m} a_n} < \eps
+\]
+
+partial sums $A_n$ of $\sum a_n$ form a bounded sequence. (for $n \geq N$)\\
+By Thm 3.42, $\sum a_n b_n$ converges.
+
+\subsection*{14.}
+
+\subsubsection*{a}
+
+For $\eps > 0$, $\exists N$ s.t. $d(s_n,s)<\eps$ for $n \geq N$. ($\because$ $s_n$ converges)
+
+\[
+\sigma_n = \frac{\sigma_N+(s_{N+1}+s_{N+2}+...+s_n)}{n+1}
+\]
+
+By Thm 3.20, $|\frac{\sigma_N-sN}{n+1}| \to 0$. Then $\exists N_1$ s.t.
+
+\[
+|\frac{\sigma_N-sN}{n+1}|<\frac{N+1}{n+1}\eps
+\]
+
+for $n \geq N_1$. Then, 
+
+\[
+|\sigma_n-s| < |\frac{\sigma_N-sN}{n+1}|+\frac{(n-N)}{n+1}\eps < \eps
+\]
+
+for $n \geq max(N, N_1)$.
+
+\subsubsection*{b}
+
+Let $s_n=(-1)^n$. It does not converge, since $\limsup s_n=1$ and $\liminf s_n=-1$.
+
+But $\inf_n \sigma_m = 0$ and
+
+\[
+\sup_n \sigma_m=\begin{cases}
+    1/(n+1) & \text{if n is even}\\
+    1/(n+2) & \text{otherwise}
+\end{cases}
+\]
+
+Since $\limsup \sigma_n=0$ and $\liminf \sigma_n=0$, by \cref{lemma:limsup}, $\lim \sigma_n=0$
+
+\subsubsection*{c}
+
+Let
+
+\[
+s_n = \begin{cases}
+    2^k & n=k\times 2^k \\
+    2^{-n} & \text{otherwise}
+\end{cases}
+\]
+
+It's clearly $s_n>0$ and $\sup_{k^2 2^k} s_m = 2^k$, then by \cref{lemma:limsup}, $\limsup s_m = \infty$.
+
+\[
+    \frac{\sum_{k=0}^{n} 2^{-k}}{n} < \frac{2(1-2^{-n-1})}{n}
+\]
+
+and
+
+\[
+\frac{2^1+2^2+...+2^k}{k\times2^k} < 2/k
+\]
+
+Then,
+
+\[
+0 < \sigma_n < \frac{\sum_{k=0}^{n} 2^{-k}}{n} + \frac{2^1+2^2+...+2^k}{k\times2^k} < 4/n
+\]
+
+By Thm 3.25, $\sigma_n$ converges to $0$.
+
+\subsubsection*{d}
+
+\[
+\frac{1}{n+1}\sum_{1}^{n} ka_k =\frac{(n+1)s_n-(s_n+s_{n-1}+...)}{n+1}=s_n-\sigma_n
+\]
+
+Set $g_n=na_n$. From (a), $\lim g_n=0$ then $\lim \sigma_{g_n}=0$. With 
+
+\[
+\sigma_{g_n}=\frac{1}{n+1}\sum_{1}^{n} ka_k=s_n-\sigma_n
+\]
+
+and by thm 3.3, $\lim s_n = \lim (s_n-\sigma_n) + \lim \sigma_n = \lim \sigma_n$.
+
+\subsubsection*{e}
+
+
+\subsection*{17.}
+
+
+(a) and (b)
+
+\[
+x_{n+2}=\frac{2\alpha+(\alpha+1)x_n}{1+\alpha+2x_n}
+\]
+
+For $x_n < \sqrt{\alpha}$, $x_{n+2} > x_n$, otherwise $x_n > \sqrt{\alpha}$ then $x_{n+2} < x_n$. And from following, $x_n > \sqrt{\alpha}$
+
+\[
+\frac{\alpha-x_n^2}{1+x_n} < \frac{\alpha-x_n^2}{\sqrt{\alpha}+x_n} = \sqrt{\alpha}-x_n
+\]
+
+$x_{n+1} < \sqrt{\alpha}$. Similarly, $x_n < \sqrt{\alpha}$ then $x_{n+1} > \sqrt{\alpha}$.\\
+Then $x_{2n-1}>\sqrt{\alpha}$ and $x_{2n}<\sqrt{\alpha}$ with monotonically decreasing and increasing.\\
+
+(c) Let
+
+\[
+(x^*)_n = \sup_{m \geq n} x_m,\; (x_*)_n = \inf_{m \geq n} x_m
+\]
+
+$(x*)_n=x_{2*\lfloor{(n+1)/2}\rfloor-1}$. This is monotically decreasing sequence with bounded below. ($\because \, x_{2n-1}>\sqrt{\alpha}$) By Thm 3.14, it converges.\\
+
+(d)
+
+\subsection*{21.}
+
+Choose $p_n \in E_n$. Then $\{p_n\}$ is Cauchy sequence. ($\because$ $p_n, p_{n+1}... \in E'_n$  $E'_n \subset E_n \implies \text{diam} E'_n \leq \text{diam} E_n$) From Def 3.12, every Cauchy sequence in complete metric space converges, $p_n \to p \in X$. Suppose some $k$, $p$ is not in $E_k$. Since it converges, $\eps > 0$ then $\exists N$ s.t. $d(p,p_n) < \eps$ for $n \geq N$, which implies $N_\eps(p) \cap E_k \neq \emptyset$. Since $E_k$ is closed, $p \in E_k$.\\
+Suppose $q \in \bigcap E_n$ s.t. $p \neq q$. Then $\text{diam} E_n \geq d(p,q)$ contradicts to hypothesis. Therefore it consists of exactly one point.
+
+\subsection*{22.}
+
+Let an open ball $C_1$ s.t. $\text{diam} \overline{C_1} < 1$ and $\overline{C_1} \subset G_1$. Assume $C_n \cap G_n$ is non-empty. There's an open ball $C_{n+1}$ with $\text{diam} \overline{C_{n+1}} < 1/n$ and $\overline{C_{n+1}} \subset C_n \cap G_n$. ($\because \, C_n, G_n$ is open and finite intersection also be open) Since $G_{n+1}$ is dense, $C_{n+1} \cap G_{n+1}$ is non-empty.
+
+Then set $E_n=\overline{C_n}$ is closed and $E_1 \supset E_2 \supset E_3 \supset ...$. From Exercies 21. , there's at least one point in $\bigcap G_n$.
+
+\end{document}
