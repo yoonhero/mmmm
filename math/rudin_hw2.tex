@@ -83,17 +83,22 @@
     \]
 
     \[
+        L+1/k \geq b_{N_k} \geq a_{n_k}
+    \]
+
+    Then, 
+    \[
         0 \leq d(a_{n_k}, L) < 1/k
     \]
 
     Then $L \leq \limsup a_n$. Therefore $\limsup a_n=\lim b_n$
 \end{proof}
 
-For $n$, $\sup_{m \geq n}(a_m+b_m) \leq \sup(a_m) + \sup(b_m)$. ($\because \, a_m \leq \sup_{m \geq n}(a_m)$ similarly $b_m$ then its sum is bounded) With \cref{lemma:limsup}, we have $\limsup(a_n+b_n)\leq\lim(\sup(a_m) + \sup(b_m))=\limsup(a_n)+\limsup(b_n)$ ($\because$ it is not form of $\infty - \infty$)
+For $n$, $\sup_{m \geq n}(a_m+b_m) \leq \sup_{m \geq n}(a_m) + \sup_{m \geq n}(b_m)$. ($\because \, a_m \leq \sup_{m \geq n}(a_m)$ similarly $b_m$ then its sum is bounded) With \cref{lemma:limsup}, we have $\limsup(a_n+b_n)\leq\lim(\sup(a_m) + \sup(b_m))=\limsup(a_n)+\limsup(b_n)$ ($\because$ it is not form of $\infty - \infty$)
 
 \subsection*{8.}
 
-Since $b_n$ is monotone and bounded. For the monotically decreasing case, it converges to $\alpha$ by Thm 3.14. Let $c_n=b_n-\alpha$. Then $c_0 \geq c_1 \geq ...$, $\lim b_n=0$ by Thm 3.3. Similarly, for the monotically increasing case, it converges to $\beta$ and let $c_n=-b_n+\beta$ satisfying previous statements.\\
+Since $b_n$ is monotone and bounded. For the monotically decreasing case, it converges to $\alpha$ by Thm 3.14. Let $c_n=b_n-\alpha$. Then $c_0 \geq c_1 \geq ...$, $\lim c_n=0$ by Thm 3.3. Similarly, for the monotically increasing case, it converges to $\beta$ and let $c_n=-b_n+\beta$ satisfying previous statements.\\
 By Thm 3.22 (Cauchy criterion), $\eps>0$ $\exists N$ s.t. 
 
 \[
@@ -101,7 +106,7 @@ By Thm 3.22 (Cauchy criterion), $\eps>0$ $\exists N$ s.t.
 \]
 
 partial sums $A_n$ of $\sum a_n$ form a bounded sequence. (for $n \geq N$)\\
-By Thm 3.42, $\sum a_n c_n$ converges. With Thm 3.47, $\sum a_n b_n = \sum a_n (c_n-\alpha) = \sum a_n c_n - \alpha \sum a_n$ converges. (similarly, resp for $c_n=-b_n+\beta$)
+By Thm 3.42, $\sum a_n c_n$ converges. With Thm 3.47, $\sum a_n b_n = \sum a_n (c_n+\alpha) = \sum a_n c_n + \alpha \sum a_n$ converges. (similarly, resp for $c_n=-b_n+\beta$)
 
 \subsection*{14.}
 
@@ -110,19 +115,19 @@ By Thm 3.42, $\sum a_n c_n$ converges. With Thm 3.47, $\sum a_n b_n = \sum a_n (
 For $\eps > 0$, $\exists N$ s.t. $d(s_n,s)<\eps$ for $n \geq N$. ($\because$ $s_n$ converges)
 
 \[
-\sigma_n = \frac{\sigma_N+(s_{N+1}+s_{N+2}+...+s_n)}{n+1}
+\sigma_n = \frac{(N+1)\sigma_N+(s_{N+1}+s_{N+2}+...+s_n)}{n+1}
 \]
 
-By Thm 3.20, $|\frac{\sigma_N-sN}{n+1}| \to 0$. Then $\exists N_1$ s.t.
+By Thm 3.20, $|\frac{(N+1)\sigma_N-s(N+1)}{n+1}| \to 0$. Then $\exists N_1$ s.t.
 
 \[
-|\frac{\sigma_N-sN}{n+1}|<\frac{N+1}{n+1}\eps
+|\frac{(N+1)\sigma_N-s(N+1)}{n+1}|<\frac{N+1}{n+1}\eps
 \]
 
 for $n \geq N_1$. Then, 
 
 \[
-|\sigma_n-s| < |\frac{\sigma_N-sN}{n+1}|+\frac{(n-N)}{n+1}\eps < \eps
+|\sigma_n-s| < |\frac{(N+1)\sigma_N-s(N+1)}{n+1}|+\frac{(n-N)}{n+1}\eps < \eps
 \]
 
 for $n \geq max(N, N_1)$.
@@ -168,7 +173,7 @@ and
 Then,
 
 \[
-0 < \sigma_n < \frac{\sum_{k=0}^{n} 2^{-k}}{n} + \frac{2^1+2^2+...+2^k}{k\times2^k} < 4/n
+0 < \sigma_n < \frac{\sum_{k=0}^{n} 2^{-k}}{n} + \frac{2^1+2^2+...+2^k}{k\times2^k} < C/n
 \]
 
 By Thm 3.25, $\sigma_n$ converges to $0$.
@@ -179,7 +184,7 @@ By Thm 3.25, $\sigma_n$ converges to $0$.
 \frac{1}{n+1}\sum_{1}^{n} ka_k =\frac{(n+1)s_n-(s_n+s_{n-1}+...)}{n+1}=s_n-\sigma_n
 \]
 
-Set $g_n=na_n$. From (a), $\lim g_n=0$ then $\lim \sigma_{g_n}=0$. With 
+Set $g_n=na_n$. From (a), if $\lim g_n=0$, then $\lim \sigma_{g_n}=0$. With 
 
 \[
 \sigma_{g_n}=\frac{1}{n+1}\sum_{1}^{n} ka_k=s_n-\sigma_n
@@ -207,10 +212,10 @@ Fix $\eps > 0$ and associate with each $n$ the integer $m$ that satisfies
 m \leq \frac{n-\eps}{1+\eps} < m+1
 \]
 
-Then $(m+1)/(n-m) \leq 1/\eps$ and $\abs{s_n-s_i} < M\eps$. For sufficiently large $n$, 
+Then $(m+1)/(n-m) \leq 1/\eps$, $\abs{s_n-s_i} < M\eps$ and $\abs{\sigma_n-\sigma_m}\leq \eps^2$. For sufficiently large $n$, 
 
 \[
-\abs{s_n-\sigma_n} \leq \eps + \frac{n-m}{n-m} \frac{(n-m-1)M}{m+2} \leq \eps + M\eps
+\abs{s_n-\sigma_n} \leq \frac{1}{\eps}\eps^2 + \frac{n-m}{n-m} \frac{(n-m-1)M}{m+2} \leq \eps + M\eps
 \]
 
 With this,
@@ -253,17 +258,17 @@ $(x*)_n=x_{2*\lfloor{(n+1)/2}\rfloor-1}$. This is monotically decreasing sequenc
 
 $\abs{x_{2n}-\sqrt\alpha} \leq r^{n-1} \abs{x_2-\sqrt\alpha}$ converges to $0$ by Thm 3.20. (similarly for $x_{2n+1}$) Then $\limsup x_n=\liminf x_n=\sqrt\alpha$. Therefore $\lim x_n = \sqrt\alpha$.
 
-(d) Let the rapidity of convergence of this process as $\eps'_n$ in Exercise 16. Let $r' = \eps'/\beta < 1$. Take $r$ for $r\geq r'$, $(r')^{2n-n} << 1$. Then the previous method is way more convergent fast compared to current one.
+(d) Let the rapidity of convergence of this process as $\eps'_n$ in Exercise 16. Let $r' = \eps'/\beta < 1$. Take $r$ for $r\geq r'$, $(r')^{2n}/r^n<(r')^{2n-n} << 1$. Then the previous method is way more convergent fast compared to current one.
 
 \subsection*{21.}
 
-Choose $p_n \in E_n$. Then $\{p_n\}$ is Cauchy sequence. ($\because$ $p_n, p_{n+1}... \in E'_n$  $E'_n \subset E_n \implies \text{diam} E'_n \leq \text{diam} E_n$) From Def 3.12, every Cauchy sequence in complete metric space converges, $p_n \to p \in X$. Suppose some $k$, $p$ is not in $E_k$. Since it converges, $\eps > 0$ then $\exists N$ s.t. $d(p,p_n) < \eps$ for $n \geq N$, which implies $N_\eps(p) \cap E_k \neq \emptyset$. Since $E_k$ is closed, $p \in E_k$.\\
+Choose $p_n \in E_n$. Then $\{p_n\}$ is Cauchy sequence. ($\because$ $p_n, p_{n+1}... \in E_n$ $\text{diam} E_n \to 0$) From Def 3.12, every Cauchy sequence in complete metric space converges, $p_n \to p \in X$. Suppose some $k$, $p$ is not in $E_k$. Since it converges, $\eps > 0$ then $\exists N$ s.t. $d(p,p_n) < \eps$ for $n \geq N$, which implies $N_\eps(p) \cap E_k \neq \emptyset$. Since $E_k$ is closed, $p \in E_k$.\\
 Suppose $q \in \bigcap E_n$ s.t. $p \neq q$. Then $\text{diam} E_n \geq d(p,q)$ contradicts to hypothesis. Therefore it consists of exactly one point.
 
 \subsection*{22.}
 
-Let an open ball $C_1$ s.t. $\text{diam} \overline{C_1} < 1$ and $\overline{C_1} \subset G_1$. Assume $C_n \cap G_n$ is non-empty. There's an open ball $C_{n+1}$ with $\text{diam} \overline{C_{n+1}} < 1/n$ and $\overline{C_{n+1}} \subset C_n \cap G_n$. ($\because \, C_n, G_n$ is open and finite intersection also be open) Since $G_{n+1}$ is dense, $C_{n+1} \cap G_{n+1}$ is non-empty.
+Let an open ball $C_1$ s.t. $\text{diam} \overline{C_1} < 1$ and $\overline{C_1} \subset G_1$. Assume $C_n \cap G_n$ is non-empty. There's an open ball $C_{n+1}$ with $\text{diam} \overline{C_{n+1}} < 1/(n+1)$ and $\overline{C_{n+1}} \subset C_n \cap G_n$. ($\because \, C_n, G_n$ is open and finite intersection also be open) Since $G_{n+1}$ is dense, $C_{n+1} \cap G_{n+1}$ is non-empty.
 
-Then set $E_n=\overline{C_n}$ is closed and $E_1 \supset E_2 \supset E_3 \supset ...$. From Exercies 21. , there's at least one point in $\bigcap G_n$.
+Then set $E_n=\overline{C_n}$ is closed and $E_1 \supset E_2 \supset E_3 \supset ...$. From Exercies 21. , there's at least one point in $\bigcap G_n$. We can repeat this on every open set $U$ with $C_1 \subset U$ since $U \cap E_1 \neq \emptyset$. Then $U \cap \bigcap G_n \neq \emptyset$. Thus this is dense.
 
 \end{document}
