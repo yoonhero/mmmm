@@ -101,7 +101,7 @@ By Thm 3.22 (Cauchy criterion), $\eps>0$ $\exists N$ s.t.
 \]
 
 partial sums $A_n$ of $\sum a_n$ form a bounded sequence. (for $n \geq N$)\\
-By Thm 3.42, $\sum a_n b_n$ converges.
+By Thm 3.42, $\sum a_n c_n$ converges. With Thm 3.47, $\sum a_n b_n = \sum a_n (c_n-\alpha) = \sum a_n c_n - \alpha \sum a_n$ converges. (similarly, resp for $c_n=-b_n+\beta$)
 
 \subsection*{14.}
 
@@ -189,6 +189,37 @@ and by thm 3.3, $\lim s_n = \lim (s_n-\sigma_n) + \lim \sigma_n = \lim \sigma_n$
 
 \subsubsection*{e}
 
+If $m < n$, then 
+
+\[
+\frac{m+1}{n-m}(\sigma_n-\sigma_m)+\frac{1}{n-m} \sum_{i=m+1}^n (s_n - s_i) = s_n+\frac{m+1}{n-m}\sigma_n - \frac{s_0+s_1+...+s_{n}}{n-m}=s_n-\sigma_n
+\]
+
+From $\abs{na_n} \leq M$, $\abs{s_n-s_{n-1}}<M/n$ for $n>0$. For these $i$,
+
+\[
+|s_n-s_i|\leq \abs{s_n-s_{n-1}}+...+\abs{s_{i+1}-s_i} \leq \frac{(n-i)M}{i+1} \leq \frac{(n-m-1)M}{m+2}
+\]
+
+Fix $\eps > 0$ and associate with each $n$ the integer $m$ that satisfies
+
+\[
+m \leq \frac{n-\eps}{1+\eps} < m+1
+\]
+
+Then $(m+1)/(n-m) \leq 1/\eps$ and $\abs{s_n-s_i} < M\eps$. For sufficiently large $n$, 
+
+\[
+\abs{s_n-\sigma_n} \leq \eps + \frac{n-m}{n-m} \frac{(n-m-1)M}{m+2} \leq \eps + M\eps
+\]
+
+With this,
+
+\[
+\abs{s_n-\sigma} \leq \abs{s_n-\sigma_n} + \abs{\sigma_n-\sigma} \leq (M+1)\eps + \eps.
+\]
+
+Sicne $\eps$ was arbitrary, $lim s_n = \sigma$.
 
 \subsection*{17.}
 
@@ -214,9 +245,15 @@ Then $x_{2n-1}>\sqrt{\alpha}$ and $x_{2n}<\sqrt{\alpha}$ with monotonically decr
 (x^*)_n = \sup_{m \geq n} x_m,\; (x_*)_n = \inf_{m \geq n} x_m
 \]
 
-$(x*)_n=x_{2*\lfloor{(n+1)/2}\rfloor-1}$. This is monotically decreasing sequence with bounded below. ($\because \, x_{2n-1}>\sqrt{\alpha}$) By Thm 3.14, it converges.\\
+$(x*)_n=x_{2*\lfloor{(n+1)/2}\rfloor-1}$. This is monotically decreasing sequence with bounded below. ($\because \, x_{2n-1}>\sqrt{\alpha}$) By Thm 3.14, it converges. $(\sqrt\alpha-1)^2<1+\alpha$, then $\exists 0<r<1$ s.t. $(\sqrt\alpha-1)^2/(1+\alpha)<r$
 
-(d)
+\[
+\eps_{n+2}=\abs{x_{n+2}- \sqrt{\alpha}} \leq \frac{-\sqrt\alpha(\sqrt\alpha-1)^2+(\sqrt\alpha-1)^2x_n}{1+\alpha+2x_n}\leq \frac{(\sqrt\alpha-1)^2}{1+\alpha}\abs{x_n-\sqrt{\alpha}} \leq r\abs{x_n-\sqrt\alpha}
+\]
+
+$\abs{x_{2n}-\sqrt\alpha} \leq r^{n-1} \abs{x_2-\sqrt\alpha}$ converges to $0$ by Thm 3.20. (similarly for $x_{2n+1}$) Then $\limsup x_n=\liminf x_n=\sqrt\alpha$. Therefore $\lim x_n = \sqrt\alpha$.
+
+(d) Let the rapidity of convergence of this process as $\eps'_n$ in Exercise 16. Let $r' = \eps'/\beta < 1$. Take $r$ for $r\geq r'$, $(r')^{2n-n} << 1$. Then the previous method is way more convergent fast compared to current one.
 
 \subsection*{21.}
 
