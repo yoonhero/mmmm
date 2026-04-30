@@ -1,0 +1,149 @@
+% base.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{base}[2026/04/30 Personal math preamble]
+
+% Page layout
+\RequirePackage[margin=1in]{geometry}
+
+% Graphics / Korean
+\RequirePackage{graphicx}
+\RequirePackage{kotex}
+
+% Math
+\RequirePackage{amsmath, amssymb, amsthm}
+\RequirePackage{mathtools}
+
+% Lists / colors / links
+\RequirePackage{enumitem}
+\RequirePackage{xcolor}
+\RequirePackage{hyperref}
+\RequirePackage[capitalize,nameinlink]{cleveref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Symbols
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Operators: optimization
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% Operators: linear algebra
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Ker}{ker}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\codim}{codim}
+
+% Operators: analysis / topology
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\bd}{bd}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\osc}{osc}
+\DeclareMathOperator{\Lip}{Lip}
+
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\essinf}{ess\,inf}
+
+% Number systems
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\K}{\mathbb{K}}
+
+% Common notation
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\id}{\mathrm{id}}
+
+% Limits / sums / products
+\newcommand{\ntoinf}{n \to \infty}
+\newcommand{\mtoinf}{m \to \infty}
+\newcommand{\ktoinf}{k \to \infty}
+
+\newcommand{\limn}{\lim_{n \to \infty}}
+\newcommand{\limsupn}{\limsup_{n \to \infty}}
+\newcommand{\liminfn}{\liminf_{n \to \infty}}
+
+\newcommand{\sumn}{\sum_{n=1}^{\infty}}
+\newcommand{\sumk}{\sum_{k=1}^{\infty}}
+\newcommand{\prodn}{\prod_{n=1}^{\infty}}
+
+% Arrows / convergence
+\newcommand{\xto}[1]{\xrightarrow{#1}}
+\newcommand{\xgets}[1]{\xleftarrow{#1}}
+\newcommand{\weakto}{\rightharpoonup}
+\newcommand{\To}{\longrightarrow}
+
+% Linear algebra superscripts
+\newcommand{\trans}{^{\mathsf T}}
+\newcommand{\adjoint}{^{*}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\orth}{^{\perp}}
+\newcommand{\dual}{^{*}}
+
+% Common vectors / matrices
+\newcommand{\zero}{\mathbf{0}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+
+% Set notation
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\st}{\,:\,}
+\newcommand{\given}{\,\middle|\,}
+
+% Topology shorthand
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\interior}[1]{{#1}^{\circ}}
+\newcommand{\boundary}[1]{\partial #1}
+
+% Inner products / delimiters
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\innerp}{\langle}{\rangle}
+\DeclarePairedDelimiter{\paren}{\lparen}{\rparen}
+\DeclarePairedDelimiter{\bracket}{\lbrack}{\rbrack}
+\DeclarePairedDelimiter{\braces}{\lbrace}{\rbrace}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}

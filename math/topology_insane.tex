@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{mystyle}
+
+\title{WTF 위상수학}
+\author{윤승현}
+\date{2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Furstenberg's proof of the infinitude of primes}
+
+Let a basis with 
+
+\[
+    a+n\Z = \set{a+kn: k\in \Z}
+\]
+
+for $a \in \Z, n \in \N$
+
+First, every basis also be closed. Since
+
+\[
+    \Z \setminus (a+n\Z) = \bigcup_{r \not\equiv a} (r+n\Z)
+\]
+
+Second, non-empty finite set cannot be open. Because $\exists b$ in basis s.t. $b \subset F$.
+
+Suppose there's finite primes $p_1, p_2, ..., p_2$.
+
+\[
+    \Z \setminus \set{-1, 1} = p_1\Z \cup p_2\Z \cup ... \cup p_3\Z
+\]
+
+is closed then $\set{-1, 1}$ be open. Then contradiction.
+
+\end{document}
