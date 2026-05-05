@@ -1,11 +1,11 @@
-% base.sty
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{base}[2026/04/30 Personal math preamble]
 
 % Page layout
 \RequirePackage[margin=1in]{geometry}
 
-% Graphics / Korean
+% Language / graphics
+\RequirePackage[english]{babel}
 \RequirePackage{graphicx}
 \RequirePackage{kotex}
 
@@ -13,11 +13,12 @@
 \RequirePackage{amsmath, amssymb, amsthm}
 \RequirePackage{mathtools}
 
-% Lists / colors / links
+% Lists / colors / links / diagrams
 \RequirePackage{enumitem}
 \RequirePackage{xcolor}
 \RequirePackage{hyperref}
-\RequirePackage[capitalize,nameinlink]{cleveref}
+\RequirePackage{aliascnt}
+\RequirePackage{tikz-cd}
 
 \hypersetup{
     colorlinks=true,
@@ -32,16 +33,51 @@
 
 % Theorem environments
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
 
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
+
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
 
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+
+\RequirePackage[capitalize,nameinlink]{cleveref}
+
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{example}{example}{examples}
+\Crefname{example}{Example}{Examples}
+\crefname{remark}{remark}{remarks}
+\Crefname{remark}{Remark}{Remarks}
 
 % Operators: optimization
 \DeclareMathOperator*{\argmax}{arg\,max}
@@ -113,6 +149,7 @@
 \newcommand{\xgets}[1]{\xleftarrow{#1}}
 \newcommand{\weakto}{\rightharpoonup}
 \newcommand{\To}{\longrightarrow}
+\newcommand{\doublearrow}[1]{\xrightarrow[]{#1}\mathrel{\mkern-14mu}\rightarrow}
 
 % Linear algebra superscripts
 \newcommand{\trans}{^{\mathsf T}}

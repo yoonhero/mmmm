@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage{mystyle}
+
+\title{Recap 복습}
+\author{윤승현}
+
+\begin{document}
+
+\maketitle
+
+\section*{5/5}
+
+\subsection{위상수학 Ch6}
+
+\begin{definition}
+    For topology space $X$ with given \[f: X \doublearrow{} Y \] onto. $O \subset Y$ is open iff $f\inv(O) \subset X$ is open. It is called "quotient topology" on $Y$.
+\end{definition}
+
+For instance, let $X = \R$ and give equivalent relation with following $x \sim y$ iff $x-y \in \Z$.
+
+\[
+\R/{\sim} = \set{[x]_{\sim} : x \in \R}
+\]
+
+\begin{proposition}
+Then, with natural map and quotient topology, $\R/{\sim} \cong S^1$.
+\end{proposition}
+
+\begin{proof}
+\[
+\begin{tikzcd}
+\R \arrow[r, "f"] \arrow[d, "q"'] & S^1 \\
+\R/{\sim} \arrow[ur, "\bar f"']
+\end{tikzcd}
+\]
+
+\[
+    \bar f : [x] \mapsto \exp(2\pi i x)
+\]
+
+Since, $[0, 1]$ is compact then $\R/{\sim}$ is compact. ($\because$ $q$ is conti) For open set $U \subset S^1$, $\bar f\inv(U)$ is open iff $q\inv(\bar f\inv(U))=f\inv(U)$ is open then this is continuous. $\bar f$ is clearly bijection, then by \cref{proposition:homeo}, it is homeomorphism.
+
+\end{proof}
+
+\begin{proposition}
+    Let $X, Y$ is Hausdorff compact topology space. If there exists 1-1 correspondence conti map \[f: X \to Y\], then homeomorphic.
+    \label{proposition:homeo}
+\end{proposition}
+
+\begin{proof}
+    Let compact set $C \subset X$. Then $f(C) \subset Y$ is compact. Since compact set in Hausdorff is closed. $f\inv: Y \to X$ is continuous map. Then it's homeomorphic.
+\end{proof}
+
+\begin{proposition}
+    Let $X$ be normal space. For $C \subset X$, give $\sim$ on $X$ by
+    \[
+        \begin{cases}
+            x \sim y & \text{if } x, y \in C \\
+            x \sim x & \text{otherwise}   
+        \end{cases}
+    \]
+    is Hausdorff.
+\end{proposition}
+
+\begin{proof}
+    Since $X$ is normal space, for $x \not\in C$, we have a disjoint closed set $\set{x} \in O_x \subset X$ and $C \subset O_C$. ($\because$ one point is closed in Hausdorff) Then, $[O_x], [O_C]$ in $X/{\sim}$.
+\end{proof}
+
+For instance, $D^2$ with given $\sim$ on $\partial{D^2}$. $D^2/{\sim}\cong S^2$.
+
+\begin{proposition}
+If $f$ is conti onto with $x\sim x' \implies f(x)=f(x')$ then
+\[
+\begin{tikzcd}
+    X \arrow[r, "f"] \arrow[d, "q"'] & Y \\
+    X/{\sim} \arrow[ur, "\bar f"']
+\end{tikzcd}
+\], $\bar f$ is conti onto.
+\end{proposition}
+
+\begin{definition}
+    A topology space $X$ is called 'locally cpt' if $\forall x \in X$ there exists an open subset $O_x$ such that $x \in O \subset \overline{O_x}$ is compact.
+\end{definition}
+
+$\R$ is locally cpt.
+
+\begin{theorem}
+    Let $X$ be Hausdorff, locally compact, but not compact. Then there's a Hausdorff compact space $\widehat{X}$ (is called "one-point compactification of $X$") and a map $\iota: X\to \widehat{X}$ is 1-1 continuous such that
+    \begin{enumerate}[label=\roman*)]
+        \item $\widehat{X}\setminus \overline{\iota(X)}$ = single pt. (i.e. $\widehat{X}=\iota(X) \sqcup \set{\omega}$)
+        \item $\iota$ sends open subsets to open.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{definition}
+        $\widehat{X}=\iota(X) \sqcup \set{\omega}$ and given topology by
+        \begin{enumerate}[label=\roman*)]
+            \item open set $O \subset \widehat{X}\setminus\set{\omega}$ iff $O \subset X$.
+            \item if $\omega \in O$, then $O=(X \setminus K) \sqcup \set{\omega}$, for compact set $K \subset X$.
+        \end{enumerate}
+    \end{definition}
+
+    Then $\widehat{X}$ is compact (consider open cover s.t. $\omega \in O_\alpha$ and otherwise) and Hausdorff (set open set and using locally compact to build disjoint open set).
+\end{proof}
+
+Then, $\widehat{\R^2} = S^2 = D^2/{S^1}$. This can be shown by stereographic projection.
+
+\subsection{선형대수학}
+
+\begin{proposition}
+    벡터공간 $V$의 두 부분공간 $W_1, W_2$에 대하여 두 부분공간의 합을 정의하자. 이 합공간이 $W_1, W_2$를 모두 포함하는 $V$의 가장 작은 부분공간임을 증명하시오.
+\end{proposition}
+
+\begin{proof}
+    $W_1+W_2$가 부분공간임을 보이기, $W_1, W_2$를 포함하는 것을 보이기.
+    assume $\exists W \leq V$, $x \in W_1 + W_2$ but $x \not\in W$. $x=w_1+w_2$ which $w_1 \in W$ and $w_2 \in W$. then contradiction. (minimal과 minimum 가정을...)
+\end{proof}
+
+\begin{proposition}
+    유한차원 벡터공간 $V$와 선형 연산자 $S, T : V \to V$에 대하여 다음을 증명하시오.
+    \[
+        \dim(\ker(ST)) \leq \dim(\ker(S)) + \dim(\ker(T))
+    \]
+\end{proposition}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{proposition}
+    선형변환 $S: V \to W$와 $L: W \to Z$에 대하여 $L \circ S$가 영사상이라 하자. 이때 $\im(S)$이 $\ker(L)$의 부분공간이 됨을 논리적으로 서술하시오.
+\end{proposition}
+
+\begin{proof}
+    $y \in \im(S)$, 그러면 어떤 $x \in V$에 대해서 $y=S(x)$이다. $L \circ S$가 영사상이므로 $L(y)=L(S(x))=(L\circ S)(x)=0$이다. 따라서 $y \in \ker(S)$. 그러므로 $\im(S) \subset \ker(L)$ ($\im(S)$는 $W$의 부분공간이고 $\im(S)$가 스칼라 덧셈과 스칼라곱에 대해 닫혀 있다.)
+\end{proof}
+
+
+\end{document}
