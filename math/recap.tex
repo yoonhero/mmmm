@@ -125,7 +125,7 @@ Then, $\widehat{\R^2} = S^2 = D^2/{S^1}$. This can be shown by stereographic pro
 \end{proposition}
 
 \begin{proof}
-    
+    Consider $T|_{\ker(ST)}: \ker(ST) \to \ker(S)$. Then, $\ker(T|_{\ker(ST)})=\ker(T)$. By rank-nullity theorem, $\dim(\ker(ST))=\dim(\ker(T))+\dim(\im(T|_{\ker(ST)}))$. With $\im(\ker(T|_{\ker(ST)}) \subseteq \ker(S)$, we have 실베스터 부등식.
 \end{proof}
 
 \begin{proposition}
@@ -136,5 +136,99 @@ Then, $\widehat{\R^2} = S^2 = D^2/{S^1}$. This can be shown by stereographic pro
     $y \in \im(S)$, 그러면 어떤 $x \in V$에 대해서 $y=S(x)$이다. $L \circ S$가 영사상이므로 $L(y)=L(S(x))=(L\circ S)(x)=0$이다. 따라서 $y \in \ker(S)$. 그러므로 $\im(S) \subset \ker(L)$ ($\im(S)$는 $W$의 부분공간이고 $\im(S)$가 스칼라 덧셈과 스칼라곱에 대해 닫혀 있다.)
 \end{proof}
 
+\begin{definition}
+    벡터공간 $V$ 상의 선형변환 $T: V \to V$에 대하여 $V$의 기저가 $T$의 고유벡터들만 구성될 수 있다면, 대각화 가능하다고 한다.
+\end{definition}
+
+\begin{proposition}
+    선형변환의 서로다른 고윳값을 $(\lambda_i)$라 하자. 다음은 동치이다.
+    \begin{enumerate}
+        \item T는 대각화 가능하다.
+        \item $V=\bigoplus_{i \in I} E_\lambda$이다.
+        \item $V=\sum_{i \in I} E_{\lambda_i}$이다.
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+    $n \times n$ 행렬 $A$에 대하여, 어떤 가역 행렬 $Q$가 존재하여 행렬곱 $Q\inv A Q$가 대각행렬이 될 때, 행렬 $A$를 대각화 가능하다고 한다.
+\end{definition}
+
+\begin{proposition}
+    교환 가능한 선형변환과 불변공간.
+\end{proposition}
+
+\begin{proof}
+    For $v \in E_\lambda$, $T(S(v))=(T\circ S)(v)=(S\circ T)(v)=S(\lambda v)=\lambda S(v)$, $S(v) \in E_\lambda$. Then $E_\lambda$ is S-invariant space.
+\end{proof}
+
+\section*{5/6}
+
+\subsection{위상수학}
+
+\begin{definition}
+    Let a graph $G=\set{(x,\sin{1/x}) : x \in (0,1]}$. Then $T=G \cup \set{(0,0)}$ is called Topologist's sine curve.
+\end{definition}
+
+\begin{proposition}
+    Topologist's sine curve is connected but not path-connected.
+\end{proposition}
+
+\begin{proof}
+    Since $G \subset T \subset \overline{G}$ and $G$ is connected, then $T$ is connected. ($\because \,\overline{G}=G \cup \set{(0,t): t \in [-1,1]}$)
+
+    Suppose it path-connected with starting point $(0,0)$. Then 
+\end{proof}
+
+Topologist's sine curve is connected but neither path-connected nor locally connected.
+
+\subsection{선형대수학}
+
+\begin{theorem}
+    $D: \F^n \times \cdots \times \F^n \to \F$ s.t.
+    \begin{enumerate}
+        \item 다중선형성: 각 열벡터에 대해서 선형.
+        \item 교대성: 인접한 두 열벡터가 같으면 0.
+        \item 정규화: $D(e_1, \cdots, e_n)=1$.
+    \end{enumerate}
+    의 함수는 유일하게 존재한다.
+\end{theorem}
+
+\begin{proof}
+\[
+D(A)=\sum_{i_1=1}^n \cdots \sum_{i_n=1}^n A_{i_1,1}\cdots A_{i_n,n} D(e_{i_1},\cdots,e_{i_n})
+\]
+교대성에 의해 인덱스 중에 중복되는 것이 하나라도 있으면 사라지기에, 중복이 없는 경우 즉 치환을 이루는 경우만 남는다.
+
+\[
+D(A)=\sum_{\sigma \in S_n} A_{\sigma(1),1}\cdots A_{\sigma(n),n} D(e_{\sigma(1)},\cdots,e_{\sigma(n)})
+\]
+
+이때 반대칭성을 적용하여 치환 $\sigma$를 항등치환으로 되돌리려면 부호 함수 $\sgn(\sigma)$가 곱해져야 한다.
+
+\[
+D(A)=\sum_{\sigma \in S_n} \sgn(\sigma)A_{\sigma(1),1}\cdots A_{\sigma(n),n}
+\]
+
+따라서 $D(A)$의 값은 행렬 $A$의 성분들에 의해 유일하게 결정된다.
+
+\end{proof}
+
+\begin{proposition}
+    $\det(AB)=\det(A)\det(B)$
+\end{proposition}
+
+\begin{proof}
+    Assume $B$ is not invertible. And define $f: M_{n \times n}(\F) \to \F$, with $f(A)=\det(AB)/\det(B)$. Then $f(I)=\det(B)/\det(B)=1$, and by uniqueness of determinant, $f(A)=\det(A) \implies \det(A)\det(B)=\det(AB)$.
+\end{proof}
+
+\begin{proposition}
+    선형연산자의 행렬표현에 무관하게 행렬식의 값은 유일하다. 즉, 잘 정의된다.
+\end{proposition}
+
+\begin{proof}
+\[
+A'=P\inv A P, \det(A')=\det(P\inv)\det(A)\det(P)=\det(A)
+\]
+\end{proof}
 
 \end{document}
