@@ -181,6 +181,58 @@ Then, $\widehat{\R^2} = S^2 = D^2/{S^1}$. This can be shown by stereographic pro
 
 Topologist's sine curve is connected but neither path-connected nor locally connected.
 
+\begin{definition}
+    Let a sequence of continuous function $\set{f_n : X \to \R}$. We called it "uniformly converges" if $\forall \epsilon > 0 \; \exists N > 0$ such that
+    \[
+        n,m>N \implies \abs{f_n(x)-f_m(x)} < \eps, \forall x \in X
+    \]
+\end{definition}
+
+\begin{proposition}
+    If $f_n$ is uniformly converges, 
+    \begin{enumerate}
+        \item $\exists f: X \to \R$ s.t. $forall x \in X, f(x):=\lim f_n(x)$ 
+        \item $f$ is continuous
+    \end{enumerate}
+\end{proposition}
+
+We can derive it easily, from property of complete metric space. 
+
+\begin{theorem}
+    Let normal space $X$ and a closed subset $A \subset X$, continuous $f : A \to [0,1]$. Then $exists$ continuous function $F: X \to [0,1]$ s.t. $F|_A = f$.
+    \label{theorem:tietz_extension}
+\end{theorem}
+
+\begin{proof}
+    Let $C_1 := f\inv([0,1/3])$, $C_2 := f\inv([2/3,1])$. Then by Uryshon's Lemma, there's a continuous function $g_1: X \to [1/3,2/3]$ s.t. $g_1|_{C_1} = 1/3$ and $2/3$ for $C_2$. Then $\abs{f(x)-g(x)} \leq 1/3, \forall x \in A$. By continuing this for $h_1(x)=f(x)-g_1(x)$. We have a continuous function
+    \[h_n : X \to [-\frac{2^{n-2}}{3^n}, \frac{2^{n-2}}{3^n}], \forall x \in A\]
+
+    Then well-defined $F(x) := \sum^\infty_{n=1} g_n(x)$ satisfies the condition. ($\because$ for each $n<m$ $\abs{F_n(x)-F_m(x)} \leq \abs{q_{n+1}(x)}+\cdots+\abs{q_m(x)}\leq \epsilon$, it uniformly converges!)
+\end{proof}
+
+\begin{definition}
+    Let a topology space $X$ and an open set $O \subset X$.
+    \begin{enumerate}
+        \item $S$ is not dense in $O$ if $\bar{S} \cap O \subsetneq O$
+        \item $S$ is called 'no where dense' if $S$ is not dense in any open subset $O$ in $X$.
+        \item A topology space $X$ is called \bf{the first category} if $X$ is a at most countable union of no where dense subsets.
+        \item A topology space $X$ is called \bf{the second category} if $X$ is not the first category.
+    \end{enumerate}
+\end{definition}
+
+For example, $\set{\text{pt}}$ is nowhere dense and $S=\Q$ is first category. ($\because \bigcup \set{q}$) But $\R$ is the second category. (not trivial)
+
+\begin{theorem}
+    Let a complete metric space $X$. Then, any open subset $O$ in $X$ is of the second category.
+    \label{theorem:Baire_category}
+\end{theorem}
+
+For example, $\R^2 \neq \bigcup_n L_n$ (not union of countable line)
+
+\begin{corollary}
+    Any subset $A$ in $X$ containing an open subset $O$ is of second category.
+\end{corollary}
+
 \subsection{선형대수학}
 
 \begin{theorem}
