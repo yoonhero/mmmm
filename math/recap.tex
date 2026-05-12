@@ -283,4 +283,270 @@ A'=P\inv A P, \det(A')=\det(P\inv)\det(A)\det(P)=\det(A)
 \]
 \end{proof}
 
+\section*{5/11}
+
+\subsection{위상수학}
+
+\begin{theorem}
+    Let a complete metric space $X$. Then, any open subset $O$ in $X$ is of the second category.
+\end{theorem}
+
+\begin{proof}
+    Suppoe $O=\bigcup_n S_n$ where $S_n$ is no where dense subset.
+
+    Choose an open ball $O_1 = B_\rho(c_1) \subset O$ and an open ball $O_2 = B_{\frac{\rho}{2}}(c_2)$ with $\overline{O_2} \subset O_1 \setminus (\overline{S_1} \cap O_1)$. Continue this process. Then we have
+    \[
+        O_n = B_{\frac{\rho}{2^{n-1}}}(c_n)
+    \] with $\overline{O_n} \subset O_{n-1}\setminus (\overline{S_{n-1}}\cap O_{n-1})$.
+
+    \begin{enumerate}[label=\roman*.]
+        \item $O_1 \supset O_2 \supset \cdots$
+        \item Any two points in $O_n$ is closer than $\frac{\rho}{2^{n-1}}$.
+        \item Any point in $O_n$ is outside of $S_1 \cup \cdots \cup S_{n-1}$.
+    \end{enumerate}
+
+    Then $\set{c_n}$ is Cauchy sequence, so in complete metric space, $c_n \to c \in X$.
+    \begin{enumerate}[label=\roman*.]
+        \item $c \in O$, but $c \not\in \bigcup_n S_n$
+        \item $c \not\in O \implies c \not\in \overline{O_m}$ for all $m$, but $c_{m+1}, c_{m+2}, \cdots \in O_m$ then $c \in \overline{O_m}$
+    \end{enumerate}
+
+    By contradiction, we finish our proof.
+\end{proof}
+
+Finally, it's time to study "Manifolds".
+
+\begin{definition}
+    A topology space $X$ is called n-manifold if
+    \begin{enumerate}
+        \item $X$ is Hausdorff.
+        \item $\forall x \in X$, there's some open subset $U$ containing $x$ s.t. $U \simeq \R^n$ for some n.
+    \end{enumerate}
+\end{definition}
+
+If $X$ is connected, then we have invariance of domain.
+
+\begin{enumerate}
+    \item $\R^0$ is single point. Then discrete topology space is 0-manifold.
+    \item trivially $\R^n$ is n-manifold.
+    \item and any open subset $U$ in $\R^n$ is n-dim manifold.
+    \item If it is not a Hausdorff, consider following \cref{example:one_line}.
+    \item an open subset of manifold is a manifold. ($O \cap U$ is open in $\R^n$ then $B_\delta(0)$ in it)
+\end{enumerate}
+
+\begin{example}
+    \label{example:one_line}
+    Let a real line $R_a, R_b$ then give equivalence relation $x_a=x_b$ iff $x_a\sim x_b$ ($x \neq 0$). Then a sequence $x_n = 1/n$ converges to $0_a$ and $0_b$.
+
+    \begin{tikzpicture}[>=stealth, scale=1.2]
+
+    % two lines
+    \draw[->] (-3,1) -- (3,1);
+    \draw[->] (-3,-1) -- (3,-1);
+
+    % origins
+    \draw[fill=white] (0,1) circle (2pt);
+    \draw[fill=white] (0,-1) circle (2pt);
+
+    \node[above] at (0,1) {$0_a$};
+    \node[below] at (0,-1) {$0_b$};
+
+    % identified nonzero parts
+    \draw[dashed] (-2,1) -- (-2,-1);
+    \draw[dashed] (2,1) -- (2,-1);
+
+    \node[left] at (-2,0) {$x_a\sim x_b\ (x\neq0)$};
+
+    % neighborhoods
+    \draw[thick] (-1,1) -- (1,1);
+    \draw[thick] (-1,-1) -- (1,-1);
+
+    \end{tikzpicture}
+\end{example}
+
+\begin{theorem}
+    Let n-dim manifold M.
+    $M$ is connected iff $X$ is path-connected.
+\end{theorem}
+
+\begin{proof}
+    Pick $x_0 \in M$ and let subset $N$ s.t. $\forall y \in N$, there's a continuous map 
+    \[
+        f: I \to M
+    \] with $f(0)=x_0 \wedge f(1)=y$. If we show this is closed and open, it becomes $M$ otherwise it is disconnected.
+
+    $M$ satisfies first axiom of countability because it is locally $\R^n$. (to apply thm 5.1) Suppose $\set{x_k}$ is a sequence of point in $N$, $\lim x_k = z$. Choose an open neighbor of $z$ which homeomorphic to $\R^n$. For large $k$, $x_k \in O$. As $x_k \in N$, we have $f: I \to M$. And since $\R^n$ is locally path-connected, choose continuous map $g: I \to M$. Then define $h$ by
+    \[
+        h(t)=\begin{cases}
+            f(2t) & 0 \leq t \leq 1/2 \\
+            g(2t-1) & 1/2 < t \leq 1 \\
+        \end{cases}
+    \] So $z \in N$. $N$ is closed.
+
+    Likewise, $x \in N$ there's open set $O$ homeomorphic to $\R^n$. Then every element is in $N$. $N$ is open.
+\end{proof}
+
+\section*{5.12}
+
+\subsection{해석개론}
+
+\subsubsection{Ch5. Differentiate}
+
+\begin{definition}
+    We say $f$ is differentiable at $x$ iff $f'$ is defined at a point $x$.
+\end{definition}
+
+$f(x)=x^2 \sin(1/x)$의 도함수 불연속성
+
+\begin{theorem}
+$[a,b]$에서 미분 가능하면 continuous
+\end{theorem}
+\begin{proof}
+    \[
+        f(t)-f(x) \leq \frac{f(t)-f(x)}{t-x} (t-x) \to f'(x) \cdot 0 =0
+    \]
+\end{proof}
+
+converse의 반례로는 continuous function on isolated points가 있다. $X=\set{0}, f(0)=1$로 정의되면 differentiable하지 않다.
+
+\begin{theorem}
+    미분가능한 함수들의 기본적인 연산이 성립함.
+\end{theorem}
+
+ex) $x^n$ induction으로 미분 가능한 것을 알고, 모든 다항함수가 전부 미분 가능함을 안다.
+
+\begin{theorem}
+    $f$가 continuous + $f'(x)$ exist + $g$ differentiable at point $f(x)$일 때, $h(t)=g(f(t))$이 미분 가능!
+\end{theorem}
+
+\begin{proof}
+\[
+    g(s)-g(y)=(s-y)(g'(y)+v(s)), f(t)-f(x)=(t-x)(f'(x)+u(t))
+\]
+이고, 
+\[
+    h(t)-h(x)=[f(t)-f(x)][g'(y)+v(s)]=(t-x)[f'(x)+u(t)][g'(y)+v(s)]
+\]
+에서 take $t \to x$ and $s \to y$ then we have $f'(x)g'(f(x))$
+\end{proof}
+
+\begin{theorem}
+    $x$에서 locally maximum을 가지고 $f'(x)$가 존재하면 $f'(x)=0$
+    \label{theorem:roll}
+\end{theorem}
+\begin{proof}
+    \[x-\delta < t < x \implies \frac{f(t)-f(x)}{t-x} \geq 0\]
+    이므로 $f'(x)\geq0$이고 유사하게 $f'(x)\leq 0$을 얻어서 $f'(x)=0$이다.
+\end{proof}
+
+다음은 $f'(x)$ 존재성을 활용한 증명!이다.
+
+\begin{theorem}
+    $f,g$ continuous in $[a,b]$ and differentiable in $(a,b)$이면 $\exists x \in [a,b]$ s.t. $[f(b)-f(a)]g'(x)=[g(b)-g(a)]f'(x)$
+    \label{theorem:gen-mean-value}
+\end{theorem}
+\begin{proof}
+    다음과 같이 두자. \[h(t)=[f(b)-f(a)]g(t)-[g(b)-g(a)]f(t)\]
+    만약에 $h(t)>h(a)=h(b)$인 지점이 있다면 최대최소 원리에 따라서 최댓값을 가지는 $x$가 존재하고, \cref{theorem:roll}에 의해서 $h'(x)=0$이다.    
+\end{proof}
+
+\begin{theorem}
+    $f(b)-f(a)=(b-a)f'(x)$
+    \label{theorem:mean-value}
+\end{theorem}
+\begin{proof}
+    take $g(x)=x$ in \cref{theorem:gen-mean-value}.
+\end{proof}
+    
+일반적으로 differentiable하더라도 $f'(x)$가 continuous하지 않다. 아래의 성질을 가진다.
+
+\begin{theorem}
+    $f'(a)<c<f'(b)$에 대해서 $f'(x)=c$인 $x$가 존재.
+\end{theorem}
+\begin{proof}
+    $g(t)=f(t)-ct$라고 할 때 $g'(a) < 0$이기에 $\exists t_1$ s.t. $g(t_1) < g(a)$ 마찬가지로 $g(t_2) < g(b)$이다. 따라서 최소를 $c \in (a,b)$에서 가지고 이때 $g'(t)=0$, hence $f'(t)=c$
+\end{proof}
+
+\begin{corollary}
+    미분가능한 함수가 simple discontinuity를 가질 수는 없다.
+\end{corollary}
+
+\begin{theorem}
+    \label{theorem:taylor}
+    Let $f:[a,b] \to \R$. Suppose $f^{n-1}$ is conti on $[a,b]$ and differentiable in $(a,b)$. Let $\alpha, \beta \in [a,b]$, $\alpha < \beta$ and
+    \[
+    P(t)=\sum_{k=0}^{n-1} \frac{f^{k}(\alpha)}{k!}(t-\alpha)^k
+    \]. Then there's $c \in (\alpha, \beta)$ s.t. \[f(\beta)-P(\beta)=\frac{f^n(c)}{n!}(\beta-\alpha)^n\]
+\end{theorem}
+
+\begin{proof}
+    $f(\beta)=P(\beta)+M(\beta-\alpha)^n$일 때, \[g(t)=f(t)-P(t)-M(t-\alpha)^n\]라고 두자. 이때 $i=0,\cdots,n-1$에 대해서 $f^{(i)}(\alpha)-P^{(i)}(\alpha)=0$이기에 $g^{(i)}(\alpha)=0$이다. $g(\beta)=0$이고 중간값 정리를 쓰면 $g'(c_1)=0$인 $c_1$가 있다. 이를 반복하면 $g^{(n)}(c_n)=0$인 $c_n$이 있다. $f^{(n)}(c_n)-n!M=0$이고 $M=\frac{f^{(n)}(c_n)}{n!}$이다. 
+\end{proof}
+
+\subsubsection{Riemann and Stieltjes Integral}
+
+일단 partition을 정의하자. $P=\{x_0, x_1, \cdots, x_n\}$ s.t. $a=x_0 < x_1 < \cdots < x_n=b$ 
+set $\Delta x_n := x_n - x_{n-1}$ 
+
+let $f$ be a bounded ftn $[a,b] \to \mathbb{R}$
+
+\[
+M_i := \sup_{[x_{i-1}, x_i]} f
+\]
+similarly for $m_i$
+
+\[
+U(P, f)=\sum M_i \Delta x_i, \overline{\int^b_a}f(x)\dd x := \inf_P U(P,f)
+\]
+similarly for $L(P, f)$.
+
+\begin{definition}
+    We say $f$ is Riemann integrable if $\overline{\int^b_a} f(x)\dd x = \underline{\int^b_a} f(x)\dd x$.
+\end{definition}
+
+ex) $f=x_{\mathbb{Q}}$ -> $U(P, f)=1 \neq L(P, f)=0$\\
+check) $f=x_{contour}$
+
+\begin{definition}
+    Let $\alpha$ be a monotonically increasing ftn on $[a, b]$ for a partition $P$.\\$\Delta \alpha_i = \alpha(x_i)-\alpha(x_{i-1}) \geq 0$
+    \[M_i=\sup_{x \in [\alpha(x_{i-1}), \alpha(x_{i})]} f(x)\]
+    \[U(P, f, \alpha)=\sum M_i \Delta \alpha_i\]
+    \[\overline{\int^b_a}f(\alpha)\dd\alpha := \inf_P U(P, f, \alpha)\]
+\end{definition}
+
+alpha에 대한 적분으로 바꾸자.
+
+\begin{definition}
+    We say $f \in R(\alpha)$ (is Riemann integrable with respect to $\alpha$) if $\overline{\int^b_a}f(\alpha)\text{d}\alpha=\underline{\int^b_a}f(\alpha)d\alpha$
+\end{definition}
+
+\begin{definition}
+    Let $P, P'$ be partitions of $[a, b]$, We say $P'$ is refinement of P if $P \subset P'$
+\end{definition}
+
+\begin{theorem}
+    if $P'$ is refinement of P, then $U(P', f, a) \leq U(P, f, \alpha)$
+\end{theorem}
+
+\begin{theorem}
+    $f \in R(\alpha)$ on $[a, b]$ iff for every $\epsilon >0$ . there's parition P s.t. $U(P, f, \alpha)-L(P, f, \alpha) < \epsilon$
+\end{theorem}
+\begin{proof}
+    (only if) Let $\epsilon>0$ 그냥 생각해보면 됨. inf/sup 정의로 epsilon만들기 (Partition $P_1 \cup P_2$를 생각)
+    (if) 계속 작아지니까 결국 같아짐. (완비성, $\Q$로 가는 함수라면 다르다!)
+\end{proof}
+
+\begin{remark}
+    if $U(P, f, \alpha)-L(P,f,\alpha)<\epsilon$ and $P=\{x_0, \cdots, x_n\}$를 $\sum \abs{f(t_i)-f(s_i)}\Delta\alpha_i<\epsilon$랑 같은!
+\end{remark}
+
+\begin{theorem}
+    Let $f\in R(\alpha)$. Suppose $\alpha$ is conti on $[a,b]$ (mono increasing)
+
+    Then for every $\epsilon$, $\exists \delta >0$ s.t. $U(P, f, \alpha)-L(P, f, \alpha)<\epsilon$ if $\norm{P}<\delta$
+    whenever $\norm{P}=\max x_i$
+\end{theorem}
+
+잘게잘게썰면이걸구해버릴수있다는!증명은다음시간에
+
 \end{document}
