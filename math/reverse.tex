@@ -1,0 +1,336 @@
+\documentclass{article}
+\usepackage{mystyle}
+
+\usetikzlibrary{arrows.meta, positioning, calc, fit, backgrounds}
+
+\definecolor{ink}{HTML}{1F2933}
+\definecolor{muted}{HTML}{667085}
+\definecolor{blue}{HTML}{2F80ED}
+\definecolor{line}{HTML}{D0D5DD}
+\definecolor{soft}{HTML}{F7F9FC}
+\definecolor{cell}{HTML}{FFFFFF}
+\definecolor{mark}{HTML}{EBF3FF}
+\definecolor{green}{HTML}{12B76A}
+\definecolor{orange}{HTML}{F79009}
+\definecolor{purple}{HTML}{7A5AF8}
+\definecolor{redsoft}{HTML}{F97066}
+
+\tikzset{
+  paperbox/.style={
+    draw=ink!55,
+    fill=white,
+    rounded corners=2pt,
+    very thick,
+    minimum height=10mm,
+    text width=25mm,
+    align=center,
+    font=\small
+  },
+  papersmall/.style={
+    draw=ink!45,
+    fill=white,
+    rounded corners=2pt,
+    thick,
+    minimum height=8mm,
+    text width=22mm,
+    align=center,
+    font=\small
+  },
+  papernote/.style={
+    font=\footnotesize,
+    text=muted,
+    align=center
+  },
+  tensorlabel/.style={
+    font=\footnotesize\ttfamily,
+    text=ink
+  },
+  paperarrow/.style={
+    -{Latex[length=2.2mm]},
+    thick,
+    draw=ink!75
+  },
+  looparrow/.style={
+    -{Latex[length=2.2mm]},
+    thick,
+    draw=ink!75
+  }
+}
+
+\newcommand{\filtergrid}[4]{%
+\begin{tikzpicture}[x=8mm,y=8mm,baseline=-10mm]
+  \foreach \i in {0,...,3} {
+    \draw[line] (0,-\i) -- (3,-\i);
+    \draw[line] (\i,0) -- (\i,-3);
+  }
+
+  \fill[fill=mark] (#2,-#3) rectangle ++(1,-1);
+  \fill[fill=mark] (1,-1) rectangle ++(1,-1);
+
+  \node at (#2+.5,-#3-.5) {$1$};
+  \node at (1.5,-1.5) {$-2$};
+
+  \node[font=\small, text=ink] at (1.5,.45) {$#1$};
+  \node[font=\scriptsize, text=muted] at (1.5,-3.45) {#4};
+\end{tikzpicture}%
+}
+
+\DeclareMathOperator{\ReLU}{ReLU}
+
+\title{\vspace{-1.2em}5주차: 시각화 고고학}
+\author{ML기초 시그 by 윤승현}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{정글 속 디스크}
+
+정글에 불시착한 yogurt는 울창한 밀림에서 헤매고 있다.
+끝없이 이어진 밀림 사이의 강길을 따라 이동하던 중,
+먼지가 잔뜩 묻은 디스크 하나를 발견한다.
+
+\begin{quote}
+\centering
+\itshape
+이 퍼즐을 푼 자, 자신이 이 숲을 살아나갈 수 있는지 알 수 있을 것이다.
+\end{quote}
+
+식량은 고작 10일 치.
+앞길은 막막하다.
+그런데도 yogurt는 이상하게 이 문제에 끌린다.
+
+자세히 퍼즐을 읽어보니 다음과 같이 적혀 있었다.
+
+\begin{center}
+\fbox{\parbox{0.82\linewidth}{
+\centering
+$\{0,1,2\}$로 채워진 $11 \times 11$ 이미지를 입력으로 받는다.\\
+이 신경망이 무슨 역할을 수행하는지 알아맞혀라.
+}}
+\end{center}
+
+\subsection*{단서 1: 필터}
+
+디스크에는 다음과 같은 네 개의 $3 \times 3$ 필터가 함께 들어 있었다.
+
+\begin{center}
+\begin{tabular}{@{}c@{\qquad}c@{\qquad}c@{\qquad}c@{}}
+\filtergrid{K_{\leftarrow}}{0}{1}{왼쪽}
+&
+\filtergrid{K_{\uparrow}}{1}{0}{위쪽}
+&
+\filtergrid{K_{\rightarrow}}{2}{1}{오른쪽}
+&
+\filtergrid{K_{\downarrow}}{1}{2}{아래쪽}
+\end{tabular}
+\end{center}
+
+\subsection*{단서 2: 네트워크 구조}
+
+신경망의 전체 구조는 다음과 같다.
+
+\vspace{4mm}
+
+\resizebox{\linewidth}{!}{
+\begin{tikzpicture}[
+  >=Latex,
+  font=\small,
+  node distance=8mm,
+  arr/.style={
+    -{Latex[length=2.2mm,width=1.6mm]},
+    line width=0.55pt,
+    draw=black!75
+  },
+  darr/.style={
+    -{Latex[length=2.2mm,width=1.6mm]},
+    dashed,
+    line width=0.55pt,
+    draw=black!45
+  },
+  skiparr/.style={
+    -{Latex[length=2.0mm,width=1.5mm]},
+    line width=0.55pt,
+    draw=black!65
+  },
+  box/.style={
+    rounded corners=3.5pt,
+    line width=0.55pt,
+    draw=black!45,
+    fill=white,
+    align=center,
+    inner sep=3pt
+  },
+  topbox/.style={
+    box,
+    minimum width=34mm,
+    minimum height=13mm
+  },
+  mainbox/.style={
+    box,
+    draw=blue!55!black,
+    fill=blue!4,
+    minimum width=45mm,
+    minimum height=14mm,
+    line width=0.8pt
+  },
+  module/.style={
+    box,
+    minimum height=10mm,
+    minimum width=20mm
+  },
+  tensor/.style={
+    module,
+    draw=green!45!black,
+    fill=green!10,
+    minimum width=16mm
+  },
+  conv/.style={
+    module,
+    draw=redsoft!70!black,
+    fill=redsoft!10,
+    minimum width=27mm
+  },
+  act/.style={
+    module,
+    draw=orange!60!black,
+    fill=orange!10,
+    minimum width=18mm
+  },
+  gate/.style={
+    module,
+    draw=purple!60!black,
+    fill=purple!8,
+    minimum width=18mm
+  },
+  reduce/.style={
+    module,
+    draw=violet!55!black,
+    fill=violet!9,
+    minimum width=29mm
+  },
+  clip/.style={
+    module,
+    draw=orange!60!black,
+    fill=orange!11,
+    minimum width=18mm
+  },
+  plus/.style={
+    circle,
+    draw=black!70,
+    fill=white,
+    line width=0.55pt,
+    minimum size=6.8mm,
+    inner sep=0pt,
+    font=\normalsize
+  },
+  label/.style={
+    font=\scriptsize,
+    text=black!55,
+    align=center
+  },
+  paneltitle/.style={
+    font=\bfseries\small,
+    text=blue!55!black
+  }
+]
+
+% =====================================================
+% Top-level unrolled architecture
+% =====================================================
+
+\node[topbox] (input) {
+  \textbf{Input image}\\[-0.5mm]
+  $X_0 \in \{0,1,2\}^{11\times 11}$
+};
+
+\node[mainbox, right=18mm of input] (repeat) {
+  \textbf{ConvBlock} $\times 10$
+};
+
+\node[topbox, right=18mm of repeat, minimum width=34mm] (out) {
+  $(X_{10})_{11,11}=2$
+};
+
+\draw[arr] (input) -- (repeat);
+\draw[arr] (repeat) -- (out);
+
+% =====================================================
+% Expanded ConvBlock
+% =====================================================
+
+\node[tensor, below=35mm of repeat, xshift=-68mm] (xt) {$X_t$};
+
+\node[conv, right=6mm of xt] (convop) {
+  $3{\times}3$ Conv\\[-0.4mm]
+  $4$ kernels
+};
+
+\node[act, right=6mm of convop] (relu) {$\ReLU$};
+
+\node[gate, right=6mm of relu] (rho) {$\rho_2$};
+
+\node[reduce, right=6mm of rho] (sum) {
+  channel sum\\[-0.4mm]
+  $[4,H,W]\to[H,W]$
+};
+
+\node[plus, right=6mm of sum] (add) {$+$};
+
+\node[clip, right=6mm of add] (sat) {$\text{clip}_{[0,2]}$};
+
+\node[tensor, right=6mm of sat] (xtp) {$X_{t+1}$};
+
+\draw[arr] (xt) -- (convop);
+\draw[arr] (convop) -- (relu);
+\draw[arr] (relu) -- (rho);
+\draw[arr] (rho) -- (sum);
+\draw[arr] (sum) -- (add);
+\draw[arr] (add) -- (sat);
+\draw[arr] (sat) -- (xtp);
+
+% Residual identity path
+\coordinate (s1) at ($(xt.north)+(0,8mm)$);
+\coordinate (s2) at ($(add.north)+(0,8mm)$);
+
+\draw[skiparr]
+  (xt.north) -- (s1)
+  -- node[label, above=0.6mm] {identity}
+  (s2) -- (add.north);
+
+% Panel background, drawn behind nodes
+\begin{pgfonlayer}{background}
+\node[
+  rounded corners=6pt,
+  draw=blue!55!black,
+  fill=blue!2,
+  line width=0.75pt,
+  inner xsep=7mm,
+  inner ysep=7mm,
+  fit=(xt) (convop) (relu) (rho) (sum) (add) (sat) (xtp) (s1) (s2)
+] (panel) {};
+\end{pgfonlayer}
+
+\node[paneltitle, anchor=north west]
+  at ([xshift=4mm,yshift=-3mm]panel.north west) {ConvBlock};
+
+% Zoom relation
+\draw[darr]
+  (repeat.south) -- node[label, right=1mm] {one step} (panel.north);
+
+% Tiny annotations
+\node[label, below=1mm of xt] {$[H,W]$};
+\node[label, below=1mm of sum] {aggregate};
+\node[label, below=1mm of add] {residual};
+
+\end{tikzpicture}
+}
+
+\begin{center}
+\fbox{\parbox{0.84\linewidth}{
+\centering
+질문: 이 네트워크는 무엇을 하는가?
+}}
+\end{center}
+
+\end{document}
