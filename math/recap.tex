@@ -549,4 +549,119 @@ alpha에 대한 적분으로 바꾸자.
 
 잘게잘게썰면이걸구해버릴수있다는!증명은다음시간에
 
+\section*{5/19}
+
+\subsection*{해개연}
+
+\begin{proposition}
+    Logarithm is concave.
+\end{proposition}
+
+\begin{proof}
+    \[
+    \log(\lambda x + (1-\lambda) y) \geq \lambda \log (x) + (1-\lambda) \log(y) \implies \lambda x + (1-\lambda) y \geq x^\lambda y^{1-\lambda}
+    \]
+    \begin{quote}
+        4.23, 5.14, 6.10(a) 참고.
+    \end{quote}
+    % #4.23, #5.14, #6.10(a) 참고.
+\end{proof}
+
+\begin{proposition}
+    \[
+    f(x)=3x+4x^2\sin \left(\frac{1}{x} \right), f(0)=0
+    \]은 좋은 반례이다.
+\end{proposition}
+
+\begin{proof}
+    \[
+    f'(0)=3, f'(\frac{1}{2n\pi})=-1
+    \] + 어떤 0 근방에서도 일대일 함수가 아니다.
+\end{proof}
+
+\begin{proposition}
+    (5.17) Suppose real $f$, three times differentiable function on $[-1,1]$, such that $f(-1)=f(0)=f'(0)=0$ and $f(1)=1$.
+    Prove that $f^{(3)}\geq 3$ for some $x \in (-1,1)$.
+\end{proposition}
+
+\begin{proof}
+    \[
+    f(x)=f(0)+f'(0)x+{f''(0)/2} x^2+ {f'''(*)/6} x^3={f''(0)/2} x^2+ {f'''(*)/6} x^3
+    \]
+
+    \[f(1)-f(-1)=\frac{1}{6}(f'''(x_1)+f'''(x_2))=1\]
+
+    then, we have $f'''(x_1)+f'''(x_2)=6$.
+\end{proof}
+
+\begin{proposition}
+    (5.26) $f$가 $[a,b]$에서 미가, $f(a) = 0$, and there is a real number $A$ such that $\abs{f'(x)} \leq A \abs{f(x)}$ $\forall x \in [a,b]$. Prove that $f(x)=0$ 
+\end{proposition}
+
+\begin{proof}
+    Let $M_0=\sup {f(x)}$, $M_1=\sup {f'(x)}$. Set $x < a + \frac{1}{2A}$. then $\abs{f(x)} \leq M_1(x-a) \leq M_0 (x-a) A < \frac{1}{2}M_0$ which is contradiction. Proceed it with $a=a+\frac{1}{A}$.
+\end{proof}
+
+조교님의 상식: Gronwall inequality [Evans PDE 708p]
+
+\begin{theorem}
+    $g,h$: 양의 연속함수 on $[a,b]$
+    \[g'(t)\leq h(t)g(t) \implies g(t)\leq e^{\int^t_a h(s)\dd s}\]
+\end{theorem}
+
+\begin{proposition}
+    (6.1 quiz)
+\end{proposition}
+
+\begin{proof}
+    자명하게 $L(f,P,\alpha)=0$. $M_i = \begin{cases} 1 \; (i=j) \\ 0 \end{cases}$. $\eps > 0$ 고정. $\alpha$가 $x=t$에서 연속이므로 엡실론 델타 쓰고, Let $P=\set{a,t-\frac{\delta}{2}, t+\frac{\delta}{2}, b}$로 잡자. 그럼 $U(f,P,\alpha)<\eps$.
+\end{proof}
+
+\begin{proposition}
+    $f\geq 0$ is continuous. $\int^a_b f \dd x = 0$. Prove $f(x)=0$.
+    \label{problem:singlepoint}
+\end{proposition}
+
+\begin{proof}
+    Suppose $\exists c$ s.t. $f(c) > 0$. since $f$ is continuous, we have $\delta$ for $\abs{x-c} < \delta \implies \abs{f(x)-f(c)} < \frac{f(c)}{2} \implies f(x) > \frac{1}{2}f(c)$. Then $\int^a_b \geq \int^{c+\delta}_{c-\delta} > 0$
+\end{proof}
+
+\begin{proposition}
+    (6.10)
+    \begin{enumerate}
+        \item $\frac{1}{p}+\frac{1}{q}=1$, \[uv \leq \frac{u^p}{p} + \frac{v^q}{q} \iff u^p = v^q \]
+        \item $f,g \in R(\alpha)$ with $f,g \geq 0$, $\int f^p \dd \alpha = \int g^q \dd \alpha = 1 \implies \int^b_a fg \dd \alpha \leq 1$
+        \item \[\abs{\int^b_a fg \dd \alpha} \leq (\int^b_a \abs{f}^p \dd\alpha)^{1/p}(\int^b_a \abs{g}^q \dd\alpha)^{1/q}\]
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    (1) 로그의 성질
+
+    Let $a=u^p, b=v^q$, then $\frac{u^p}{p}+\frac{v^q}{q}= \lambda a + (1-\lambda) b \geq a^{\lambda}b^{1-\lambda}=uv$. That equality holds iff $u^p = v^q$.
+
+    (2) trivial\\
+    (3) Set \[A=\frac{\abs{f}}{(\int \abs{f}^p \dd\alpha)^{1/p}},\\B=\frac{\abs{g}}{(\int \abs{g}^q \dd\alpha)^{1/q}}\] Then $\int A^p \dd\alpha=1=\int B^q \dd\alpha$ and \[\int AB \dd\alpha \leq 1\] We find inequality.
+\end{proof}
+
+When this equality holds? Not surprisingly, it's same with Cauchy-Schwarz condition $u=\lambda v$.
+
+\begin{proof}
+    \[0 \leq \int^b_a (f-tg)^2 \dd\alpha = \int f^2 \dd\alpha - 2t \int fg \dd\alpha + t^2 \int g^2 \dd\alpha\]
+    Consider quadratic equation discriminant, then $(\int fg \dd\alpha)^2 - (\int f^2 \dd\alpha)(\int g^2\dd\alpha) \leq 0$. When equal to $0$, $\lambda$ exists such that $\int (f-\lambda g) \dd\alpha=0$. Since this is continuous function, if single point not $0$ then by \cref{problem:singlepoint} $f=\lambda g$.
+\end{proof}
+
+\begin{proposition}
+    $f,f'$이 연속, $f(a)=f(b)=0$ with $\int^b_a {f(x)}^2 \dd x=1$. Show \[\int^b_a[f'(x)]^2\dd x \cdot \int^b_a x^2f^2(x) \dd x > \frac{1}{4}\]
+\end{proposition}
+
+\begin{proof}
+    From (6.10), we have \[\frac{1}{4}\leq (\int^b_a \abs{xf'(x)f(x)}\dd\alpha)^2 \leq \int^b_a[f'(x)]^2\dd x \cdot \int^b_a x^2f^2(x) \dd x\]
+
+    Equality holds when $\exists \lambda$ for $f'(x)=\lambda xf(x)$.
+
+    Then from (5.26), we know $f(x)=0$ which is contradiction.
+    Or $f^2(x)=Ce^{1/2x^2}$ and $C=0$.
+\end{proof}
+
 \end{document}
