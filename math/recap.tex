@@ -664,4 +664,53 @@ When this equality holds? Not surprisingly, it's same with Cauchy-Schwarz condit
     Or $f^2(x)=Ce^{1/2x^2}$ and $C=0$.
 \end{proof}
 
+\section*{5/26}
+
+\subsection*{해개연}
+
+\begin{proposition}
+    $f,g : [a,b]\to \gg$. $f \in R$. Let the set finite $S=\set{x: f(x) \neq g(x)}$. Then $g(x)$ is Riemann integrable. And $\int f \dd x = \int g \dd x$
+\end{proposition}
+
+\begin{proof}
+    Let $h(x)=f(x)-g(x)$ and fix $\eps > 0$. Set $M=\max{\abs{h(x)}}$. Let a partition $P={x_1, x_2, \cdots, x_n}$ with uniform delta $x_i - x_{i-1} \leq \frac{\eps}{Mk}$. 
+    \[U(P,h)\leq 2Mk\frac{\eps}{Mk}\leq 2\eps \]
+    Since $\eps$ is arbitrary, then $g$ is Riemann integrable and $\int h\dd x = 0$.
+\end{proof}
+
+\begin{proposition}
+    Let Thomae's function, \[f(x)=\begin{cases}
+        0 & x=0,1,\text{irrational number} \\
+        \frac{1}{q} & x=\frac{p}{q} \; \text{기약분수} 
+    \end{cases}\]
+    $f$ is Riemann integrable.
+\end{proposition}
+
+연속성은 유리수점(불연속), 무리수점(연속). 계속 구간을 줄이면 높이가 거의 0이 됨. 미분가능성은 모든 점에서 미분 불가.
+
+\begin{proof}
+    $g_n(x)=\max\set{\frac{1}{n}, f(x)}$.
+    \begin{enumerate}
+        \item $g_n(x)\neq\frac{1}{n}$인 점 유한개. 
+        \item $f(x) \leq g_n(x)$
+    \end{enumerate}
+    \[0 \leq \int^1_0f\dd x \leq \bar{\int^1_0}f \dd x \leq \int^1_0 g_n \dd x=\frac{1}{n}\]
+\end{proof}
+
+Next, we handle 적분의 평균 정리.
+
+\begin{proposition}
+    Let $f,g: [a,b]\to\R$ conti. $g(x) \geq 0$ on $[a,b]$. Then there's some $c \in [a,b]$ s.t.
+    \[\int f(x)g(x)\dd x = f(c) \int g(x)\dd x\]
+\end{proposition}
+
+\begin{proof}
+    If $\int g \dd x = 0$, then $g=0$. Just consider $g \neq 0$. By min-max theorem, $m \leq f(x) \leq M$, then $m \int g \dd x \leq \int fg \dd x \leq M \int g \dd x$. By intermediate value theorem, it exists.
+\end{proof}
+
+\begin{proposition}
+    Let a conti ft $f$ on $[a,b]$, then
+    \[\lim_{n \to \infty} \left(\int^b_a \abs{f(x)}^n\dd x \right)^{1/n} = \max{\abs{f(x)}}\]
+\end{proposition}
+
 \end{document}
