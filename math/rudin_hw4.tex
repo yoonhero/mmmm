@@ -1,0 +1,165 @@
+\documentclass{article}
+\usepackage{mystyle}
+
+\title{해개연 과제 4}
+\author{윤승현}
+
+\begin{document}
+
+\maketitle
+
+\section*{5}
+
+Since $f$ is differentiable for every $x > 0$, apply mean value theorem. Then we have
+
+\[g(x)=f(x+1)-f(x)=1\times f'(c)\]
+
+for $c \in (x,x+1)$. Let $\eps > 0$. For sufficiently large $N$, $f'(x) < \eps$ for $x > N$. Then we get $g(x) < \eps$ for $x > N$, $g(x) \to 0$ as $x \to \infty$.
+
+\section*{8}
+
+Since $f'$ is continuous on $[a,b]$, this is uniformly continuous. Let $\eps > 0$. Then we can set $\exists \delta$ s.t. $\abs{f'(x)-f'(y)} < \eps$ for $\abs{x-y} < \delta$ with $x,y \in [a,b]$. By mean value theorem, \[\frac{f(x)-f(t)}{x-t} = f'(c)\] for $c \in (x,t) \cup (t,x)$. Then \[\abs{\frac{f(x)-f(t)}{x-t}-f'(x)} \leq \abs{f'(c)-f'(x)} < \eps\] holds for whenever $0 < \abs{t-x} < \delta, a \leq x \leq b, a \leq t \leq b$.
+
+% todo is this true for vector function?
+
+This holds for vector-value functinos too. Similarly, vector value function $f': \R \to \R^k$ is uniformly convergent on $[a,b]$. $f'(x)=(f_1'(x), f_2'(x), \cdots, f_k'(x))$ and every $f_i'$ is uniformly convergent. Let $\eps > 0$. we have $\delta_i$ s.t. $\abs{f_i'(x)-f_i'(y)} < \sqrt{\eps^2/k}$ for $\abs{x-y} < \delta_i$. Then let $\delta = \min_i \delta_i > 0$. Then $\norm{f'(x)-f'(y)} < \eps$ for $\abs{x-y} < \delta$. By applying the scalar mean value theorem separately to each component,
+there exists a point $c_i$ between $x$ and $t$ such that
+\[
+  \frac{f_i(x)-f_i(t)}{x-t}-f_i'(x)
+  =f_i'(c_i)-f_i'(x).
+\]
+Thus, whenever $0<|t-x|<\delta$,
+\[
+  \left\|\frac{f(x)-f(t)}{x-t}-f'(x)\right\|^2
+  =\sum_{i=1}^k |f_i'(c_i)-f_i'(x)|^2
+  <k\left(\frac{\varepsilon}{\sqrt{k}}\right)^2
+  =\varepsilon^2.
+\]
+Hence,
+\[
+  \left\|\frac{f(x)-f(t)}{x-t}-f'(x)\right\|<\varepsilon.
+\]
+
+
+\section*{12}
+
+\[
+f(x)=
+\begin{cases}
+x^3 & x>0 \\
+-x^3 & x<0 \\
+0 & x=0
+\end{cases}
+\]
+
+\[f'(0+)=\lim_{x\to 0+} \frac{x^3}{x} = 0 = \lim_{x \to 0-} \frac{-x^3}{x} = f'(0-) \] Then calculate $f'(x)$.
+
+\[
+f'(x)=
+\begin{cases}
+3x^2 & x>0 \\
+-3x^2 & x<0 \\
+0 & x=0
+\end{cases}
+\]
+
+\[f''(0+)=\lim_{x\to 0+} \frac{3x^2}{x} = 0 = \lim_{x \to 0-} \frac{-3x^2}{x} = f''(0-) \] Then calculate $f''(x)$.
+
+\[
+f''(x)=
+\begin{cases}
+6x & x>0 \\
+-6x & x<0 \\
+0 & x=0
+\end{cases}
+\]
+
+$\lim_{x \to 0+} \frac{6x}{x} = 6$ and $\lim_{x \to 0-} \frac{-6x}{x}=6$. Since $f^{(3)}(0+) \neq f^{(3)}(0-)$, $f^{(3)}(0)$ does not exist.
+
+\section*{13}
+
+\begin{problem}
+Suppose $a$ and $c$ are real numbers, $c > 0$, and $f$ is defined on $[-1,1]$ by \[f(x)=
+\begin{cases}
+\abs{x}^a \sin(x^{-c}) & \text{if } x \neq 0 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+\end{problem}
+
+We use the following facts.
+
+\begin{enumerate}
+    \item $\sin(x^{-c}) \leq 1$ for all $x$.
+    \item limit of $\sin(x^{-c})$ on $x=0$ does not exist. Consider $x_n = \frac{1}{\sqrt[c]{(2n+1/2)\pi}}$ and $y_n = \frac{1}{\sqrt[c]{(2n+3/2)\pi}}$
+    \item $\lim_{x \to 0} \abs{x}^a = 0$ for all $a > 0$. This is from the fact $\abs{x}^a$ is continuous.
+    \item $\abs{x}^a \to \infty$ as $x \to 0$ for $a < 0$. For a given $n \in \N$, there is $\eps_n=n^{1/a}$ s.t. $\eps_n^a \geq n$. This is unbounded.
+\end{enumerate}
+
+\subsection*{(a) $f$ is continuous iff $a > 0$}
+
+$f$ is continuous on $[-1,1] \setminus \set{0}$.
+
+\begin{enumerate}
+    \item $a>0$, $\lim_{x \to 0} \abs{x}^a \sin(x^{-c}) \leq \lim_{x \to 0} \abs{x}^a = 0 = f(0)$ then $f$ is continuous.
+    \item $a=0$, let a seq $x_n = \frac{1}{\sqrt[c]{(2n+1/2)\pi}}$. then this seq $f(x_n) = 1$ as $x_n \to 0$. this is not continuous.
+    \item $a<0$, then from fact (4) this is unbounded.
+\end{enumerate}
+
+\subsection*{(b) $f'(0)$ exists iff $a > 1$}
+
+\[
+f'(0) = \lim_{x \to 0} \frac{f(x)-f(0)}{x} = \lim_{x \to 0} \abs{x}^{a-1} \sin(x^{-c})
+\]
+
+Then $f'(0)$ exists iff limit $\abs{x}^{a-1} \sin(x^{-c})$ exists on $x=0$.
+
+Then it's enough to consider $a=1$ otherwise $a>1$ then continuous and $a<1$ then diverge. From the fact (3), there's no limit.
+
+\subsection*{(c) $f'$ is bounded iff $a \geq 1 + c$}
+
+For $a > 1 + c \geq 1$, $f'(0)$ exists and then
+
+\[f'(x)=
+\begin{cases}
+a\abs{x}^{a-1} \sin(x^{-c}) - c \abs{x}^{a-c-1} \cos(x^{-c}) & \text{if } x \neq 0 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+From (a), this is bounded iff $a-1 \geq 0$ and $a-c-1 \geq 0$. Then this is bounded iff $a \geq c+1$.
+
+\subsection*{(d) $f'$ is continuous iff $a > 1+c$}
+
+From (a), this is continuous iff $a-1 > 0$ and $a-c-1 > 0$. Then this is continuous iff $a > c+1$.
+
+\subsection*{(e) $f''(0)$ exists iff $a > 2+c$}
+
+\[
+f''(0) = \lim_{x \to 0} \frac{f'(x)-f'(0)}{x} = \lim_{x \to 0} a\abs{x}^{a-2} \sin(x^{-c}) - c \abs{x}^{a-c-2} \cos(x^{-c})
+\]
+
+From (b), $f''(0)$ exists iff $a>c+2$.
+
+\subsection*{(f) $f''$ is bounded iff $a \geq 2+2c$}
+
+\[f''(x)=
+\begin{cases}
+(a(a-1)\abs{x}^{a-2}-c^2\abs{x}^{a-2c-2}) \sin(x^{-c}) - (c(a-c-1) \abs{x}^{a-c-2}+ac \abs{x}^{a-c-2}) \cos(x^{-c}) & \text{if } x \neq 0 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+From (a), this is bounded iff $a-2 \geq 0$, $a-2c-2 \geq 0$ and $a-c-2 \geq 0$. Then this is bounded iff $a \geq 2c+2$.
+
+\subsection*{(g) $f''$ is continuous iff $a > 2+2c$}
+
+From (a), this is continuous iff $a-2 > 0$, $a-2c-2 > 0$ and $a-c-2 > 0$. The this is continuous iff $a > 2c+2$.
+
+\section*{16}
+
+By Taylor theorem, we have 
+
+\[f(x+2h)=f(x)+2f'(x)h+2f''(c)h^2\] for $c \in (x,x+2h)$. Then it becomes $f'(x)=\frac{1}{2h}[f(x+2h)-f(x)]-h''(c)$. Let $M_0, M_1, M_2$ be the least upper bounds of $\abs{f(x)}, \abs{f'(x)}, \abs{f''(x)}$, respectively, on $(a,\infty)$. Then $\abs{f'(x)} \leq hM_2 + \frac{M_0}{h}$ and $\abs{f'(x)} \leq 2\sqrt{hM_2 \times \frac{M_0}{h}} \leq hM_2 + \frac{M_0}{h}$. Then we have $M_1^2 \leq 4M_0 M_2$. As $f'(x)$ is bounded on $(0,\infty)$, there's some $K$ s.t. $\abs{f'(x)} < K$. Let $\eps > 0$. For sufficiently large N, $f(x) < \eps^2$ for $x > N$. Then $\abs{f'(x)} \leq 2\sqrt{K\eps^2} = 2\sqrt{K}\eps$ for $x > N$. Then $f'(x) \to 0$ as $x \to \infty$.
+
+\end{document}
