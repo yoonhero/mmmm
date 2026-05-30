@@ -109,12 +109,16 @@ $f$ is continuous on $[-1,1] \setminus \set{0}$.
 \subsection*{(b) $f'(0)$ exists iff $a > 1$}
 
 \[
-f'(0) = \lim_{x \to 0} \frac{f(x)-f(0)}{x} = \lim_{x \to 0} \abs{x}^{a-1} \sin(x^{-c})
+\lim_{x \to 0+} \frac{f(x)-f(0)}{x} = \lim_{x \to 0+} \abs{x}^{a-1} \sin(x^{-c})
 \]
 
-Then $f'(0)$ exists iff limit $\abs{x}^{a-1} \sin(x^{-c})$ exists on $x=0$.
+\[
+\lim_{x \to 0-} \frac{f(x)-f(0)}{x} = \lim_{x \to 0-} -\abs{x}^{a-1} \sin(x^{-c})
+\]
 
-Then it's enough to consider $a=1$ otherwise $a>1$ then continuous and $a<1$ then diverge. From the fact (3), there's no limit.
+Then $f'(0)$ exists iff limit $\abs{x}^{a-1} \sin(x^{-c})$ exists on $x=0$ and its value is $0$.
+
+Then it's enough to consider $a=1$ otherwise $a>1$ then continuous and its value is $0$ and $a<1$ then diverge. From the fact (2), there's no limit. Then $f'(0)$ exists iff $a>1$.
 
 \subsection*{(c) $f'$ is bounded iff $a \geq 1 + c$}
 
